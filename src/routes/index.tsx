@@ -236,7 +236,7 @@ function SectionHeader({ eyebrow, title, lead, center = false }: { eyebrow: stri
   return (
     <header className={`section-header max-w-3xl mb-14 ${center ? "mx-auto text-center" : ""}`}>
       <div className="text-accent text-[10px] tracking-[0.5em] uppercase mb-4">{eyebrow}</div>
-      <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl text-primary-foreground font-normal tracking-tight leading-[1.05]">{title}</h2>
+      <h2 className="font-sans text-3xl sm:text-5xl text-primary-foreground font-bold tracking-tight">{title}</h2>
       {lead && <p className="mt-5 text-primary-foreground/65 text-base sm:text-lg leading-relaxed max-w-2xl">{lead}</p>}
       <div className={`mt-7 h-px w-16 bg-accent/60 ${center ? "mx-auto" : ""}`} />
     </header>
