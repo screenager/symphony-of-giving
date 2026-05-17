@@ -52,23 +52,25 @@ const SOLOISTS = [
   { name: "Joris Derder", role: "Bariton / dirigent", img: "https://symphony-of-giving.be/images/joris-derder.jpeg" },
 ];
 
-const PARTNERS = {
+type PartnerItem = { name: string; src: string; href?: string; whiteBg?: boolean };
+
+const PARTNERS: Record<"hoofd" | "premium" | "sponsors" | "ambassadeurs", PartnerItem[]> = {
   hoofd: [{ name: "DAS Verzekeringen", src: "https://symphony-of-giving.be/images/logo-das.svg", href: "https://www.das.be/" }],
   premium: [
-    { name: "Cepom", src: "https://symphony-of-giving.be/images/logo-cepom.webp", href: "https://www.cepom.be/nl/" },
+    { name: "Cepom", src: "https://symphony-of-giving.be/images/logo-cepom.webp", href: "https://www.cepom.be/nl/", whiteBg: true },
     { name: "Brooksmiller", src: "https://symphony-of-giving.be/images/logo-brooksmiller.png", href: "https://brooksmillerpartners.com/home/" },
   ],
   sponsors: [
     { name: "Voya Travel", src: "https://symphony-of-giving.be/images/logo-voya.svg", href: "https://voja.travel/" },
     { name: "De Familiepraktijk", src: "https://symphony-of-giving.be/images/logo-defamiliepraktijk.svg", href: "https://familiepraktijk.be/" },
     { name: "Pro Arte", src: "https://symphony-of-giving.be/images/logo-pro-arte.avif", href: "https://www.proarte.be/" },
-    { name: "Just Corals", src: "https://symphony-of-giving.be/images/logo-just-corals.webp" },
-    { name: "Wijnen De Kok", src: "https://symphony-of-giving.be/images/logo-wijnen-dekok.gif", href: "https://wijnen-dekok.com/" },
+    { name: "Just Corals", src: "https://symphony-of-giving.be/images/logo-just-corals.webp", whiteBg: true },
+    { name: "Wijnen De Kok", src: "https://symphony-of-giving.be/images/logo-wijnen-dekok.gif", href: "https://wijnen-dekok.com/", whiteBg: true },
   ],
   ambassadeurs: [
     { name: "Harmonie Sint Cecilia Nijlen", src: "https://symphony-of-giving.be/images/logo-harmonie-nijlen.png" },
-    { name: "Radio Klara", src: "https://symphony-of-giving.be/images/logo-klara.jpg" },
-    { name: "KBC Private Banking Wilrijk", src: "https://symphony-of-giving.be/images/logo-kbc-private-banking.jpg" },
+    { name: "Radio Klara", src: "https://symphony-of-giving.be/images/logo-klara.jpg", whiteBg: true },
+    { name: "KBC Private Banking Wilrijk", src: "https://symphony-of-giving.be/images/logo-kbc-private-banking.jpg", whiteBg: true },
     { name: "Vocatio", src: "https://symphony-of-giving.be/images/logo-vocatio.svg", href: "https://www.vocatio.be/nl" },
   ],
 };
@@ -96,8 +98,8 @@ function SiteHeader({ open, setOpen }: { open: boolean; setOpen: (v: boolean) =>
   return (
     <header className="site-header sticky top-0 z-40 backdrop-blur-md bg-primary/85 text-primary-foreground border-b border-primary-foreground/10">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 flex items-center justify-between h-16">
-        <a href="#hero" className="font-sans text-base sm:text-lg font-bold tracking-tight uppercase">
-          Symphony <span className="text-accent">of</span> Giving
+        <a href="#hero" className="font-rounded text-base sm:text-lg font-black tracking-wider uppercase">
+          Symphony <span className="text-accent italic font-medium">of</span> Giving
         </a>
         <nav className="hidden md:flex items-center gap-8 text-sm">
           {NAV.map((n) => (
@@ -143,37 +145,53 @@ function SiteHeader({ open, setOpen }: { open: boolean; setOpen: (v: boolean) =>
 function Hero() {
   return (
     <section id="hero" className="hero relative overflow-hidden bg-parchment text-foreground">
-      <div className="mx-auto max-w-5xl px-4 sm:px-6 pt-16 sm:pt-24 pb-[42vh] sm:pb-[40vh] text-center relative z-10">
-        <div className="flex items-center justify-center gap-3 text-accent text-xs sm:text-sm tracking-[0.4em] uppercase mb-8 font-semibold">
+      <div className="mx-auto max-w-6xl px-4 sm:px-6 pt-12 sm:pt-20 pb-[34vh] sm:pb-[30vh] relative z-10">
+        <div className="flex items-center justify-center gap-3 text-accent text-xs sm:text-sm tracking-[0.4em] uppercase mb-8 font-rounded font-bold">
           <span className="h-px w-10 bg-accent" />
           Benefietconcert
           <span className="h-px w-10 bg-accent" />
         </div>
-        <h1 className="font-sans font-black uppercase text-primary leading-[0.88] tracking-tight text-[15vw] sm:text-[12vw] lg:text-[10rem]">
-          Symphony
-          <br />
-          <span className="font-light italic lowercase">of</span> Giving
-        </h1>
-        <div className="gold-rule my-8 mx-auto max-w-xs" />
-        <p className="text-base sm:text-lg text-muted-foreground max-w-xl mx-auto">
+
+        {/* Bear sits to the LEFT of the logo, like in the poster composition */}
+        <div className="hero-logo flex items-center justify-center gap-4 sm:gap-8">
+          <img
+            src={bearImg}
+            alt="Blauwe pluche beer met gouden strik — mascotte van Symphony of Giving"
+            width={1024}
+            height={1024}
+            className="hero-bear shrink-0 w-[28%] sm:w-[24%] md:w-[22%] max-w-[260px] h-auto drop-shadow-[0_18px_30px_rgba(0,0,0,0.35)]"
+          />
+          <h1 className="font-rounded font-black uppercase text-primary leading-[0.9] tracking-tight text-[12vw] sm:text-[10vw] lg:text-[8.5rem] text-left">
+            Symphony
+            <br />
+            <span className="font-medium italic lowercase tracking-tight">of</span> Giving
+          </h1>
+        </div>
+
+        <div className="gold-rule my-10 mx-auto max-w-xs" />
+
+        <p className="text-center text-base sm:text-lg text-muted-foreground max-w-xl mx-auto">
           Carmina Burana van Orff en Beethovens Koorfantasie — een avond
           klassieke muziek met groot hart, ten voordele van drie goede doelen.
         </p>
-        <dl className="mt-10 grid grid-cols-1 sm:grid-cols-3 gap-5 max-w-3xl mx-auto">
-          <InfoItem icon={<Calendar className="w-4 h-4" />} label="Datum" value="25.10.2026 — 15:00" />
-          <InfoItem icon={<MapPin className="w-4 h-4" />} label="Locatie" value="Koningin Elisabethzaal" hint="Antwerpen" />
-          <InfoItem icon={<Ticket className="w-4 h-4" />} label="Werken" value="Carmina Burana" hint="Koorfantasie" />
-        </dl>
+
+        {/* Date · Location · Works — rounded, all caps, no labels */}
+        <ul className="mt-10 flex flex-wrap justify-center gap-x-10 gap-y-4 font-rounded font-bold uppercase tracking-[0.18em] text-primary text-sm sm:text-base">
+          <li className="flex items-center gap-2"><Calendar className="w-4 h-4 text-accent" /> 25.10.2026 — 15:00</li>
+          <li className="flex items-center gap-2"><MapPin className="w-4 h-4 text-accent" /> Koningin Elisabethzaal, Antwerpen</li>
+          <li className="flex items-center gap-2"><Ticket className="w-4 h-4 text-accent" /> Carmina Burana · Koorfantasie</li>
+        </ul>
+
         <div className="mt-10 flex flex-wrap gap-3 justify-center">
           <Link
             to="/tickets"
-            className="inline-flex items-center gap-2 rounded-full bg-primary text-primary-foreground px-6 py-3 text-sm font-semibold hover:opacity-90 transition"
+            className="inline-flex items-center gap-2 rounded-full bg-primary text-primary-foreground px-6 py-3 text-sm font-rounded font-bold uppercase tracking-widest hover:opacity-90 transition"
           >
             <Ticket className="w-4 h-4" /> Koop tickets
           </Link>
           <a
             href="#concert"
-            className="inline-flex items-center gap-2 rounded-full border border-primary/30 px-6 py-3 text-sm font-semibold hover:bg-primary/5 transition"
+            className="inline-flex items-center gap-2 rounded-full border border-primary/30 px-6 py-3 text-sm font-rounded font-bold uppercase tracking-widest hover:bg-primary/5 transition"
           >
             Ontdek het concert
           </a>
@@ -181,30 +199,9 @@ function Hero() {
       </div>
 
       {/* Dark stage floor + smooth transition into the rest of the page */}
-      <div aria-hidden className="absolute inset-x-0 bottom-0 h-[38vh] sm:h-[34vh] bg-stage z-0" />
-      <div aria-hidden className="absolute inset-x-0 bottom-[34vh] sm:bottom-[30vh] h-[14vh] parchment-to-stage z-0" />
-
-      {/* Bear sitting on the dark floor, slightly left and tilted */}
-      <img
-        src={bearImg}
-        alt="Blauwe pluche beer met gouden strik — mascotte van Symphony of Giving"
-        width={1024}
-        height={1024}
-        className="pointer-events-none select-none absolute left-2 sm:left-6 md:left-12 bottom-0 w-[58%] sm:w-[36%] md:w-[30%] max-w-[420px] z-10 drop-shadow-[0_20px_40px_rgba(0,0,0,0.45)] -rotate-[6deg] origin-bottom"
-      />
+      <div aria-hidden className="absolute inset-x-0 bottom-0 h-[26vh] sm:h-[22vh] bg-stage z-0" />
+      <div aria-hidden className="absolute inset-x-0 bottom-[22vh] sm:bottom-[18vh] h-[12vh] parchment-to-stage z-0" />
     </section>
-  );
-}
-
-function InfoItem({ icon, label, value, hint }: { icon: React.ReactNode; label: string; value: string; hint?: string }) {
-  return (
-    <div className="info-item text-center sm:text-left">
-      <dt className="flex items-center justify-center sm:justify-start gap-2 text-xs uppercase tracking-widest text-primary/60">
-        <span className="text-accent">{icon}</span> {label}
-      </dt>
-      <dd className="mt-1 font-display text-xl text-primary">{value}</dd>
-      {hint && <dd className="text-sm text-muted-foreground">{hint}</dd>}
-    </div>
   );
 }
 
@@ -372,23 +369,23 @@ function Programma() {
   );
 }
 
-function PartnerTier({ title, items, size = "md" }: { title: string; items: { name: string; src: string; href?: string }[]; size?: "lg" | "md" | "sm" }) {
-  const h = size === "lg" ? "h-24" : size === "md" ? "h-16" : "h-12";
+function PartnerTier({ title, items, size = "md" }: { title: string; items: PartnerItem[]; size?: "lg" | "md" | "sm" }) {
+  const h = size === "lg" ? "h-20 sm:h-24" : size === "md" ? "h-14 sm:h-16" : "h-10 sm:h-12";
   return (
     <div className="partner-tier">
-      <h3 className="text-xs uppercase tracking-[0.3em] text-accent text-center mb-6 font-semibold">{title}</h3>
+      <h3 className="font-rounded text-xs uppercase tracking-[0.3em] text-accent text-center mb-6 font-bold">{title}</h3>
       <div className="flex flex-wrap items-center justify-center gap-x-12 gap-y-8">
         {items.map((p) => {
           const img = (
             <img
               src={p.src}
               alt={`Logo ${p.name}`}
-              className={`${h} max-w-[200px] object-contain bg-white/95 rounded px-3 py-2 opacity-90 hover:opacity-100 transition`}
+              className={`${h} max-w-[200px] object-contain ${p.whiteBg ? "partner-logo--whitebg" : "partner-logo"}`}
               loading="lazy"
             />
           );
           return p.href ? (
-            <a key={p.name} href={p.href} target="_blank" rel="noreferrer">
+            <a key={p.name} href={p.href} target="_blank" rel="noreferrer" className="block">
               {img}
             </a>
           ) : (
@@ -463,7 +460,7 @@ function SiteFooter() {
           <img
             src="https://symphony-of-giving.be/images/logo-das.svg"
             alt="Logo DAS Verzekeringen"
-            className="h-14 bg-white/95 rounded p-2 w-fit"
+            className="h-12 partner-logo w-fit"
           />
         </div>
       </div>
