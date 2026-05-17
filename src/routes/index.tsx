@@ -289,7 +289,7 @@ function Benefiet() {
         />
         <div className="grid md:grid-cols-3 gap-6">
           {BENEFICIARIES.map((b) => (
-            <article key={b.name} className="beneficiary-card rounded-xl border border-primary-foreground/25 p-6 flex flex-col text-primary-foreground">
+            <article key={b.name} className="beneficiary-card border border-primary-foreground/15 p-7 flex flex-col text-primary-foreground">
               <div className="h-24 flex items-center justify-center">
                 <img
                   src={b.logo}
@@ -297,7 +297,7 @@ function Benefiet() {
                   className="w-full max-h-20 object-contain partner-logo"
                 />
               </div>
-              <h3 className="font-rounded uppercase text-2xl text-accent mt-5 tracking-wide">{b.name}</h3>
+              <h3 className="font-display text-2xl text-accent mt-6 tracking-tight">{b.name}</h3>
               <p className="mt-3 text-sm text-primary-foreground/80 leading-relaxed flex-1">{b.text}</p>
               <div className="mt-5 pt-4 border-t border-primary-foreground/15 text-sm space-y-1">
                 {b.iban && (
