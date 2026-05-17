@@ -148,29 +148,32 @@ function Hero() {
       {/* Full-width banner — the bear + wordmark live in the image itself.
           The bottom fades into the dark stage below. */}
       <div className="relative">
-        <div
-          aria-hidden
-          className="absolute inset-x-0 bottom-0 z-20 h-48 sm:h-64 pointer-events-none"
-          style={{
-            backgroundImage: `url(${headerStagePattern})`,
-            backgroundSize: "100% 680px",
-            backgroundPosition: "bottom center",
-            WebkitMaskImage: "linear-gradient(to bottom, transparent 0%, black 100%)",
-            maskImage: "linear-gradient(to bottom, transparent 0%, black 100%)",
-          }}
-        />
-        <img
-          src={heroBanner}
-          alt="Symphony of Giving — blauwe pluche beer met gouden strik naast het logo"
-          width={1600}
-          height={800}
-          className="relative z-10 block w-full h-auto"
-          style={{
-            WebkitMaskImage: "linear-gradient(to bottom, black 55%, transparent 100%)",
-            maskImage: "linear-gradient(to bottom, black 55%, transparent 100%)",
-          }}
-        />
-      </div>
+        <div className="relative">
+          <img
+            src={heroBanner}
+            alt="Symphony of Giving — blauwe pluche beer met gouden strik naast het logo"
+            width={1600}
+            height={800}
+            className="relative z-10 block w-full h-auto"
+            style={{
+              WebkitMaskImage: "linear-gradient(to bottom, black 40%, transparent 100%)",
+              maskImage: "linear-gradient(to bottom, black 40%, transparent 100%)",
+            }}
+          />
+          <div
+            aria-hidden
+            className="absolute inset-x-0 z-20 pointer-events-none"
+            style={{
+              top: "30%",
+              bottom: "-120px",
+              backgroundImage: `url(${headerStagePattern})`,
+              backgroundSize: "100% 680px",
+              backgroundPosition: "bottom center",
+              WebkitMaskImage: "linear-gradient(to bottom, transparent 0%, black 55%, black 100%)",
+              maskImage: "linear-gradient(to bottom, transparent 0%, black 55%, black 100%)",
+            }}
+          />
+        </div>
       <div className="relative z-30 -mt-10 sm:-mt-16 pb-2 text-primary-foreground">
         <div className="mx-auto max-w-5xl px-4 sm:px-6">
           <div className="flex items-center justify-center gap-5 sm:gap-8 text-accent mb-8">
