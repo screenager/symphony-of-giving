@@ -153,11 +153,10 @@ function Hero() {
           width={1600}
           height={800}
           className="block w-full h-auto"
-        />
-        <div
-          aria-hidden
-          className="pointer-events-none absolute inset-x-0 bottom-0 h-40 sm:h-56"
-          style={{ background: "linear-gradient(to bottom, rgba(16,37,65,0) 0%, #102541 100%)" }}
+          style={{
+            WebkitMaskImage: "linear-gradient(to bottom, black calc(100% - 10px), transparent 100%)",
+            maskImage: "linear-gradient(to bottom, black calc(100% - 10px), transparent 100%)",
+          }}
         />
       </div>
       <div className="relative z-10 pt-10 sm:pt-14 pb-2 text-primary-foreground">
