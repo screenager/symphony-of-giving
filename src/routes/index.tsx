@@ -147,7 +147,6 @@ function Hero() {
     <section id="hero" className="hero relative overflow-hidden">
       {/* Full-width banner — the bear + wordmark live in the image itself.
           The bottom fades into the dark stage below. */}
-      <div className="relative">
         <div className="relative">
           <img
             src={heroBanner}
