@@ -98,8 +98,8 @@ function SiteHeader({ open, setOpen }: { open: boolean; setOpen: (v: boolean) =>
   return (
     <header className="site-header sticky top-0 z-40 backdrop-blur-md bg-primary/85 text-primary-foreground border-b border-primary-foreground/10">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 flex items-center justify-between h-16">
-        <a href="#hero" className="font-sans text-base sm:text-lg font-bold tracking-tight uppercase">
-          Symphony <span className="text-accent">of</span> Giving
+        <a href="#hero" className="font-rounded text-base sm:text-lg font-black tracking-wider uppercase">
+          Symphony <span className="text-accent italic font-medium">of</span> Giving
         </a>
         <nav className="hidden md:flex items-center gap-8 text-sm">
           {NAV.map((n) => (
