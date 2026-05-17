@@ -29,6 +29,7 @@
   --color-input: var(--input);
   --color-ring: var(--ring);
   --font-display: "Cormorant Garamond", ui-serif, Georgia, serif;
+  --font-rounded: "Nunito", ui-rounded, "SF Pro Rounded", system-ui, sans-serif;
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
 }
 
