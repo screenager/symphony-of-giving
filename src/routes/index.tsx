@@ -260,21 +260,25 @@ function Benefiet() {
         />
         <div className="grid md:grid-cols-3 gap-6">
           {BENEFICIARIES.map((b) => (
-            <article key={b.name} className="beneficiary-card bg-background text-foreground rounded-xl border border-border p-6 flex flex-col">
-              <div className="h-20 flex items-center bg-white/60 rounded-md px-3">
-                <img src={b.logo} alt={`Logo ${b.name}`} className="max-h-14 max-w-[180px] object-contain" />
+            <article key={b.name} className="beneficiary-card rounded-xl border border-primary-foreground/25 p-6 flex flex-col text-primary-foreground">
+              <div className="h-24 flex items-center justify-center">
+                <img
+                  src={b.logo}
+                  alt={`Logo ${b.name}`}
+                  className="w-full max-h-20 object-contain partner-logo"
+                />
               </div>
-              <h3 className="font-display text-2xl text-primary mt-4">{b.name}</h3>
-              <p className="mt-3 text-sm text-muted-foreground leading-relaxed flex-1">{b.text}</p>
-              <div className="mt-5 pt-4 border-t border-border/60 text-sm space-y-1">
+              <h3 className="font-rounded uppercase text-2xl text-accent mt-5 tracking-wide">{b.name}</h3>
+              <p className="mt-3 text-sm text-primary-foreground/80 leading-relaxed flex-1">{b.text}</p>
+              <div className="mt-5 pt-4 border-t border-primary-foreground/15 text-sm space-y-1">
                 {b.iban && (
                   <p>
-                    <span className="text-muted-foreground">Steunen: </span>
-                    <span className="font-mono text-foreground">{b.iban}</span>
+                    <span className="text-primary-foreground/60">Steunen: </span>
+                    <span className="font-mono">{b.iban}</span>
                   </p>
                 )}
                 {b.link && (
-                  <a href={b.link.href} target="_blank" rel="noreferrer" className="text-primary underline underline-offset-4 decoration-accent hover:text-accent">
+                  <a href={b.link.href} target="_blank" rel="noreferrer" className="text-accent underline underline-offset-4 hover:opacity-80">
                     {b.link.label} →
                   </a>
                 )}
