@@ -148,6 +148,17 @@ function Hero() {
       {/* Full-width banner — the bear + wordmark live in the image itself.
           The bottom fades into the dark stage below. */}
       <div className="relative">
+        <div
+          aria-hidden
+          className="absolute inset-x-0 bottom-0 z-20 h-48 sm:h-64 pointer-events-none"
+          style={{
+            backgroundImage: `url(${headerStagePattern})`,
+            backgroundSize: "100% 680px",
+            backgroundPosition: "bottom center",
+            WebkitMaskImage: "linear-gradient(to bottom, transparent 0%, black 100%)",
+            maskImage: "linear-gradient(to bottom, transparent 0%, black 100%)",
+          }}
+        />
         <img
           src={heroBanner}
           alt="Symphony of Giving — blauwe pluche beer met gouden strik naast het logo"
@@ -155,26 +166,19 @@ function Hero() {
           height={800}
           className="relative z-10 block w-full h-auto"
           style={{
-            WebkitMaskImage: "linear-gradient(to bottom, black calc(100% - 28px), transparent 100%)",
-            maskImage: "linear-gradient(to bottom, black calc(100% - 28px), transparent 100%)",
-          }}
-        />
-        <div
-          aria-hidden
-          className="absolute inset-x-0 bottom-0 h-28"
-          style={{
-            backgroundImage: `url(${headerStagePattern})`,
-            backgroundSize: "100% 680px",
-            backgroundPosition: "bottom center",
+            WebkitMaskImage: "linear-gradient(to bottom, black 55%, transparent 100%)",
+            maskImage: "linear-gradient(to bottom, black 55%, transparent 100%)",
           }}
         />
       </div>
-      <div className="relative z-10 pt-10 sm:pt-14 pb-2 text-primary-foreground">
-        <div className="mx-auto max-w-2xl px-4 sm:px-6">
-          <div className="flex items-center justify-center gap-4 text-accent text-[10px] sm:text-xs tracking-[0.55em] uppercase mb-6">
-            <span className="h-px w-12 bg-accent/60" />
-            Benefietconcert
-            <span className="h-px w-12 bg-accent/60" />
+      <div className="relative z-10 -mt-10 sm:-mt-16 pb-2 text-primary-foreground">
+        <div className="mx-auto max-w-5xl px-4 sm:px-6">
+          <div className="flex items-center justify-center gap-5 sm:gap-8 text-accent mb-8">
+            <span className="flex-1 h-px bg-accent/50" />
+            <h1 className="font-display text-5xl sm:text-7xl lg:text-8xl tracking-tight text-accent whitespace-nowrap">
+              Benefietconcert
+            </h1>
+            <span className="flex-1 h-px bg-accent/50" />
           </div>
           <div className="flex items-center gap-5">
             <span className="flex-1 h-px bg-gradient-to-r from-transparent to-accent/50" />
