@@ -161,10 +161,10 @@ function Hero() {
         />
         <div
           aria-hidden
-          className="absolute inset-x-0 bottom-0 h-20"
+          className="absolute inset-x-0 bottom-0 h-28"
           style={{
             backgroundImage: `url(${headerStagePattern})`,
-            backgroundSize: "100% auto",
+            backgroundSize: "100% 680px",
             backgroundPosition: "bottom center",
           }}
         />
