@@ -400,7 +400,7 @@ function PartnerTier({ title, items, size = "md" }: { title: string; items: Part
   const h = size === "lg" ? "h-20 sm:h-24" : size === "md" ? "h-14 sm:h-16" : "h-12 sm:h-14";
   return (
     <div className="partner-tier">
-      <h3 className="font-rounded text-xs uppercase tracking-[0.3em] text-accent text-left mb-8">{title}</h3>
+      <h3 className="text-[10px] uppercase tracking-[0.5em] text-accent text-left mb-8">{title}</h3>
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-x-10 gap-y-10 items-center justify-items-start">
         {items.map((p) => {
           const img = (
