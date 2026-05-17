@@ -378,7 +378,7 @@ function Programma() {
         </div>
 
         <div className="mt-20">
-          <h3 className="font-rounded uppercase tracking-[0.15em] text-accent text-3xl sm:text-4xl text-center mb-10">SOLISTEN</h3>
+          <h3 className="font-display text-3xl sm:text-4xl text-primary-foreground text-center mb-12">Solisten</h3>
           <ul className="grid grid-cols-2 md:grid-cols-4 gap-6">
             {SOLOISTS.map((s) => (
               <li key={s.name} className="soloist-card text-center">
