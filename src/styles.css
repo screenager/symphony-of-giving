@@ -75,46 +75,65 @@ html {
   section { scroll-margin-top: 5rem; }
 }
 
-/* Parchment + diamond/crosshatch texture inspired by the poster */
+/* Parchment "wall" — large 3D diamond pattern with light + shadow on each
+   tile, evoking embossed wall panels behind the bear. */
 .bg-parchment {
-  background-color: oklch(0.94 0.03 80);
+  background-color: oklch(0.93 0.035 80);
   background-image:
-    radial-gradient(ellipse at top, oklch(0.97 0.025 80) 0%, transparent 55%),
-    radial-gradient(circle at 50% 50%, oklch(0.7 0.08 80 / 0.18) 1.2px, transparent 1.6px),
+    /* soft top vignette */
+    radial-gradient(ellipse at 50% 0%, oklch(0.97 0.025 80) 0%, transparent 65%),
+    /* highlight on top-left of each diamond */
     repeating-linear-gradient(45deg,
-      oklch(0.55 0.08 80 / 0.18) 0 1px,
-      transparent 1px 32px),
+      oklch(1 0 0 / 0.35) 0 1px,
+      transparent 1px 90px),
     repeating-linear-gradient(-45deg,
-      oklch(0.55 0.08 80 / 0.18) 0 1px,
-      transparent 1px 32px);
-  background-size: auto, 32px 32px, auto, auto;
-  background-position: center, 0 0, 0 0, 0 0;
+      oklch(1 0 0 / 0.35) 0 1px,
+      transparent 1px 90px),
+    /* shadow on bottom-right of each diamond */
+    repeating-linear-gradient(45deg,
+      transparent 0 88px,
+      oklch(0.45 0.06 80 / 0.22) 88px 90px),
+    repeating-linear-gradient(-45deg,
+      transparent 0 88px,
+      oklch(0.45 0.06 80 / 0.22) 88px 90px),
+    /* faint inner gradient on each diamond for depth */
+    repeating-linear-gradient(45deg,
+      oklch(0.6 0.06 80 / 0.08) 0 1px,
+      transparent 1px 45px),
+    repeating-linear-gradient(-45deg,
+      oklch(0.6 0.06 80 / 0.08) 0 1px,
+      transparent 1px 45px);
 }
 
-/* Dark "stage floor" — the poster's bottom band where the bear sits.
-   It determines the background color of everything that follows. */
+/* Dark "floor + wall" — same diamond grammar in deep navy, brighter
+   highlights, used both for the hero floor and for the rest of the page. */
 .bg-stage {
   background-color: oklch(0.22 0.09 265);
   background-image:
-    radial-gradient(ellipse at top, oklch(0.3 0.1 265) 0%, transparent 60%),
-    radial-gradient(circle at 50% 50%, oklch(0.85 0.1 80 / 0.06) 1px, transparent 1.4px),
+    radial-gradient(ellipse at 50% 0%, oklch(0.3 0.11 265) 0%, transparent 70%),
     repeating-linear-gradient(45deg,
-      oklch(0.85 0.1 80 / 0.04) 0 1px,
-      transparent 1px 36px),
+      oklch(0.85 0.1 80 / 0.07) 0 1px,
+      transparent 1px 90px),
     repeating-linear-gradient(-45deg,
-      oklch(0.85 0.1 80 / 0.04) 0 1px,
-      transparent 1px 36px);
-  background-size: auto, 36px 36px, auto, auto;
+      oklch(0.85 0.1 80 / 0.07) 0 1px,
+      transparent 1px 90px),
+    repeating-linear-gradient(45deg,
+      transparent 0 88px,
+      oklch(0 0 0 / 0.35) 88px 90px),
+    repeating-linear-gradient(-45deg,
+      transparent 0 88px,
+      oklch(0 0 0 / 0.35) 88px 90px);
   color: oklch(0.94 0.03 80);
 }
 
-/* Smooth transition from parchment into the dark stage floor */
+/* Wall-to-floor transition: parchment fades into the dark floor.
+   Used as an overlay positioned where the fade should begin. */
 .parchment-to-stage {
   background:
     linear-gradient(to bottom,
       transparent 0%,
-      transparent 55%,
-      oklch(0.22 0.09 265) 92%,
+      oklch(0.22 0.09 265 / 0.4) 35%,
+      oklch(0.22 0.09 265) 80%,
       oklch(0.22 0.09 265) 100%);
 }
 
