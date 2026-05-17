@@ -122,3 +122,27 @@ html {
   height: 1px;
   background: linear-gradient(to right, transparent, var(--accent), transparent);
 }
+
+/* Rounded display font helper */
+.font-rounded {
+  font-family: var(--font-rounded);
+}
+
+/* Sponsor / partner logos rendered as luminous silhouettes on the dark stage
+   without their original background plates. */
+.partner-logo {
+  filter: brightness(0) invert(1);
+  opacity: 0.85;
+  transition: opacity 0.2s ease;
+}
+.partner-logo:hover { opacity: 1; }
+
+/* For raster logos that ship with an opaque white background plate (JPG/GIF
+   and some PNG/WEBP scans): invert the image and blend with the dark stage
+   so the (now-black) background disappears while the (now-white) artwork
+   stays visible. */
+.partner-logo--whitebg {
+  filter: invert(1);
+  mix-blend-mode: screen;
+  opacity: 0.9;
+}
