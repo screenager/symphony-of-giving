@@ -83,24 +83,23 @@ html {
     radial-gradient(ellipse at 50% 100%, oklch(0.91 0.03 80) 0%, transparent 60%);
 }
 
-/* Dark stage — deep navy matching the hero banner bottom (#102541), with
-   the diamond pattern restored as embossed wall panels. */
+/* Dark stage — repeats the lower wallpaper band from the hero banner so the
+   image edge dissolves into the same diamond texture below. */
 .bg-stage {
   background-color: #102541;
   background-image:
-    radial-gradient(ellipse at 50% 0%, oklch(0.3 0.1 265) 0%, transparent 70%),
+    linear-gradient(to bottom, oklch(0.16 0.06 260 / 0), #102541 680px),
+    url("./assets/header-stage-pattern.jpeg"),
     repeating-linear-gradient(45deg,
-      oklch(0.85 0.1 80 / 0.06) 0 1px,
+      oklch(0.85 0.1 80 / 0.055) 0 1px,
       transparent 1px 90px),
     repeating-linear-gradient(-45deg,
-      oklch(0.85 0.1 80 / 0.06) 0 1px,
+      oklch(0.85 0.1 80 / 0.055) 0 1px,
       transparent 1px 90px),
-    repeating-linear-gradient(45deg,
-      transparent 0 88px,
-      oklch(0 0 0 / 0.30) 88px 90px),
-    repeating-linear-gradient(-45deg,
-      transparent 0 88px,
-      oklch(0 0 0 / 0.30) 88px 90px);
+    radial-gradient(ellipse at 50% 0%, oklch(0.3 0.1 265 / 0.48) 0%, transparent 62%);
+  background-size: 100% 680px, 100% 680px, auto, auto, auto;
+  background-repeat: no-repeat, no-repeat, repeat, repeat, no-repeat;
+  background-position: top center;
   color: oklch(0.94 0.03 80);
 }
 
