@@ -181,7 +181,7 @@ function Hero() {
 
       {/* Soft diagonal fade from parchment into dark stage — starts already
           around the tagline so date/location sit largely on dark blue. */}
-      <div aria-hidden className="absolute inset-0 parchment-to-stage z-0 pointer-events-none" />
+      <div aria-hidden className="absolute inset-x-0 top-[100px] bottom-0 parchment-to-stage z-0 pointer-events-none" />
 
       {/* Big event details + CTAs, on the darkening background */}
       <div className="relative z-10 pb-20 pt-16 text-primary-foreground">
