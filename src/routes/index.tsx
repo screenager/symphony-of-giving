@@ -145,7 +145,7 @@ function Hero() {
   return (
     <section id="hero" className="hero relative overflow-hidden bg-parchment text-foreground">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 pt-12 sm:pt-20 pb-16 relative z-10">
-        <div className="flex items-center justify-center gap-3 text-accent text-xs sm:text-sm tracking-[0.4em] uppercase mb-8 font-rounded">
+        <div className="flex items-center justify-center gap-3 text-accent sm:text-sm tracking-[0.4em] uppercase mb-8 font-rounded text-lg">
           <span className="h-px w-10 bg-accent" />
           Benefietconcert
           <span className="h-px w-10 bg-accent" />
