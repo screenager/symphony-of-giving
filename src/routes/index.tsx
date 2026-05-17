@@ -302,12 +302,12 @@ function Programma() {
           center
         />
 
-        <ol className="program-grid grid sm:grid-cols-2 gap-5 max-w-5xl mx-auto">
+        <ol className="program-list max-w-3xl mx-auto divide-y divide-primary-foreground/10">
           {PROGRAM.map((p, i) => {
             const isPause = p.composer.includes("Pauze");
             if (isPause) {
               return (
-                <li key={i} className="sm:col-span-2 flex items-center gap-4 py-2 text-accent">
+                <li key={i} className="flex items-center gap-4 py-5 text-accent">
                   <span className="flex-1 h-px bg-accent/40" />
                   <span className="text-xs uppercase tracking-[0.4em]">Pauze</span>
                   <span className="flex-1 h-px bg-accent/40" />
@@ -315,18 +315,11 @@ function Programma() {
               );
             }
             return (
-              <li
-                key={i}
-                className="program-card group relative overflow-hidden rounded-xl border border-primary-foreground/15 bg-primary-foreground/[0.04] p-6 hover:border-accent/60 transition-colors"
-              >
-                <span className="absolute top-4 right-5 font-display text-5xl text-accent/30 group-hover:text-accent/60 transition-colors">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                <p className="text-xs uppercase tracking-[0.3em] text-accent mb-2">Werk</p>
-                <h3 className="font-display text-2xl sm:text-3xl text-primary-foreground leading-tight">
+              <li key={i} className="program-item py-5 flex flex-col sm:flex-row sm:items-baseline sm:gap-6">
+                <h3 className="font-display text-2xl sm:text-3xl text-accent leading-tight sm:w-56 shrink-0">
                   {p.composer}
                 </h3>
-                <p className="mt-2 text-primary-foreground/70 text-sm sm:text-base">{p.work}</p>
+                <p className="text-primary-foreground/85 text-base sm:text-lg">{p.work}</p>
               </li>
             );
           })}
@@ -334,7 +327,7 @@ function Programma() {
 
         <div className="mt-20 grid md:grid-cols-2 gap-10">
           <article className="rounded-xl border border-primary-foreground/15 p-8">
-            <p className="text-xs uppercase tracking-[0.3em] text-accent mb-2">Orkest</p>
+            <p className="font-rounded text-xs uppercase tracking-[0.3em] text-accent mb-3">ORKEST</p>
             <h3 className="font-display text-3xl text-primary-foreground">Symfonisch orkest Vivanto</h3>
             <p className="mt-4 text-primary-foreground/75 leading-relaxed">
               Vivanto is een nieuw, dynamisch symfonisch orkest dat traditie en
@@ -344,7 +337,7 @@ function Programma() {
             </p>
           </article>
           <article className="rounded-xl border border-primary-foreground/15 p-8">
-            <p className="text-xs uppercase tracking-[0.3em] text-accent mb-2">Dirigent</p>
+            <p className="font-rounded text-xs uppercase tracking-[0.3em] text-accent mb-3">DIRIGENT</p>
             <h3 className="font-display text-3xl text-primary-foreground">Joris Decolvenaer</h3>
             <p className="mt-4 text-primary-foreground/75 leading-relaxed">
               Belgisch dirigent en violist, artistiek leider van Vivanto.
@@ -356,8 +349,8 @@ function Programma() {
           </article>
         </div>
 
-        <div className="mt-16">
-          <h3 className="font-sans text-xs uppercase tracking-[0.3em] text-accent mb-6 text-center">Solisten</h3>
+        <div className="mt-20">
+          <h3 className="font-rounded uppercase tracking-[0.15em] text-accent text-3xl sm:text-4xl text-center mb-10">SOLISTEN</h3>
           <ul className="grid grid-cols-2 md:grid-cols-4 gap-6">
             {SOLOISTS.map((s) => (
               <li key={s.name} className="soloist-card text-center">
@@ -365,7 +358,7 @@ function Programma() {
                   <img src={s.img} alt={`Portret van ${s.name}`} className="w-full h-full object-cover" loading="lazy" />
                 </div>
                 <p className="mt-4 font-display text-lg text-primary-foreground">{s.name}</p>
-                <p className="text-xs uppercase tracking-widest text-primary-foreground/60">{s.role}</p>
+                <p className="font-rounded text-xs uppercase tracking-widest text-primary-foreground/60 mt-1">{s.role}</p>
               </li>
             ))}
           </ul>
