@@ -143,46 +143,37 @@ function SiteHeader({ open, setOpen }: { open: boolean; setOpen: (v: boolean) =>
 
 function Hero() {
   return (
-    <section id="hero" className="hero relative overflow-hidden bg-parchment text-foreground">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6 pt-12 sm:pt-20 pb-16 relative z-10">
-        <div className="flex items-center justify-center gap-4 text-accent text-[10px] sm:text-xs tracking-[0.55em] uppercase mb-10 font-sans">
-          <span className="h-px w-12 bg-accent/60" />
-          Benefietconcert
-          <span className="h-px w-12 bg-accent/60" />
-        </div>
+    <section id="hero" className="hero relative overflow-hidden">
+      {/* Full-width banner — the bear + wordmark live in the image itself.
+          The image's bottom edge is the same deep navy as bg-stage, so it
+          blends seamlessly into the page background below. */}
+      <img
+        src={heroBanner}
+        alt="Symphony of Giving — blauwe pluche beer met gouden strik naast het logo"
+        width={1600}
+        height={800}
+        className="block w-full h-auto"
+      />
 
-        {/* Bear sits to the LEFT of the logo */}
-        <div className="hero-logo flex items-center justify-center gap-6 sm:gap-10">
-          <img
-            src={bearImg}
-            alt="Blauwe pluche beer met gouden strik — mascotte van Symphony of Giving"
-            width={1024}
-            height={1024}
-            className="hero-bear shrink-0 w-[34%] sm:w-[30%] md:w-[28%] max-w-[340px] h-auto drop-shadow-[0_22px_30px_rgba(0,0,0,0.25)]"
-          />
-          <h1 className="font-display text-primary leading-[0.92] tracking-tight text-[13vw] sm:text-[11vw] lg:text-[9rem] text-left font-medium">
-            <span className="block">Symphony</span>
-            <span className="flex items-baseline gap-[0.18em]">
-              <span className="text-[0.5em] italic font-normal text-accent">of</span>
-              <span>Giving</span>
-            </span>
-          </h1>
-        </div>
-
-        <div className="hero-tagline mt-12 mx-auto max-w-2xl flex items-center gap-5">
-          <span className="flex-1 h-px bg-gradient-to-r from-transparent to-accent/50" />
-          <p className="text-center font-display italic text-xl sm:text-2xl leading-snug text-foreground/80 whitespace-nowrap">
-            Een avond klassieke muziek met groot hart
+      <div className="relative z-10 pt-10 sm:pt-14 pb-2 text-primary-foreground">
+        <div className="mx-auto max-w-2xl px-4 sm:px-6">
+          <div className="flex items-center justify-center gap-4 text-accent text-[10px] sm:text-xs tracking-[0.55em] uppercase mb-6">
+            <span className="h-px w-12 bg-accent/60" />
+            Benefietconcert
+            <span className="h-px w-12 bg-accent/60" />
+          </div>
+          <div className="flex items-center gap-5">
+            <span className="flex-1 h-px bg-gradient-to-r from-transparent to-accent/50" />
+            <p className="text-center font-display italic text-xl sm:text-2xl leading-snug text-primary-foreground/85 whitespace-nowrap">
+              Een avond klassieke muziek met groot hart
+            </p>
+            <span className="flex-1 h-px bg-gradient-to-l from-transparent to-accent/50" />
+          </div>
+          <p className="mt-3 text-center text-xs sm:text-sm tracking-[0.35em] uppercase text-primary-foreground/60">
+            ten voordele van drie goede doelen
           </p>
-          <span className="flex-1 h-px bg-gradient-to-l from-transparent to-accent/50" />
         </div>
-        <p className="mt-3 text-center text-xs sm:text-sm tracking-[0.35em] uppercase text-foreground/55">
-          ten voordele van drie goede doelen
-        </p>
       </div>
-
-      {/* Soft diagonal fade from parchment into dark stage */}
-      <div aria-hidden className="absolute inset-x-0 top-[400px] bottom-0 parchment-to-stage z-0 pointer-events-none [mask-image:linear-gradient(to_bottom,transparent_0,black_140px)] [-webkit-mask-image:linear-gradient(to_bottom,transparent_0,black_140px)]" />
 
       {/* Big event details + CTAs, on the darkening background */}
       <div className="relative z-10 pb-24 pt-20 text-primary-foreground">
