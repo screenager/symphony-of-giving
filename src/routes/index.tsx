@@ -131,7 +131,7 @@ function SiteHeader({ open, setOpen }: { open: boolean; setOpen: (v: boolean) =>
           <Link
             to="/tickets"
             onClick={() => setOpen(false)}
-            className="inline-flex items-center gap-2 rounded-full bg-accent text-primary px-4 py-2 font-semibold w-fit"
+            className="inline-flex items-center gap-2 bg-accent text-primary px-5 py-2.5 text-xs tracking-[0.25em] uppercase w-fit"
           >
             <Ticket className="w-4 h-4" /> Tickets
           </Link>
