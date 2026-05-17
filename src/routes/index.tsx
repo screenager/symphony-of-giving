@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { Menu, X, Ticket, Mail, Phone } from "lucide-react";
-import bearImg from "@/assets/bear.png";
+import heroBanner from "@/assets/hero-banner.jpeg";
 
 export const Route = createFileRoute("/")({
   component: HomePage,
