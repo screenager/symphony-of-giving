@@ -78,7 +78,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         content:
           "Symphony of Giving: benefietconcert met Carmina Burana en Beethovens Koorfantasie op 25 oktober 2026 in de Koningin Elisabethzaal, ten voordele van Artsen Zonder Grenzen, Mercy Ships en Hart voor Handicap.",
       },
-      { property: "og:title", content: "Symphony of Giving — Benefietconcert 25.10.2026" },
+      { property: "og:title", content: "Symphony of Giving — Benefietconcert 25.10.2026, Antwerpen" },
       {
         property: "og:description",
         content:
@@ -86,6 +86,12 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "Symphony of Giving — Benefietconcert 25.10.2026, Antwerpen" },
+      { name: "description", content: "Concert Canvas is a modern, single-page website for a charity symphonic concert." },
+      { property: "og:description", content: "Concert Canvas is a modern, single-page website for a charity symphonic concert." },
+      { name: "twitter:description", content: "Concert Canvas is a modern, single-page website for a charity symphonic concert." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/3cb3bba6-5c58-4ca2-931d-bb96378381a3/id-preview-90399ea1--211ca74f-3ba5-448f-b5ed-9b4641d26bd5.lovable.app-1779039674394.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/3cb3bba6-5c58-4ca2-931d-bb96378381a3/id-preview-90399ea1--211ca74f-3ba5-448f-b5ed-9b4641d26bd5.lovable.app-1779039674394.png" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
@@ -93,7 +99,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
         rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@400;500;600;700;800;900&family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap",
+        href: "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&family=Nunito:wght@600;700;800;900&display=swap",
       },
     ],
   }),
