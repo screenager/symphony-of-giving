@@ -369,23 +369,23 @@ function Programma() {
   );
 }
 
-function PartnerTier({ title, items, size = "md" }: { title: string; items: { name: string; src: string; href?: string }[]; size?: "lg" | "md" | "sm" }) {
-  const h = size === "lg" ? "h-24" : size === "md" ? "h-16" : "h-12";
+function PartnerTier({ title, items, size = "md" }: { title: string; items: PartnerItem[]; size?: "lg" | "md" | "sm" }) {
+  const h = size === "lg" ? "h-20 sm:h-24" : size === "md" ? "h-14 sm:h-16" : "h-10 sm:h-12";
   return (
     <div className="partner-tier">
-      <h3 className="text-xs uppercase tracking-[0.3em] text-accent text-center mb-6 font-semibold">{title}</h3>
+      <h3 className="font-rounded text-xs uppercase tracking-[0.3em] text-accent text-center mb-6 font-bold">{title}</h3>
       <div className="flex flex-wrap items-center justify-center gap-x-12 gap-y-8">
         {items.map((p) => {
           const img = (
             <img
               src={p.src}
               alt={`Logo ${p.name}`}
-              className={`${h} max-w-[200px] object-contain bg-white/95 rounded px-3 py-2 opacity-90 hover:opacity-100 transition`}
+              className={`${h} max-w-[200px] object-contain ${p.whiteBg ? "partner-logo--whitebg" : "partner-logo"}`}
               loading="lazy"
             />
           );
           return p.href ? (
-            <a key={p.name} href={p.href} target="_blank" rel="noreferrer">
+            <a key={p.name} href={p.href} target="_blank" rel="noreferrer" className="block">
               {img}
             </a>
           ) : (
