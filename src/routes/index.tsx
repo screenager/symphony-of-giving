@@ -172,11 +172,19 @@ function Hero() {
           </h1>
         </div>
 
-        <div className="gold-rule my-10 mx-auto max-w-xs" />
-
-        <p className="hero-tagline text-center text-base sm:text-lg text-accent max-w-xl mx-auto">
-          Een avond klassieke muziek met groot hart, ten voordele van drie goede doelen.
-        </p>
+        <div className="hero-tagline mt-10 mx-auto max-w-2xl flex items-center gap-4 sm:gap-6 text-accent">
+          <span className="flex-1 h-px bg-gradient-to-r from-transparent to-accent/70" />
+          <svg aria-hidden viewBox="0 0 24 24" className="w-4 h-4 shrink-0 fill-accent opacity-90">
+            <path d="M12 2l1.8 6.2L20 10l-6.2 1.8L12 18l-1.8-6.2L4 10l6.2-1.8z" />
+          </svg>
+          <p className="text-center font-display italic text-lg sm:text-2xl leading-snug text-accent">
+            Een avond klassieke muziek met groot hart,<br className="hidden sm:block" /> ten voordele van drie goede doelen.
+          </p>
+          <svg aria-hidden viewBox="0 0 24 24" className="w-4 h-4 shrink-0 fill-accent opacity-90">
+            <path d="M12 2l1.8 6.2L20 10l-6.2 1.8L12 18l-1.8-6.2L4 10l6.2-1.8z" />
+          </svg>
+          <span className="flex-1 h-px bg-gradient-to-l from-transparent to-accent/70" />
+        </div>
       </div>
 
       {/* Soft diagonal fade from parchment into dark stage — starts already
@@ -325,7 +333,6 @@ function Programma() {
           eyebrow="Het programma"
           title="Programma"
           lead="Een rijk programma dat barok, romantiek en het iconische Carmina Burana van Carl Orff verenigt."
-          center
         />
 
         <ol className="program-list max-w-3xl mx-auto divide-y divide-primary-foreground/10">
@@ -398,8 +405,8 @@ function PartnerTier({ title, items, size = "md" }: { title: string; items: Part
   const h = size === "lg" ? "h-20 sm:h-24" : size === "md" ? "h-14 sm:h-16" : "h-12 sm:h-14";
   return (
     <div className="partner-tier">
-      <h3 className="font-rounded text-xs uppercase tracking-[0.3em] text-accent text-center mb-8">{title}</h3>
-      <div className="grid grid-cols-2 sm:grid-cols-3 gap-x-16 gap-y-10 items-center justify-items-center max-w-4xl mx-auto">
+      <h3 className="font-rounded text-xs uppercase tracking-[0.3em] text-accent text-left mb-8">{title}</h3>
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-x-10 gap-y-10 items-center justify-items-start">
         {items.map((p) => {
           const img = (
             <img
