@@ -77,7 +77,7 @@ function HomePage() {
   const [open, setOpen] = useState(false);
 
   return (
-    <div className="min-h-screen bg-parchment text-foreground">
+    <div className="min-h-screen bg-stage text-primary-foreground">
       <SiteHeader open={open} setOpen={setOpen} />
       <main>
         <Hero />
@@ -94,9 +94,9 @@ function HomePage() {
 
 function SiteHeader({ open, setOpen }: { open: boolean; setOpen: (v: boolean) => void }) {
   return (
-    <header className="site-header sticky top-0 z-40 backdrop-blur-md bg-background/80 border-b border-border/60">
+    <header className="site-header sticky top-0 z-40 backdrop-blur-md bg-primary/85 text-primary-foreground border-b border-primary-foreground/10">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 flex items-center justify-between h-16">
-        <a href="#hero" className="font-display text-lg sm:text-xl font-semibold tracking-tight">
+        <a href="#hero" className="font-sans text-base sm:text-lg font-bold tracking-tight uppercase">
           Symphony <span className="text-accent">of</span> Giving
         </a>
         <nav className="hidden md:flex items-center gap-8 text-sm">
@@ -107,7 +107,7 @@ function SiteHeader({ open, setOpen }: { open: boolean; setOpen: (v: boolean) =>
           ))}
           <Link
             to="/tickets"
-            className="inline-flex items-center gap-2 rounded-full bg-primary text-primary-foreground px-4 py-2 text-sm font-medium hover:opacity-90 transition"
+            className="inline-flex items-center gap-2 rounded-full bg-accent text-primary px-4 py-2 text-sm font-semibold hover:opacity-90 transition"
           >
             <Ticket className="w-4 h-4" /> Tickets
           </Link>
@@ -121,7 +121,7 @@ function SiteHeader({ open, setOpen }: { open: boolean; setOpen: (v: boolean) =>
         </button>
       </div>
       {open && (
-        <nav className="md:hidden border-t border-border/60 bg-background/95 px-4 py-4 flex flex-col gap-3 text-sm">
+        <nav className="md:hidden border-t border-primary-foreground/10 bg-primary px-4 py-4 flex flex-col gap-3 text-sm">
           {NAV.map((n) => (
             <a key={n.href} href={n.href} onClick={() => setOpen(false)} className="py-1">
               {n.label}
@@ -130,7 +130,7 @@ function SiteHeader({ open, setOpen }: { open: boolean; setOpen: (v: boolean) =>
           <Link
             to="/tickets"
             onClick={() => setOpen(false)}
-            className="inline-flex items-center gap-2 rounded-full bg-primary text-primary-foreground px-4 py-2 font-medium w-fit"
+            className="inline-flex items-center gap-2 rounded-full bg-accent text-primary px-4 py-2 font-semibold w-fit"
           >
             <Ticket className="w-4 h-4" /> Tickets
           </Link>
@@ -142,47 +142,55 @@ function SiteHeader({ open, setOpen }: { open: boolean; setOpen: (v: boolean) =>
 
 function Hero() {
   return (
-    <section id="hero" className="hero relative overflow-hidden">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6 pt-14 pb-72 sm:pb-32 sm:pt-24 min-h-[calc(100vh-4rem)] flex flex-col justify-center relative z-10">
-        <div className="max-w-3xl">
-          <div className="flex items-center gap-3 text-accent text-xs sm:text-sm tracking-[0.3em] uppercase mb-6">
-            <span className="h-px w-8 bg-accent" />
-            Benefietconcert
-            <span className="h-px w-8 bg-accent" />
-          </div>
-          <h1 className="font-display font-semibold text-primary leading-[0.95] text-5xl sm:text-7xl lg:text-8xl">
-            Symphony<br /> <span className="italic font-medium">of</span> Giving
-          </h1>
-          <div className="gold-rule my-8 max-w-md" />
-          <p className="text-base sm:text-lg text-muted-foreground max-w-xl">
-            Carmina Burana van Orff en Beethovens Koorfantasie — een avond
-            klassieke muziek met groot hart, ten voordele van drie goede doelen.
-          </p>
-          <dl className="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-5 max-w-2xl">
-            <InfoItem icon={<Calendar className="w-4 h-4" />} label="Datum" value="25.10.2026 — 15:00" />
-            <InfoItem icon={<MapPin className="w-4 h-4" />} label="Locatie" value="Koningin Elisabethzaal" hint="Antwerpen" />
-            <InfoItem icon={<Ticket className="w-4 h-4" />} label="Werken" value="Carmina Burana" hint="Koorfantasie" />
-          </dl>
-          <div className="mt-10 flex flex-wrap gap-3">
-            <Link
-              to="/tickets"
-              className="inline-flex items-center gap-2 rounded-full bg-primary text-primary-foreground px-6 py-3 text-sm font-medium hover:opacity-90 transition"
-            >
-              <Ticket className="w-4 h-4" /> Koop tickets
-            </Link>
-            <a
-              href="#concert"
-              className="inline-flex items-center gap-2 rounded-full border border-primary/30 px-6 py-3 text-sm font-medium hover:bg-primary/5 transition"
-            >
-              Ontdek het concert
-            </a>
-          </div>
+    <section id="hero" className="hero relative overflow-hidden bg-parchment text-foreground">
+      <div className="mx-auto max-w-5xl px-4 sm:px-6 pt-16 sm:pt-24 pb-[42vh] sm:pb-[40vh] text-center relative z-10">
+        <div className="flex items-center justify-center gap-3 text-accent text-xs sm:text-sm tracking-[0.4em] uppercase mb-8 font-semibold">
+          <span className="h-px w-10 bg-accent" />
+          Benefietconcert
+          <span className="h-px w-10 bg-accent" />
+        </div>
+        <h1 className="font-sans font-black uppercase text-primary leading-[0.88] tracking-tight text-[15vw] sm:text-[12vw] lg:text-[10rem]">
+          Symphony
+          <br />
+          <span className="font-light italic lowercase">of</span> Giving
+        </h1>
+        <div className="gold-rule my-8 mx-auto max-w-xs" />
+        <p className="text-base sm:text-lg text-muted-foreground max-w-xl mx-auto">
+          Carmina Burana van Orff en Beethovens Koorfantasie — een avond
+          klassieke muziek met groot hart, ten voordele van drie goede doelen.
+        </p>
+        <dl className="mt-10 grid grid-cols-1 sm:grid-cols-3 gap-5 max-w-3xl mx-auto">
+          <InfoItem icon={<Calendar className="w-4 h-4" />} label="Datum" value="25.10.2026 — 15:00" />
+          <InfoItem icon={<MapPin className="w-4 h-4" />} label="Locatie" value="Koningin Elisabethzaal" hint="Antwerpen" />
+          <InfoItem icon={<Ticket className="w-4 h-4" />} label="Werken" value="Carmina Burana" hint="Koorfantasie" />
+        </dl>
+        <div className="mt-10 flex flex-wrap gap-3 justify-center">
+          <Link
+            to="/tickets"
+            className="inline-flex items-center gap-2 rounded-full bg-primary text-primary-foreground px-6 py-3 text-sm font-semibold hover:opacity-90 transition"
+          >
+            <Ticket className="w-4 h-4" /> Koop tickets
+          </Link>
+          <a
+            href="#concert"
+            className="inline-flex items-center gap-2 rounded-full border border-primary/30 px-6 py-3 text-sm font-semibold hover:bg-primary/5 transition"
+          >
+            Ontdek het concert
+          </a>
         </div>
       </div>
+
+      {/* Dark stage floor + smooth transition into the rest of the page */}
+      <div aria-hidden className="absolute inset-x-0 bottom-0 h-[38vh] sm:h-[34vh] bg-stage z-0" />
+      <div aria-hidden className="absolute inset-x-0 bottom-[34vh] sm:bottom-[30vh] h-[14vh] parchment-to-stage z-0" />
+
+      {/* Bear sitting on the dark floor, slightly left and tilted */}
       <img
         src={bearImg}
         alt="Blauwe pluche beer met gouden strik — mascotte van Symphony of Giving"
-        className="pointer-events-none select-none absolute left-0 sm:-left-8 bottom-0 w-[55%] sm:w-[42%] md:w-[38%] max-w-[520px] z-0 drop-shadow-2xl"
+        width={1024}
+        height={1024}
+        className="pointer-events-none select-none absolute left-2 sm:left-6 md:left-12 bottom-0 w-[58%] sm:w-[36%] md:w-[30%] max-w-[420px] z-10 drop-shadow-[0_20px_40px_rgba(0,0,0,0.45)] -rotate-[6deg] origin-bottom"
       />
     </section>
   );
@@ -190,8 +198,8 @@ function Hero() {
 
 function InfoItem({ icon, label, value, hint }: { icon: React.ReactNode; label: string; value: string; hint?: string }) {
   return (
-    <div className="info-item">
-      <dt className="flex items-center gap-2 text-xs uppercase tracking-widest text-accent-foreground/70">
+    <div className="info-item text-center sm:text-left">
+      <dt className="flex items-center justify-center sm:justify-start gap-2 text-xs uppercase tracking-widest text-primary/60">
         <span className="text-accent">{icon}</span> {label}
       </dt>
       <dd className="mt-1 font-display text-xl text-primary">{value}</dd>
@@ -200,38 +208,35 @@ function InfoItem({ icon, label, value, hint }: { icon: React.ReactNode; label: 
   );
 }
 
-function SectionHeader({ eyebrow, title, lead }: { eyebrow: string; title: string; lead?: string }) {
+function SectionHeader({ eyebrow, title, lead, center = false }: { eyebrow: string; title: string; lead?: string; center?: boolean }) {
   return (
-    <header className="section-header max-w-3xl mb-12">
-      <div className="text-accent text-xs tracking-[0.3em] uppercase mb-3">{eyebrow}</div>
-      <h2 className="font-display text-4xl sm:text-5xl text-primary font-semibold">{title}</h2>
-      {lead && <p className="mt-4 text-muted-foreground text-base sm:text-lg">{lead}</p>}
-      <div className="gold-rule mt-6 max-w-[8rem]" />
+    <header className={`section-header max-w-3xl mb-12 ${center ? "mx-auto text-center" : ""}`}>
+      <div className="text-accent text-xs tracking-[0.3em] uppercase mb-3 font-semibold">{eyebrow}</div>
+      <h2 className="font-sans text-3xl sm:text-5xl text-primary-foreground font-bold tracking-tight">{title}</h2>
+      {lead && <p className="mt-4 text-primary-foreground/70 text-base sm:text-lg">{lead}</p>}
+      <div className={`gold-rule mt-6 max-w-[8rem] ${center ? "mx-auto" : ""}`} />
     </header>
   );
 }
 
 function Concert() {
   return (
-    <section id="concert" className="py-24 sm:py-32 border-t border-border/60">
+    <section id="concert" className="py-24 sm:py-32">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
-        <SectionHeader
-          eyebrow="Het concert"
-          title="Muziek als smeekbede om vrede"
-        />
+        <SectionHeader eyebrow="Het concert" title="Muziek als smeekbede om vrede" />
         <div className="grid md:grid-cols-3 gap-10 items-start">
-          <blockquote className="md:col-span-2 font-display text-2xl sm:text-3xl text-primary leading-snug">
+          <blockquote className="md:col-span-2 font-display text-2xl sm:text-3xl text-primary-foreground leading-snug">
             “Februari 2022, Rusland valt Oekraïne binnen. Verbijstering, onmacht!
             Misschien kan muziek wat troost bieden. Symphony of Giving was geboren.”
-            <footer className="mt-6 text-sm font-sans not-italic text-muted-foreground">
+            <footer className="mt-6 text-sm font-sans not-italic text-primary-foreground/60">
               — Walter Maes, voorzitter
             </footer>
           </blockquote>
-          <div className="text-muted-foreground space-y-4 text-base">
+          <div className="text-primary-foreground/75 space-y-4 text-base">
             <p>
               In november 2023 vulden koren, orkesten en solisten de Elisabethzaal
               voor een heerlijk benefietconcert. Drie jaar later staat
-              <strong className="text-foreground"> Symphony of Giving 2.0</strong> in de
+              <strong className="text-accent"> Symphony of Giving 2.0</strong> in de
               steigers, met het nieuwe professionele orkest <em>Vivanto</em>.
             </p>
             <p>
@@ -247,7 +252,7 @@ function Concert() {
 
 function Benefiet() {
   return (
-    <section id="benefiet" className="py-24 sm:py-32 bg-muted/40 border-y border-border/60">
+    <section id="benefiet" className="py-24 sm:py-32 bg-primary-foreground/[0.03] border-y border-primary-foreground/10">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <SectionHeader
           eyebrow="Ten voordele van"
@@ -256,9 +261,9 @@ function Benefiet() {
         />
         <div className="grid md:grid-cols-3 gap-6">
           {BENEFICIARIES.map((b) => (
-            <article key={b.name} className="beneficiary-card bg-card rounded-xl border border-border p-6 flex flex-col">
-              <div className="h-20 flex items-center">
-                <img src={b.logo} alt={`Logo ${b.name}`} className="max-h-16 max-w-[180px] object-contain" />
+            <article key={b.name} className="beneficiary-card bg-background text-foreground rounded-xl border border-border p-6 flex flex-col">
+              <div className="h-20 flex items-center bg-white/60 rounded-md px-3">
+                <img src={b.logo} alt={`Logo ${b.name}`} className="max-h-14 max-w-[180px] object-contain" />
               </div>
               <h3 className="font-display text-2xl text-primary mt-4">{b.name}</h3>
               <p className="mt-3 text-sm text-muted-foreground leading-relaxed flex-1">{b.text}</p>
@@ -270,7 +275,7 @@ function Benefiet() {
                   </p>
                 )}
                 {b.link && (
-                  <a href={b.link.href} target="_blank" rel="noreferrer" className="text-accent-foreground underline underline-offset-4 decoration-accent hover:text-primary">
+                  <a href={b.link.href} target="_blank" rel="noreferrer" className="text-primary underline underline-offset-4 decoration-accent hover:text-accent">
                     {b.link.label} →
                   </a>
                 )}
@@ -288,34 +293,57 @@ function Programma() {
     <section id="programma" className="py-24 sm:py-32">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <SectionHeader
-          eyebrow="Programma"
-          title="Wat u te horen krijgt"
+          eyebrow="Het programma"
+          title="Programma"
           lead="Een rijk programma dat barok, romantiek en het iconische Carmina Burana van Carl Orff verenigt."
+          center
         />
 
-        <ol className="program-list divide-y divide-border border-y border-border max-w-3xl">
-          {PROGRAM.map((p, i) => (
-            <li key={i} className="flex items-baseline justify-between gap-6 py-5">
-              <span className="font-display text-xl sm:text-2xl text-primary">{p.composer}</span>
-              <span className="text-right text-sm sm:text-base text-muted-foreground">{p.work}</span>
-            </li>
-          ))}
+        <ol className="program-grid grid sm:grid-cols-2 gap-5 max-w-5xl mx-auto">
+          {PROGRAM.map((p, i) => {
+            const isPause = p.composer.includes("Pauze");
+            if (isPause) {
+              return (
+                <li key={i} className="sm:col-span-2 flex items-center gap-4 py-2 text-accent">
+                  <span className="flex-1 h-px bg-accent/40" />
+                  <span className="text-xs uppercase tracking-[0.4em]">Pauze</span>
+                  <span className="flex-1 h-px bg-accent/40" />
+                </li>
+              );
+            }
+            return (
+              <li
+                key={i}
+                className="program-card group relative overflow-hidden rounded-xl border border-primary-foreground/15 bg-primary-foreground/[0.04] p-6 hover:border-accent/60 transition-colors"
+              >
+                <span className="absolute top-4 right-5 font-display text-5xl text-accent/30 group-hover:text-accent/60 transition-colors">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <p className="text-xs uppercase tracking-[0.3em] text-accent mb-2">Werk</p>
+                <h3 className="font-display text-2xl sm:text-3xl text-primary-foreground leading-tight">
+                  {p.composer}
+                </h3>
+                <p className="mt-2 text-primary-foreground/70 text-sm sm:text-base">{p.work}</p>
+              </li>
+            );
+          })}
         </ol>
 
         <div className="mt-20 grid md:grid-cols-2 gap-10">
-          <article>
-            <h3 className="font-display text-3xl text-primary">Symfonisch orkest Vivanto</h3>
-            <p className="mt-4 text-muted-foreground leading-relaxed">
+          <article className="rounded-xl border border-primary-foreground/15 p-8">
+            <p className="text-xs uppercase tracking-[0.3em] text-accent mb-2">Orkest</p>
+            <h3 className="font-display text-3xl text-primary-foreground">Symfonisch orkest Vivanto</h3>
+            <p className="mt-4 text-primary-foreground/75 leading-relaxed">
               Vivanto is een nieuw, dynamisch symfonisch orkest dat traditie en
               vernieuwing samenbrengt. De missie: klassieke muziek toegankelijk,
               inspirerend en relevant maken voor een breed publiek. Vivanto staat
               voor leven, energie en beweging.
             </p>
           </article>
-          <article>
-            <h3 className="font-display text-3xl text-primary">Joris Decolvenaer</h3>
-            <p className="text-sm uppercase tracking-widest text-accent mt-1">Dirigent</p>
-            <p className="mt-4 text-muted-foreground leading-relaxed">
+          <article className="rounded-xl border border-primary-foreground/15 p-8">
+            <p className="text-xs uppercase tracking-[0.3em] text-accent mb-2">Dirigent</p>
+            <h3 className="font-display text-3xl text-primary-foreground">Joris Decolvenaer</h3>
+            <p className="mt-4 text-primary-foreground/75 leading-relaxed">
               Belgisch dirigent en violist, artistiek leider van Vivanto.
               Hij dirigeerde reeds o.a. Symfonieorkest Vlaanderen, Orchestre
               Philharmonique de Liège en Kiev Symphonic Orchestra. Sinds 2022
@@ -326,15 +354,15 @@ function Programma() {
         </div>
 
         <div className="mt-16">
-          <h3 className="font-display text-2xl text-primary mb-6">Solisten</h3>
+          <h3 className="font-sans text-xs uppercase tracking-[0.3em] text-accent mb-6 text-center">Solisten</h3>
           <ul className="grid grid-cols-2 md:grid-cols-4 gap-6">
             {SOLOISTS.map((s) => (
               <li key={s.name} className="soloist-card text-center">
                 <div className="aspect-square overflow-hidden rounded-full border-2 border-accent/40 mx-auto max-w-[180px]">
                   <img src={s.img} alt={`Portret van ${s.name}`} className="w-full h-full object-cover" loading="lazy" />
                 </div>
-                <p className="mt-4 font-display text-lg text-primary">{s.name}</p>
-                <p className="text-xs uppercase tracking-widest text-muted-foreground">{s.role}</p>
+                <p className="mt-4 font-display text-lg text-primary-foreground">{s.name}</p>
+                <p className="text-xs uppercase tracking-widest text-primary-foreground/60">{s.role}</p>
               </li>
             ))}
           </ul>
@@ -348,14 +376,14 @@ function PartnerTier({ title, items, size = "md" }: { title: string; items: { na
   const h = size === "lg" ? "h-24" : size === "md" ? "h-16" : "h-12";
   return (
     <div className="partner-tier">
-      <h3 className="text-xs uppercase tracking-[0.3em] text-accent-foreground/70 text-center mb-6">{title}</h3>
+      <h3 className="text-xs uppercase tracking-[0.3em] text-accent text-center mb-6 font-semibold">{title}</h3>
       <div className="flex flex-wrap items-center justify-center gap-x-12 gap-y-8">
         {items.map((p) => {
           const img = (
             <img
               src={p.src}
               alt={`Logo ${p.name}`}
-              className={`${h} max-w-[200px] object-contain opacity-80 hover:opacity-100 transition`}
+              className={`${h} max-w-[200px] object-contain bg-white/95 rounded px-3 py-2 opacity-90 hover:opacity-100 transition`}
               loading="lazy"
             />
           );
@@ -374,7 +402,7 @@ function PartnerTier({ title, items, size = "md" }: { title: string; items: { na
 
 function Partners() {
   return (
-    <section id="partners" className="py-24 sm:py-32 bg-muted/40 border-y border-border/60">
+    <section id="partners" className="py-24 sm:py-32 bg-primary-foreground/[0.03] border-y border-primary-foreground/10">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <SectionHeader
           eyebrow="Met dank aan"
@@ -396,15 +424,15 @@ function TicketsCTA() {
   return (
     <section id="tickets" className="py-24 sm:py-32">
       <div className="mx-auto max-w-4xl px-4 sm:px-6 text-center">
-        <div className="text-accent text-xs tracking-[0.3em] uppercase mb-4">Mis het niet</div>
-        <h2 className="font-display text-4xl sm:text-6xl text-primary font-semibold">
+        <div className="text-accent text-xs tracking-[0.3em] uppercase mb-4 font-semibold">Mis het niet</div>
+        <h2 className="font-sans text-4xl sm:text-6xl text-primary-foreground font-bold tracking-tight">
           25.10.2026 — 15:00
         </h2>
-        <p className="mt-3 text-muted-foreground">Koningin Elisabethzaal, Antwerpen</p>
+        <p className="mt-3 text-primary-foreground/70">Koningin Elisabethzaal, Antwerpen</p>
         <div className="gold-rule my-8 mx-auto max-w-[8rem]" />
         <Link
           to="/tickets"
-          className="inline-flex items-center gap-2 rounded-full bg-primary text-primary-foreground px-8 py-4 text-base font-medium hover:opacity-90 transition"
+          className="inline-flex items-center gap-2 rounded-full bg-accent text-primary px-8 py-4 text-base font-semibold hover:opacity-90 transition"
         >
           <Ticket className="w-5 h-5" /> Koop tickets
         </Link>
