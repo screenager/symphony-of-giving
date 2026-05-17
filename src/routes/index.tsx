@@ -145,16 +145,21 @@ function Hero() {
   return (
     <section id="hero" className="hero relative overflow-hidden">
       {/* Full-width banner — the bear + wordmark live in the image itself.
-          The image's bottom edge is the same deep navy as bg-stage, so it
-          blends seamlessly into the page background below. */}
-      <img
-        src={heroBanner}
-        alt="Symphony of Giving — blauwe pluche beer met gouden strik naast het logo"
-        width={1600}
-        height={800}
-        className="block w-full h-auto"
-      />
-
+          The bottom fades into the dark stage below. */}
+      <div className="relative">
+        <img
+          src={heroBanner}
+          alt="Symphony of Giving — blauwe pluche beer met gouden strik naast het logo"
+          width={1600}
+          height={800}
+          className="block w-full h-auto"
+        />
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-x-0 bottom-0 h-40 sm:h-56"
+          style={{ background: "linear-gradient(to bottom, rgba(16,37,65,0) 0%, #102541 100%)" }}
+        />
+      </div>
       <div className="relative z-10 pt-10 sm:pt-14 pb-2 text-primary-foreground">
         <div className="mx-auto max-w-2xl px-4 sm:px-6">
           <div className="flex items-center justify-center gap-4 text-accent text-[10px] sm:text-xs tracking-[0.55em] uppercase mb-6">
@@ -231,7 +236,7 @@ function SectionHeader({ eyebrow, title, lead, center = false }: { eyebrow: stri
   return (
     <header className={`section-header max-w-3xl mb-14 ${center ? "mx-auto text-center" : ""}`}>
       <div className="text-accent text-[10px] tracking-[0.5em] uppercase mb-4">{eyebrow}</div>
-      <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl text-primary-foreground font-normal tracking-tight leading-[1.05]">{title}</h2>
+      <h2 className="font-sans text-3xl sm:text-5xl text-primary-foreground font-bold tracking-tight">{title}</h2>
       {lead && <p className="mt-5 text-primary-foreground/65 text-base sm:text-lg leading-relaxed max-w-2xl">{lead}</p>}
       <div className={`mt-7 h-px w-16 bg-accent/60 ${center ? "mx-auto" : ""}`} />
     </header>
