@@ -174,14 +174,14 @@ function Hero() {
 
         <div className="gold-rule my-10 mx-auto max-w-xs" />
 
-        <p className="hero-tagline text-center text-base sm:text-lg text-muted-foreground max-w-xl mx-auto">
+        <p className="hero-tagline text-center text-base sm:text-lg text-accent max-w-xl mx-auto">
           Een avond klassieke muziek met groot hart, ten voordele van drie goede doelen.
         </p>
       </div>
 
       {/* Soft diagonal fade from parchment into dark stage — starts already
           around the tagline so date/location sit largely on dark blue. */}
-      <div aria-hidden className="absolute inset-x-0 top-[200px] bottom-0 parchment-to-stage z-0 pointer-events-none [mask-image:linear-gradient(to_bottom,transparent_0,black_140px)] [-webkit-mask-image:linear-gradient(to_bottom,transparent_0,black_140px)]" />
+      <div aria-hidden className="absolute inset-x-0 top-[400px] bottom-0 parchment-to-stage z-0 pointer-events-none [mask-image:linear-gradient(to_bottom,transparent_0,black_140px)] [-webkit-mask-image:linear-gradient(to_bottom,transparent_0,black_140px)]" />
 
       {/* Big event details + CTAs, on the darkening background */}
       <div className="relative z-10 pb-20 pt-16 text-primary-foreground">
