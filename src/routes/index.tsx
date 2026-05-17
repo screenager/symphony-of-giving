@@ -215,7 +215,7 @@ function Hero() {
           </div>
 
           {/* Row 2: main works, centered, refined serif treatment */}
-          <div className="mt-14 flex flex-col sm:flex-row items-center justify-center gap-8 sm:gap-16 text-center">
+          <div className="mt-10 sm:mt-14 flex flex-col sm:flex-row items-center justify-center gap-8 sm:gap-16 text-center">
             <div>
               <div className="font-display text-primary-foreground text-4xl sm:text-5xl lg:text-6xl leading-none italic">Carmina Burana</div>
               <div className="mt-3 text-accent text-[10px] sm:text-xs tracking-[0.5em] uppercase">Carl Orff</div>
@@ -228,7 +228,7 @@ function Hero() {
           </div>
         </div>
 
-        <div className="mt-16 flex flex-wrap gap-3 justify-center px-4">
+        <div className="mt-10 sm:mt-16 flex flex-wrap gap-3 justify-center px-4">
           <Link
             to="/tickets"
             className="inline-flex items-center gap-2 rounded-none bg-accent text-primary px-8 py-3.5 text-xs tracking-[0.3em] uppercase hover:opacity-90 transition"
@@ -260,7 +260,7 @@ function SectionHeader({ eyebrow, title, lead, center = false }: { eyebrow: stri
 
 function Concert() {
   return (
-    <section id="concert" className="py-24 sm:py-32">
+    <section id="concert" className="py-14 sm:py-32">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <SectionHeader eyebrow="Het concert" title="Muziek als smeekbede om vrede" />
         <div className="grid md:grid-cols-3 gap-10 items-start">
@@ -291,7 +291,7 @@ function Concert() {
 
 function Benefiet() {
   return (
-    <section id="benefiet" className="py-24 sm:py-32 bg-primary-foreground/[0.03] border-y border-primary-foreground/10">
+    <section id="benefiet" className="py-14 sm:py-32 bg-primary-foreground/[0.03] border-y border-primary-foreground/10">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <SectionHeader
           eyebrow="Ten voordele van"
@@ -333,7 +333,7 @@ function Benefiet() {
 
 function Programma() {
   return (
-    <section id="programma" className="py-24 sm:py-32">
+    <section id="programma" className="py-14 sm:py-32">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <SectionHeader
           eyebrow="Het programma"
@@ -437,7 +437,7 @@ function PartnerTier({ title, items, size = "md" }: { title: string; items: Part
 
 function Partners() {
   return (
-    <section id="partners" className="py-24 sm:py-32 bg-primary-foreground/[0.03] border-y border-primary-foreground/10">
+    <section id="partners" className="py-14 sm:py-32 bg-primary-foreground/[0.03] border-y border-primary-foreground/10">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <SectionHeader
           eyebrow="Met dank aan"
