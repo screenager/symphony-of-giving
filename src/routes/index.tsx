@@ -77,7 +77,7 @@ function HomePage() {
   const [open, setOpen] = useState(false);
 
   return (
-    <div className="min-h-screen bg-parchment text-foreground">
+    <div className="min-h-screen bg-stage text-primary-foreground">
       <SiteHeader open={open} setOpen={setOpen} />
       <main>
         <Hero />
