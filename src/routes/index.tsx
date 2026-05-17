@@ -333,7 +333,6 @@ function Programma() {
           eyebrow="Het programma"
           title="Programma"
           lead="Een rijk programma dat barok, romantiek en het iconische Carmina Burana van Carl Orff verenigt."
-          center
         />
 
         <ol className="program-list max-w-3xl mx-auto divide-y divide-primary-foreground/10">
