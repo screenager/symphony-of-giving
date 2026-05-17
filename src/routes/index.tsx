@@ -221,25 +221,22 @@ function SectionHeader({ eyebrow, title, lead, center = false }: { eyebrow: stri
 
 function Concert() {
   return (
-    <section id="concert" className="py-24 sm:py-32 border-t border-border/60">
+    <section id="concert" className="py-24 sm:py-32">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
-        <SectionHeader
-          eyebrow="Het concert"
-          title="Muziek als smeekbede om vrede"
-        />
+        <SectionHeader eyebrow="Het concert" title="Muziek als smeekbede om vrede" />
         <div className="grid md:grid-cols-3 gap-10 items-start">
-          <blockquote className="md:col-span-2 font-display text-2xl sm:text-3xl text-primary leading-snug">
+          <blockquote className="md:col-span-2 font-display text-2xl sm:text-3xl text-primary-foreground leading-snug">
             “Februari 2022, Rusland valt Oekraïne binnen. Verbijstering, onmacht!
             Misschien kan muziek wat troost bieden. Symphony of Giving was geboren.”
-            <footer className="mt-6 text-sm font-sans not-italic text-muted-foreground">
+            <footer className="mt-6 text-sm font-sans not-italic text-primary-foreground/60">
               — Walter Maes, voorzitter
             </footer>
           </blockquote>
-          <div className="text-muted-foreground space-y-4 text-base">
+          <div className="text-primary-foreground/75 space-y-4 text-base">
             <p>
               In november 2023 vulden koren, orkesten en solisten de Elisabethzaal
               voor een heerlijk benefietconcert. Drie jaar later staat
-              <strong className="text-foreground"> Symphony of Giving 2.0</strong> in de
+              <strong className="text-accent"> Symphony of Giving 2.0</strong> in de
               steigers, met het nieuwe professionele orkest <em>Vivanto</em>.
             </p>
             <p>
@@ -255,7 +252,7 @@ function Concert() {
 
 function Benefiet() {
   return (
-    <section id="benefiet" className="py-24 sm:py-32 bg-muted/40 border-y border-border/60">
+    <section id="benefiet" className="py-24 sm:py-32 bg-primary-foreground/[0.03] border-y border-primary-foreground/10">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <SectionHeader
           eyebrow="Ten voordele van"
@@ -264,9 +261,9 @@ function Benefiet() {
         />
         <div className="grid md:grid-cols-3 gap-6">
           {BENEFICIARIES.map((b) => (
-            <article key={b.name} className="beneficiary-card bg-card rounded-xl border border-border p-6 flex flex-col">
-              <div className="h-20 flex items-center">
-                <img src={b.logo} alt={`Logo ${b.name}`} className="max-h-16 max-w-[180px] object-contain" />
+            <article key={b.name} className="beneficiary-card bg-background text-foreground rounded-xl border border-border p-6 flex flex-col">
+              <div className="h-20 flex items-center bg-white/60 rounded-md px-3">
+                <img src={b.logo} alt={`Logo ${b.name}`} className="max-h-14 max-w-[180px] object-contain" />
               </div>
               <h3 className="font-display text-2xl text-primary mt-4">{b.name}</h3>
               <p className="mt-3 text-sm text-muted-foreground leading-relaxed flex-1">{b.text}</p>
@@ -278,7 +275,7 @@ function Benefiet() {
                   </p>
                 )}
                 {b.link && (
-                  <a href={b.link.href} target="_blank" rel="noreferrer" className="text-accent-foreground underline underline-offset-4 decoration-accent hover:text-primary">
+                  <a href={b.link.href} target="_blank" rel="noreferrer" className="text-primary underline underline-offset-4 decoration-accent hover:text-accent">
                     {b.link.label} →
                   </a>
                 )}
@@ -296,34 +293,57 @@ function Programma() {
     <section id="programma" className="py-24 sm:py-32">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <SectionHeader
-          eyebrow="Programma"
-          title="Wat u te horen krijgt"
+          eyebrow="Het programma"
+          title="Programma"
           lead="Een rijk programma dat barok, romantiek en het iconische Carmina Burana van Carl Orff verenigt."
+          center
         />
 
-        <ol className="program-list divide-y divide-border border-y border-border max-w-3xl">
-          {PROGRAM.map((p, i) => (
-            <li key={i} className="flex items-baseline justify-between gap-6 py-5">
-              <span className="font-display text-xl sm:text-2xl text-primary">{p.composer}</span>
-              <span className="text-right text-sm sm:text-base text-muted-foreground">{p.work}</span>
-            </li>
-          ))}
+        <ol className="program-grid grid sm:grid-cols-2 gap-5 max-w-5xl mx-auto">
+          {PROGRAM.map((p, i) => {
+            const isPause = p.composer.includes("Pauze");
+            if (isPause) {
+              return (
+                <li key={i} className="sm:col-span-2 flex items-center gap-4 py-2 text-accent">
+                  <span className="flex-1 h-px bg-accent/40" />
+                  <span className="text-xs uppercase tracking-[0.4em]">Pauze</span>
+                  <span className="flex-1 h-px bg-accent/40" />
+                </li>
+              );
+            }
+            return (
+              <li
+                key={i}
+                className="program-card group relative overflow-hidden rounded-xl border border-primary-foreground/15 bg-primary-foreground/[0.04] p-6 hover:border-accent/60 transition-colors"
+              >
+                <span className="absolute top-4 right-5 font-display text-5xl text-accent/30 group-hover:text-accent/60 transition-colors">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <p className="text-xs uppercase tracking-[0.3em] text-accent mb-2">Werk</p>
+                <h3 className="font-display text-2xl sm:text-3xl text-primary-foreground leading-tight">
+                  {p.composer}
+                </h3>
+                <p className="mt-2 text-primary-foreground/70 text-sm sm:text-base">{p.work}</p>
+              </li>
+            );
+          })}
         </ol>
 
         <div className="mt-20 grid md:grid-cols-2 gap-10">
-          <article>
-            <h3 className="font-display text-3xl text-primary">Symfonisch orkest Vivanto</h3>
-            <p className="mt-4 text-muted-foreground leading-relaxed">
+          <article className="rounded-xl border border-primary-foreground/15 p-8">
+            <p className="text-xs uppercase tracking-[0.3em] text-accent mb-2">Orkest</p>
+            <h3 className="font-display text-3xl text-primary-foreground">Symfonisch orkest Vivanto</h3>
+            <p className="mt-4 text-primary-foreground/75 leading-relaxed">
               Vivanto is een nieuw, dynamisch symfonisch orkest dat traditie en
               vernieuwing samenbrengt. De missie: klassieke muziek toegankelijk,
               inspirerend en relevant maken voor een breed publiek. Vivanto staat
               voor leven, energie en beweging.
             </p>
           </article>
-          <article>
-            <h3 className="font-display text-3xl text-primary">Joris Decolvenaer</h3>
-            <p className="text-sm uppercase tracking-widest text-accent mt-1">Dirigent</p>
-            <p className="mt-4 text-muted-foreground leading-relaxed">
+          <article className="rounded-xl border border-primary-foreground/15 p-8">
+            <p className="text-xs uppercase tracking-[0.3em] text-accent mb-2">Dirigent</p>
+            <h3 className="font-display text-3xl text-primary-foreground">Joris Decolvenaer</h3>
+            <p className="mt-4 text-primary-foreground/75 leading-relaxed">
               Belgisch dirigent en violist, artistiek leider van Vivanto.
               Hij dirigeerde reeds o.a. Symfonieorkest Vlaanderen, Orchestre
               Philharmonique de Liège en Kiev Symphonic Orchestra. Sinds 2022
@@ -334,15 +354,15 @@ function Programma() {
         </div>
 
         <div className="mt-16">
-          <h3 className="font-display text-2xl text-primary mb-6">Solisten</h3>
+          <h3 className="font-sans text-xs uppercase tracking-[0.3em] text-accent mb-6 text-center">Solisten</h3>
           <ul className="grid grid-cols-2 md:grid-cols-4 gap-6">
             {SOLOISTS.map((s) => (
               <li key={s.name} className="soloist-card text-center">
                 <div className="aspect-square overflow-hidden rounded-full border-2 border-accent/40 mx-auto max-w-[180px]">
                   <img src={s.img} alt={`Portret van ${s.name}`} className="w-full h-full object-cover" loading="lazy" />
                 </div>
-                <p className="mt-4 font-display text-lg text-primary">{s.name}</p>
-                <p className="text-xs uppercase tracking-widest text-muted-foreground">{s.role}</p>
+                <p className="mt-4 font-display text-lg text-primary-foreground">{s.name}</p>
+                <p className="text-xs uppercase tracking-widest text-primary-foreground/60">{s.role}</p>
               </li>
             ))}
           </ul>
