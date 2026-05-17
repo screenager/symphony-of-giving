@@ -97,10 +97,10 @@ function SiteHeader({ open, setOpen }: { open: boolean; setOpen: (v: boolean) =>
   return (
     <header className="site-header sticky top-0 z-40 backdrop-blur-md bg-primary/85 text-primary-foreground border-b border-primary-foreground/10">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 flex items-center justify-between h-16">
-        <a href="#hero" className="font-rounded text-base sm:text-lg font-black tracking-wider uppercase">
-          Symphony <span className="text-accent italic font-medium">of</span> Giving
+        <a href="#hero" className="font-display text-lg sm:text-xl tracking-wide">
+          Symphony <span className="text-accent italic">of</span> Giving
         </a>
-        <nav className="hidden md:flex items-center gap-8 text-sm">
+        <nav className="hidden md:flex items-center gap-8 text-xs tracking-[0.25em] uppercase">
           {NAV.map((n) => (
             <a key={n.href} href={n.href} className="hover:text-accent transition-colors">
               {n.label}
@@ -108,7 +108,7 @@ function SiteHeader({ open, setOpen }: { open: boolean; setOpen: (v: boolean) =>
           ))}
           <Link
             to="/tickets"
-            className="inline-flex items-center gap-2 rounded-full bg-accent text-primary px-4 py-2 text-sm font-semibold hover:opacity-90 transition"
+            className="inline-flex items-center gap-2 bg-accent text-primary px-5 py-2.5 text-xs tracking-[0.25em] uppercase hover:opacity-90 transition"
           >
             <Ticket className="w-4 h-4" /> Tickets
           </Link>
