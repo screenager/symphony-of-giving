@@ -171,7 +171,7 @@ function Hero() {
           }}
         />
       </div>
-      <div className="relative z-10 -mt-10 sm:-mt-16 pb-2 text-primary-foreground">
+      <div className="relative z-30 -mt-10 sm:-mt-16 pb-2 text-primary-foreground">
         <div className="mx-auto max-w-5xl px-4 sm:px-6">
           <div className="flex items-center justify-center gap-5 sm:gap-8 text-accent mb-8">
             <span className="flex-1 h-px bg-accent/50" />
