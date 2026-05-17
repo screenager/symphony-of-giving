@@ -460,7 +460,7 @@ function SiteFooter() {
           <img
             src="https://symphony-of-giving.be/images/logo-das.svg"
             alt="Logo DAS Verzekeringen"
-            className="h-14 bg-white/95 rounded p-2 w-fit"
+            className="h-12 partner-logo w-fit"
           />
         </div>
       </div>
