@@ -175,7 +175,7 @@ function Hero() {
         <div className="mx-auto max-w-5xl px-4 sm:px-6">
           <div className="flex items-center justify-center gap-5 sm:gap-8 text-accent mb-8">
             <span className="flex-1 h-px bg-accent/50" />
-            <h1 className="font-display text-5xl sm:text-7xl lg:text-8xl tracking-tight text-accent whitespace-nowrap">
+            <h1 className="font-display sm:text-7xl lg:text-8xl tracking-tight text-accent whitespace-nowrap text-6xl">
               Benefietconcert
             </h1>
             <span className="flex-1 h-px bg-accent/50" />
