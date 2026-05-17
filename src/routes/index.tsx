@@ -376,14 +376,14 @@ function PartnerTier({ title, items, size = "md" }: { title: string; items: { na
   const h = size === "lg" ? "h-24" : size === "md" ? "h-16" : "h-12";
   return (
     <div className="partner-tier">
-      <h3 className="text-xs uppercase tracking-[0.3em] text-accent-foreground/70 text-center mb-6">{title}</h3>
+      <h3 className="text-xs uppercase tracking-[0.3em] text-accent text-center mb-6 font-semibold">{title}</h3>
       <div className="flex flex-wrap items-center justify-center gap-x-12 gap-y-8">
         {items.map((p) => {
           const img = (
             <img
               src={p.src}
               alt={`Logo ${p.name}`}
-              className={`${h} max-w-[200px] object-contain opacity-80 hover:opacity-100 transition`}
+              className={`${h} max-w-[200px] object-contain bg-white/95 rounded px-3 py-2 opacity-90 hover:opacity-100 transition`}
               loading="lazy"
             />
           );
