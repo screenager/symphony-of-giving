@@ -172,23 +172,46 @@ function Hero() {
         <div className="gold-rule my-10 mx-auto max-w-xs" />
 
         <p className="hero-tagline text-center text-base sm:text-lg text-muted-foreground max-w-xl mx-auto">
-          Carmina Burana van Orff en Beethovens Koorfantasie — een avond
-          klassieke muziek met groot hart, ten voordele van drie goede doelen.
+          Een avond klassieke muziek met groot hart, ten voordele van drie goede doelen.
         </p>
       </div>
 
-      {/* Diagonal fade from parchment into dark stage (~30° forward slope) */}
-      <div aria-hidden className="absolute inset-x-0 bottom-0 h-[60vh] sm:h-[55vh] parchment-to-stage z-0" />
+      {/* Soft diagonal fade from parchment into dark stage — starts already
+          around the tagline so date/location sit largely on dark blue. */}
+      <div aria-hidden className="absolute inset-x-0 bottom-0 h-[78vh] sm:h-[72vh] parchment-to-stage z-0" />
 
       {/* Big event details + CTAs, on the darkening background */}
-      <div className="relative z-10 pb-20 pt-10 text-primary-foreground">
-        <ul className="hero-meta mx-auto max-w-5xl px-4 sm:px-6 flex flex-col items-center gap-3 sm:gap-4 font-rounded uppercase tracking-[0.05em] text-accent text-center">
-          <li className="text-3xl sm:text-5xl lg:text-6xl">25.10.2026 — 15:00</li>
-          <li className="text-2xl sm:text-4xl lg:text-5xl">Koningin Elisabethzaal, Antwerpen</li>
-          <li className="text-2xl sm:text-4xl lg:text-5xl">Carmina Burana · Koorfantasie</li>
-        </ul>
+      <div className="relative z-10 pb-20 pt-16 text-primary-foreground">
+        <div className="mx-auto max-w-5xl px-4 sm:px-6">
+          {/* Row 1: date (left) — location (right) */}
+          <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-6 font-rounded uppercase tracking-[0.05em]">
+            <div className="text-left">
+              <div className="text-accent text-3xl sm:text-5xl lg:text-6xl leading-none">25.10.2026</div>
+              <div className="mt-2 text-primary-foreground text-xl sm:text-2xl lg:text-3xl">15:00</div>
+            </div>
+            <div className="text-left sm:text-right">
+              <div className="text-accent text-2xl sm:text-3xl lg:text-4xl leading-tight">
+                Koningin<br className="hidden sm:block" /> Elisabethzaal
+              </div>
+              <div className="mt-2 text-primary-foreground/80 text-lg sm:text-xl">Antwerpen</div>
+            </div>
+          </div>
 
-        <div className="mt-12 flex flex-wrap gap-3 justify-center px-4">
+          {/* Row 2: main works, centered, white with gold composer subtitles */}
+          <div className="mt-14 flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-12 font-rounded uppercase tracking-[0.04em] text-center">
+            <div>
+              <div className="text-primary-foreground text-3xl sm:text-5xl lg:text-6xl leading-none">Carmina Burana</div>
+              <div className="mt-2 text-accent text-sm sm:text-base tracking-[0.4em]">ORFF</div>
+            </div>
+            <span aria-hidden className="hidden sm:block text-accent text-4xl">·</span>
+            <div>
+              <div className="text-primary-foreground text-3xl sm:text-5xl lg:text-6xl leading-none">Koorfantasie</div>
+              <div className="mt-2 text-accent text-sm sm:text-base tracking-[0.4em]">Beethoven</div>
+            </div>
+          </div>
+        </div>
+
+        <div className="mt-14 flex flex-wrap gap-3 justify-center px-4">
           <Link
             to="/tickets"
             className="inline-flex items-center gap-2 rounded-full bg-accent text-primary px-6 py-3 text-sm font-rounded uppercase tracking-widest hover:opacity-90 transition"
