@@ -158,9 +158,12 @@ function Hero() {
             alt="Blauwe pluche beer met gouden strik — mascotte van Symphony of Giving"
             width={1024}
             height={1024}
-            className="hero-bear shrink-0 w-[28%] sm:w-[24%] md:w-[22%] max-w-[260px] h-auto drop-shadow-[0_22px_30px_rgba(0,0,0,0.35)]"
+            className="hero-bear shrink-0 w-[36%] sm:w-[32%] md:w-[30%] max-w-[360px] h-auto drop-shadow-[0_22px_30px_rgba(0,0,0,0.35)]"
           />
-          <h1 className="font-rounded uppercase text-primary leading-[0.95] tracking-tight text-[12vw] sm:text-[10vw] lg:text-[8.5rem] text-left">
+          <h1
+            style={{ fontFamily: 'Archivo, ui-sans-serif, system-ui, sans-serif', fontWeight: 400 }}
+            className="uppercase text-primary leading-[0.95] tracking-tight text-[12vw] sm:text-[10vw] lg:text-[8.5rem] text-left"
+          >
             <span className="block">Symphony</span>
             <span className="flex items-start gap-[0.18em]">
               <span className="text-[0.42em] leading-[1.05] pt-[0.08em] text-accent">of</span>
@@ -178,7 +181,7 @@ function Hero() {
 
       {/* Soft diagonal fade from parchment into dark stage — starts already
           around the tagline so date/location sit largely on dark blue. */}
-      <div aria-hidden className="absolute inset-x-0 bottom-0 h-[78vh] sm:h-[72vh] parchment-to-stage z-0" />
+      <div aria-hidden className="absolute inset-0 parchment-to-stage z-0 pointer-events-none" />
 
       {/* Big event details + CTAs, on the darkening background */}
       <div className="relative z-10 pb-20 pt-16 text-primary-foreground">
