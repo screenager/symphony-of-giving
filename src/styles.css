@@ -75,54 +75,22 @@ html {
   section { scroll-margin-top: 5rem; }
 }
 
-/* Parchment "wall" — large 3D diamond pattern with light + shadow on each
-   tile, evoking embossed wall panels behind the bear. */
+/* Parchment — quiet warm cream with a single soft vignette. No pattern,
+   so the bear and title carry the composition. */
 .bg-parchment {
-  background-color: oklch(0.93 0.035 80);
+  background-color: oklch(0.95 0.022 80);
   background-image:
-    /* soft top vignette */
-    radial-gradient(ellipse at 50% 0%, oklch(0.97 0.025 80) 0%, transparent 65%),
-    /* highlight on top-left of each diamond */
-    repeating-linear-gradient(45deg,
-      oklch(1 0 0 / 0.35) 0 1px,
-      transparent 1px 90px),
-    repeating-linear-gradient(-45deg,
-      oklch(1 0 0 / 0.35) 0 1px,
-      transparent 1px 90px),
-    /* shadow on bottom-right of each diamond */
-    repeating-linear-gradient(45deg,
-      transparent 0 88px,
-      oklch(0.45 0.06 80 / 0.22) 88px 90px),
-    repeating-linear-gradient(-45deg,
-      transparent 0 88px,
-      oklch(0.45 0.06 80 / 0.22) 88px 90px),
-    /* faint inner gradient on each diamond for depth */
-    repeating-linear-gradient(45deg,
-      oklch(0.6 0.06 80 / 0.08) 0 1px,
-      transparent 1px 45px),
-    repeating-linear-gradient(-45deg,
-      oklch(0.6 0.06 80 / 0.08) 0 1px,
-      transparent 1px 45px);
+    radial-gradient(ellipse at 50% 0%, oklch(0.97 0.02 80) 0%, transparent 70%),
+    radial-gradient(ellipse at 50% 100%, oklch(0.91 0.03 80) 0%, transparent 60%);
 }
 
-/* Dark "floor + wall" — same diamond grammar in deep navy, brighter
-   highlights, used both for the hero floor and for the rest of the page. */
+/* Dark stage — deep navy with a faint vertical gradient and a hairline
+   gold rule along the top edge. Subtle, editorial, no pattern. */
 .bg-stage {
   background-color: oklch(0.22 0.09 265);
   background-image:
-    radial-gradient(ellipse at 50% 0%, oklch(0.3 0.11 265) 0%, transparent 70%),
-    repeating-linear-gradient(45deg,
-      oklch(0.85 0.1 80 / 0.07) 0 1px,
-      transparent 1px 90px),
-    repeating-linear-gradient(-45deg,
-      oklch(0.85 0.1 80 / 0.07) 0 1px,
-      transparent 1px 90px),
-    repeating-linear-gradient(45deg,
-      transparent 0 88px,
-      oklch(0 0 0 / 0.35) 88px 90px),
-    repeating-linear-gradient(-45deg,
-      transparent 0 88px,
-      oklch(0 0 0 / 0.35) 88px 90px);
+    radial-gradient(ellipse at 50% 0%, oklch(0.28 0.1 265) 0%, transparent 60%),
+    linear-gradient(to bottom, oklch(0.24 0.09 265) 0%, oklch(0.2 0.085 265) 100%);
   color: oklch(0.94 0.03 80);
 }
 

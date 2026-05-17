@@ -97,10 +97,10 @@ function SiteHeader({ open, setOpen }: { open: boolean; setOpen: (v: boolean) =>
   return (
     <header className="site-header sticky top-0 z-40 backdrop-blur-md bg-primary/85 text-primary-foreground border-b border-primary-foreground/10">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 flex items-center justify-between h-16">
-        <a href="#hero" className="font-rounded text-base sm:text-lg font-black tracking-wider uppercase">
-          Symphony <span className="text-accent italic font-medium">of</span> Giving
+        <a href="#hero" className="font-display text-lg sm:text-xl tracking-wide">
+          Symphony <span className="text-accent italic">of</span> Giving
         </a>
-        <nav className="hidden md:flex items-center gap-8 text-sm">
+        <nav className="hidden md:flex items-center gap-8 text-xs tracking-[0.25em] uppercase">
           {NAV.map((n) => (
             <a key={n.href} href={n.href} className="hover:text-accent transition-colors">
               {n.label}
@@ -108,7 +108,7 @@ function SiteHeader({ open, setOpen }: { open: boolean; setOpen: (v: boolean) =>
           ))}
           <Link
             to="/tickets"
-            className="inline-flex items-center gap-2 rounded-full bg-accent text-primary px-4 py-2 text-sm font-semibold hover:opacity-90 transition"
+            className="inline-flex items-center gap-2 bg-accent text-primary px-5 py-2.5 text-xs tracking-[0.25em] uppercase hover:opacity-90 transition"
           >
             <Ticket className="w-4 h-4" /> Tickets
           </Link>
@@ -131,7 +131,7 @@ function SiteHeader({ open, setOpen }: { open: boolean; setOpen: (v: boolean) =>
           <Link
             to="/tickets"
             onClick={() => setOpen(false)}
-            className="inline-flex items-center gap-2 rounded-full bg-accent text-primary px-4 py-2 font-semibold w-fit"
+            className="inline-flex items-center gap-2 bg-accent text-primary px-5 py-2.5 text-xs tracking-[0.25em] uppercase w-fit"
           >
             <Ticket className="w-4 h-4" /> Tickets
           </Link>
@@ -145,93 +145,88 @@ function Hero() {
   return (
     <section id="hero" className="hero relative overflow-hidden bg-parchment text-foreground">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 pt-12 sm:pt-20 pb-16 relative z-10">
-        <div className="flex items-center justify-center gap-3 text-accent sm:text-sm tracking-[0.4em] uppercase mb-8 font-rounded text-lg">
-          <span className="h-px w-10 bg-accent" />
+        <div className="flex items-center justify-center gap-4 text-accent text-[10px] sm:text-xs tracking-[0.55em] uppercase mb-10 font-sans">
+          <span className="h-px w-12 bg-accent/60" />
           Benefietconcert
-          <span className="h-px w-10 bg-accent" />
+          <span className="h-px w-12 bg-accent/60" />
         </div>
 
         {/* Bear sits to the LEFT of the logo */}
-        <div className="hero-logo flex items-center justify-center gap-4 sm:gap-8">
+        <div className="hero-logo flex items-center justify-center gap-6 sm:gap-10">
           <img
             src={bearImg}
             alt="Blauwe pluche beer met gouden strik — mascotte van Symphony of Giving"
             width={1024}
             height={1024}
-            className="hero-bear shrink-0 w-[36%] sm:w-[32%] md:w-[30%] max-w-[360px] h-auto drop-shadow-[0_22px_30px_rgba(0,0,0,0.35)]"
+            className="hero-bear shrink-0 w-[34%] sm:w-[30%] md:w-[28%] max-w-[340px] h-auto drop-shadow-[0_22px_30px_rgba(0,0,0,0.25)]"
           />
-          <h1
-            style={{ fontFamily: 'Archivo, ui-sans-serif, system-ui, sans-serif', fontWeight: 400 }}
-            className="uppercase text-primary leading-[0.95] tracking-tight text-[12vw] sm:text-[10vw] lg:text-[8.5rem] text-left"
-          >
+          <h1 className="font-display text-primary leading-[0.92] tracking-tight text-[13vw] sm:text-[11vw] lg:text-[9rem] text-left font-medium">
             <span className="block">Symphony</span>
-            <span className="flex items-start gap-[0.18em]">
-              <span className="text-[0.58em] leading-[1.05] pt-[0.06em] text-accent">of</span>
+            <span className="flex items-baseline gap-[0.18em]">
+              <span className="text-[0.5em] italic font-normal text-accent">of</span>
               <span>Giving</span>
             </span>
           </h1>
         </div>
 
-        <div className="hero-tagline mt-10 mx-auto max-w-2xl flex items-center gap-4 sm:gap-6 text-accent">
-          <span className="flex-1 h-px bg-gradient-to-r from-transparent to-accent/70" />
-          <svg aria-hidden viewBox="0 0 24 24" className="w-4 h-4 shrink-0 fill-accent opacity-90">
-            <path d="M12 2l1.8 6.2L20 10l-6.2 1.8L12 18l-1.8-6.2L4 10l6.2-1.8z" />
-          </svg>
-          <p className="text-center font-display italic text-lg sm:text-2xl leading-snug text-accent">
-            Een avond klassieke muziek met groot hart,<br className="hidden sm:block" /> ten voordele van drie goede doelen.
+        <div className="hero-tagline mt-12 mx-auto max-w-2xl flex items-center gap-5">
+          <span className="flex-1 h-px bg-gradient-to-r from-transparent to-accent/50" />
+          <p className="text-center font-display italic text-xl sm:text-2xl leading-snug text-foreground/80 whitespace-nowrap">
+            Een avond klassieke muziek met groot hart
           </p>
-          <svg aria-hidden viewBox="0 0 24 24" className="w-4 h-4 shrink-0 fill-accent opacity-90">
-            <path d="M12 2l1.8 6.2L20 10l-6.2 1.8L12 18l-1.8-6.2L4 10l6.2-1.8z" />
-          </svg>
-          <span className="flex-1 h-px bg-gradient-to-l from-transparent to-accent/70" />
+          <span className="flex-1 h-px bg-gradient-to-l from-transparent to-accent/50" />
         </div>
+        <p className="mt-3 text-center text-xs sm:text-sm tracking-[0.35em] uppercase text-foreground/55">
+          ten voordele van drie goede doelen
+        </p>
       </div>
 
-      {/* Soft diagonal fade from parchment into dark stage — starts already
-          around the tagline so date/location sit largely on dark blue. */}
+      {/* Soft diagonal fade from parchment into dark stage */}
       <div aria-hidden className="absolute inset-x-0 top-[400px] bottom-0 parchment-to-stage z-0 pointer-events-none [mask-image:linear-gradient(to_bottom,transparent_0,black_140px)] [-webkit-mask-image:linear-gradient(to_bottom,transparent_0,black_140px)]" />
 
       {/* Big event details + CTAs, on the darkening background */}
-      <div className="relative z-10 pb-20 pt-16 text-primary-foreground">
+      <div className="relative z-10 pb-24 pt-20 text-primary-foreground">
         <div className="mx-auto max-w-5xl px-4 sm:px-6">
           {/* Row 1: date (left) — location (right) */}
-          <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-6 font-rounded uppercase tracking-[0.05em]">
+          <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-8 pb-10 border-b border-accent/25">
             <div className="text-left">
-              <div className="text-accent text-3xl sm:text-5xl lg:text-6xl leading-none">25.10.2026</div>
-              <div className="mt-2 text-primary-foreground text-xl sm:text-2xl lg:text-3xl">15:00</div>
+              <div className="text-[10px] tracking-[0.5em] uppercase text-accent/80 mb-3">Datum</div>
+              <div className="font-display text-accent text-4xl sm:text-5xl lg:text-6xl leading-none">25.10.2026</div>
+              <div className="mt-3 text-primary-foreground/80 text-sm tracking-[0.3em] uppercase">15:00</div>
             </div>
             <div className="text-left sm:text-right">
-              <div className="text-accent text-2xl sm:text-3xl lg:text-4xl leading-tight">
-                Koningin<br className="hidden sm:block" /> Elisabethzaal
+              <div className="text-[10px] tracking-[0.5em] uppercase text-accent/80 mb-3">Locatie</div>
+              <div className="font-display text-primary-foreground text-3xl sm:text-4xl lg:text-5xl leading-tight">
+                Koningin Elisabethzaal
               </div>
-              <div className="mt-2 text-primary-foreground/80 text-lg sm:text-xl">Antwerpen</div>
+              <div className="mt-3 text-primary-foreground/70 text-sm tracking-[0.3em] uppercase">Antwerpen</div>
             </div>
           </div>
 
-          {/* Row 2: main works, centered, white with gold composer subtitles */}
-          <div className="mt-14 flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-12 font-rounded uppercase tracking-[0.04em] text-center">
+          {/* Row 2: main works, centered, refined serif treatment */}
+          <div className="mt-14 flex flex-col sm:flex-row items-center justify-center gap-8 sm:gap-16 text-center">
             <div>
-              <div className="text-primary-foreground text-3xl sm:text-5xl lg:text-6xl leading-none">Carmina Burana</div>
-              <div className="mt-2 text-accent text-sm sm:text-base tracking-[0.4em]">ORFF</div>
+              <div className="font-display text-primary-foreground text-4xl sm:text-5xl lg:text-6xl leading-none italic">Carmina Burana</div>
+              <div className="mt-3 text-accent text-[10px] sm:text-xs tracking-[0.5em] uppercase">Carl Orff</div>
             </div>
-            <span aria-hidden className="hidden sm:block text-accent text-4xl">·</span>
+            <span aria-hidden className="hidden sm:block text-accent/50 text-2xl font-display">·</span>
             <div>
-              <div className="text-primary-foreground text-3xl sm:text-5xl lg:text-6xl leading-none">Koorfantasie</div>
-              <div className="mt-2 text-accent text-sm sm:text-base tracking-[0.4em]">Beethoven</div>
+              <div className="font-display text-primary-foreground text-4xl sm:text-5xl lg:text-6xl leading-none italic">Koorfantasie</div>
+              <div className="mt-3 text-accent text-[10px] sm:text-xs tracking-[0.5em] uppercase">L. v. Beethoven</div>
             </div>
           </div>
         </div>
 
-        <div className="mt-14 flex flex-wrap gap-3 justify-center px-4">
+        <div className="mt-16 flex flex-wrap gap-3 justify-center px-4">
           <Link
             to="/tickets"
-            className="inline-flex items-center gap-2 rounded-full bg-accent text-primary px-6 py-3 text-sm font-rounded uppercase tracking-widest hover:opacity-90 transition"
+            className="inline-flex items-center gap-2 rounded-none bg-accent text-primary px-8 py-3.5 text-xs tracking-[0.3em] uppercase hover:opacity-90 transition"
           >
             <Ticket className="w-4 h-4" /> Koop tickets
           </Link>
           <a
             href="#concert"
-            className="inline-flex items-center gap-2 rounded-full border border-primary-foreground/30 px-6 py-3 text-sm font-rounded uppercase tracking-widest hover:bg-primary-foreground/5 transition"
+            className="inline-flex items-center gap-2 rounded-none border border-primary-foreground/25 px-8 py-3.5 text-xs tracking-[0.3em] uppercase hover:bg-primary-foreground/5 transition"
           >
             Ontdek het concert
           </a>
@@ -243,11 +238,11 @@ function Hero() {
 
 function SectionHeader({ eyebrow, title, lead, center = false }: { eyebrow: string; title: string; lead?: string; center?: boolean }) {
   return (
-    <header className={`section-header max-w-3xl mb-12 ${center ? "mx-auto text-center" : ""}`}>
-      <div className="text-accent text-xs tracking-[0.3em] uppercase mb-3 font-semibold">{eyebrow}</div>
-      <h2 className="font-sans text-3xl sm:text-5xl text-primary-foreground font-bold tracking-tight">{title}</h2>
-      {lead && <p className="mt-4 text-primary-foreground/70 text-base sm:text-lg">{lead}</p>}
-      <div className={`gold-rule mt-6 max-w-[8rem] ${center ? "mx-auto" : ""}`} />
+    <header className={`section-header max-w-3xl mb-14 ${center ? "mx-auto text-center" : ""}`}>
+      <div className="text-accent text-[10px] tracking-[0.5em] uppercase mb-4">{eyebrow}</div>
+      <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl text-primary-foreground font-normal tracking-tight leading-[1.05]">{title}</h2>
+      {lead && <p className="mt-5 text-primary-foreground/65 text-base sm:text-lg leading-relaxed max-w-2xl">{lead}</p>}
+      <div className={`mt-7 h-px w-16 bg-accent/60 ${center ? "mx-auto" : ""}`} />
     </header>
   );
 }
@@ -294,7 +289,7 @@ function Benefiet() {
         />
         <div className="grid md:grid-cols-3 gap-6">
           {BENEFICIARIES.map((b) => (
-            <article key={b.name} className="beneficiary-card rounded-xl border border-primary-foreground/25 p-6 flex flex-col text-primary-foreground">
+            <article key={b.name} className="beneficiary-card border border-primary-foreground/15 p-7 flex flex-col text-primary-foreground">
               <div className="h-24 flex items-center justify-center">
                 <img
                   src={b.logo}
@@ -302,7 +297,7 @@ function Benefiet() {
                   className="w-full max-h-20 object-contain partner-logo"
                 />
               </div>
-              <h3 className="font-rounded uppercase text-2xl text-accent mt-5 tracking-wide">{b.name}</h3>
+              <h3 className="font-display text-2xl text-accent mt-6 tracking-tight">{b.name}</h3>
               <p className="mt-3 text-sm text-primary-foreground/80 leading-relaxed flex-1">{b.text}</p>
               <div className="mt-5 pt-4 border-t border-primary-foreground/15 text-sm space-y-1">
                 {b.iban && (
@@ -359,8 +354,8 @@ function Programma() {
         </ol>
 
         <div className="mt-20 grid md:grid-cols-2 gap-10">
-          <article className="rounded-xl border border-primary-foreground/15 p-8">
-            <p className="font-rounded text-xs uppercase tracking-[0.3em] text-accent mb-3">ORKEST</p>
+          <article className="border border-primary-foreground/15 p-8">
+            <p className="text-[10px] uppercase tracking-[0.5em] text-accent mb-4">Orkest</p>
             <h3 className="font-display text-3xl text-primary-foreground">Symfonisch orkest Vivanto</h3>
             <p className="mt-4 text-primary-foreground/75 leading-relaxed">
               Vivanto is een nieuw, dynamisch symfonisch orkest dat traditie en
@@ -369,8 +364,8 @@ function Programma() {
               voor leven, energie en beweging.
             </p>
           </article>
-          <article className="rounded-xl border border-primary-foreground/15 p-8">
-            <p className="font-rounded text-xs uppercase tracking-[0.3em] text-accent mb-3">DIRIGENT</p>
+          <article className="border border-primary-foreground/15 p-8">
+            <p className="text-[10px] uppercase tracking-[0.5em] text-accent mb-4">Dirigent</p>
             <h3 className="font-display text-3xl text-primary-foreground">Joris Decolvenaer</h3>
             <p className="mt-4 text-primary-foreground/75 leading-relaxed">
               Belgisch dirigent en violist, artistiek leider van Vivanto.
@@ -383,7 +378,7 @@ function Programma() {
         </div>
 
         <div className="mt-20">
-          <h3 className="font-rounded uppercase tracking-[0.15em] text-accent text-3xl sm:text-4xl text-center mb-10">SOLISTEN</h3>
+          <h3 className="font-display text-3xl sm:text-4xl text-primary-foreground text-center mb-12">Solisten</h3>
           <ul className="grid grid-cols-2 md:grid-cols-4 gap-6">
             {SOLOISTS.map((s) => (
               <li key={s.name} className="soloist-card text-center">
@@ -405,7 +400,7 @@ function PartnerTier({ title, items, size = "md" }: { title: string; items: Part
   const h = size === "lg" ? "h-20 sm:h-24" : size === "md" ? "h-14 sm:h-16" : "h-12 sm:h-14";
   return (
     <div className="partner-tier">
-      <h3 className="font-rounded text-xs uppercase tracking-[0.3em] text-accent text-left mb-8">{title}</h3>
+      <h3 className="text-[10px] uppercase tracking-[0.5em] text-accent text-left mb-8">{title}</h3>
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-x-10 gap-y-10 items-center justify-items-start">
         {items.map((p) => {
           const img = (
