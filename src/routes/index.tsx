@@ -162,8 +162,8 @@ function Hero() {
           />
           <h1 className="font-rounded uppercase text-primary leading-[0.95] tracking-tight text-[12vw] sm:text-[10vw] lg:text-[8.5rem] text-left">
             <span className="block">Symphony</span>
-            <span className="block flex items-start gap-[0.18em]">
-              <span className="text-[0.42em] leading-[1.05] pt-[0.1em] text-accent">of</span>
+            <span className="flex items-start gap-[0.18em]">
+              <span className="text-[0.42em] leading-[1.05] pt-[0.08em] text-accent">of</span>
               <span>Giving</span>
             </span>
           </h1>
