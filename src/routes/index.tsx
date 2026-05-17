@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { Menu, X, Ticket, Mail, Phone } from "lucide-react";
 import heroBanner from "@/assets/hero-banner.jpeg";
+import headerStagePattern from "@/assets/header-stage-pattern.jpeg";
 
 export const Route = createFileRoute("/")({
   component: HomePage,
@@ -152,10 +153,19 @@ function Hero() {
           alt="Symphony of Giving — blauwe pluche beer met gouden strik naast het logo"
           width={1600}
           height={800}
-          className="block w-full h-auto"
+          className="relative z-10 block w-full h-auto"
           style={{
-            WebkitMaskImage: "linear-gradient(to bottom, black calc(100% - 10px), transparent 100%)",
-            maskImage: "linear-gradient(to bottom, black calc(100% - 10px), transparent 100%)",
+            WebkitMaskImage: "linear-gradient(to bottom, black calc(100% - 28px), transparent 100%)",
+            maskImage: "linear-gradient(to bottom, black calc(100% - 28px), transparent 100%)",
+          }}
+        />
+        <div
+          aria-hidden
+          className="absolute inset-x-0 bottom-0 h-20"
+          style={{
+            backgroundImage: `url(${headerStagePattern})`,
+            backgroundSize: "100% auto",
+            backgroundPosition: "bottom center",
           }}
         />
       </div>
