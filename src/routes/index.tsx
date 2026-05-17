@@ -208,13 +208,13 @@ function InfoItem({ icon, label, value, hint }: { icon: React.ReactNode; label: 
   );
 }
 
-function SectionHeader({ eyebrow, title, lead }: { eyebrow: string; title: string; lead?: string }) {
+function SectionHeader({ eyebrow, title, lead, center = false }: { eyebrow: string; title: string; lead?: string; center?: boolean }) {
   return (
-    <header className="section-header max-w-3xl mb-12">
-      <div className="text-accent text-xs tracking-[0.3em] uppercase mb-3">{eyebrow}</div>
-      <h2 className="font-display text-4xl sm:text-5xl text-primary font-semibold">{title}</h2>
-      {lead && <p className="mt-4 text-muted-foreground text-base sm:text-lg">{lead}</p>}
-      <div className="gold-rule mt-6 max-w-[8rem]" />
+    <header className={`section-header max-w-3xl mb-12 ${center ? "mx-auto text-center" : ""}`}>
+      <div className="text-accent text-xs tracking-[0.3em] uppercase mb-3 font-semibold">{eyebrow}</div>
+      <h2 className="font-sans text-3xl sm:text-5xl text-primary-foreground font-bold tracking-tight">{title}</h2>
+      {lead && <p className="mt-4 text-primary-foreground/70 text-base sm:text-lg">{lead}</p>}
+      <div className={`gold-rule mt-6 max-w-[8rem] ${center ? "mx-auto" : ""}`} />
     </header>
   );
 }
