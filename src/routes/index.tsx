@@ -142,47 +142,55 @@ function SiteHeader({ open, setOpen }: { open: boolean; setOpen: (v: boolean) =>
 
 function Hero() {
   return (
-    <section id="hero" className="hero relative overflow-hidden">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6 pt-14 pb-72 sm:pb-32 sm:pt-24 min-h-[calc(100vh-4rem)] flex flex-col justify-center relative z-10">
-        <div className="max-w-3xl">
-          <div className="flex items-center gap-3 text-accent text-xs sm:text-sm tracking-[0.3em] uppercase mb-6">
-            <span className="h-px w-8 bg-accent" />
-            Benefietconcert
-            <span className="h-px w-8 bg-accent" />
-          </div>
-          <h1 className="font-display font-semibold text-primary leading-[0.95] text-5xl sm:text-7xl lg:text-8xl">
-            Symphony<br /> <span className="italic font-medium">of</span> Giving
-          </h1>
-          <div className="gold-rule my-8 max-w-md" />
-          <p className="text-base sm:text-lg text-muted-foreground max-w-xl">
-            Carmina Burana van Orff en Beethovens Koorfantasie — een avond
-            klassieke muziek met groot hart, ten voordele van drie goede doelen.
-          </p>
-          <dl className="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-5 max-w-2xl">
-            <InfoItem icon={<Calendar className="w-4 h-4" />} label="Datum" value="25.10.2026 — 15:00" />
-            <InfoItem icon={<MapPin className="w-4 h-4" />} label="Locatie" value="Koningin Elisabethzaal" hint="Antwerpen" />
-            <InfoItem icon={<Ticket className="w-4 h-4" />} label="Werken" value="Carmina Burana" hint="Koorfantasie" />
-          </dl>
-          <div className="mt-10 flex flex-wrap gap-3">
-            <Link
-              to="/tickets"
-              className="inline-flex items-center gap-2 rounded-full bg-primary text-primary-foreground px-6 py-3 text-sm font-medium hover:opacity-90 transition"
-            >
-              <Ticket className="w-4 h-4" /> Koop tickets
-            </Link>
-            <a
-              href="#concert"
-              className="inline-flex items-center gap-2 rounded-full border border-primary/30 px-6 py-3 text-sm font-medium hover:bg-primary/5 transition"
-            >
-              Ontdek het concert
-            </a>
-          </div>
+    <section id="hero" className="hero relative overflow-hidden bg-parchment text-foreground">
+      <div className="mx-auto max-w-5xl px-4 sm:px-6 pt-16 sm:pt-24 pb-[42vh] sm:pb-[40vh] text-center relative z-10">
+        <div className="flex items-center justify-center gap-3 text-accent text-xs sm:text-sm tracking-[0.4em] uppercase mb-8 font-semibold">
+          <span className="h-px w-10 bg-accent" />
+          Benefietconcert
+          <span className="h-px w-10 bg-accent" />
+        </div>
+        <h1 className="font-sans font-black uppercase text-primary leading-[0.88] tracking-tight text-[15vw] sm:text-[12vw] lg:text-[10rem]">
+          Symphony
+          <br />
+          <span className="font-light italic lowercase">of</span> Giving
+        </h1>
+        <div className="gold-rule my-8 mx-auto max-w-xs" />
+        <p className="text-base sm:text-lg text-muted-foreground max-w-xl mx-auto">
+          Carmina Burana van Orff en Beethovens Koorfantasie — een avond
+          klassieke muziek met groot hart, ten voordele van drie goede doelen.
+        </p>
+        <dl className="mt-10 grid grid-cols-1 sm:grid-cols-3 gap-5 max-w-3xl mx-auto">
+          <InfoItem icon={<Calendar className="w-4 h-4" />} label="Datum" value="25.10.2026 — 15:00" />
+          <InfoItem icon={<MapPin className="w-4 h-4" />} label="Locatie" value="Koningin Elisabethzaal" hint="Antwerpen" />
+          <InfoItem icon={<Ticket className="w-4 h-4" />} label="Werken" value="Carmina Burana" hint="Koorfantasie" />
+        </dl>
+        <div className="mt-10 flex flex-wrap gap-3 justify-center">
+          <Link
+            to="/tickets"
+            className="inline-flex items-center gap-2 rounded-full bg-primary text-primary-foreground px-6 py-3 text-sm font-semibold hover:opacity-90 transition"
+          >
+            <Ticket className="w-4 h-4" /> Koop tickets
+          </Link>
+          <a
+            href="#concert"
+            className="inline-flex items-center gap-2 rounded-full border border-primary/30 px-6 py-3 text-sm font-semibold hover:bg-primary/5 transition"
+          >
+            Ontdek het concert
+          </a>
         </div>
       </div>
+
+      {/* Dark stage floor + smooth transition into the rest of the page */}
+      <div aria-hidden className="absolute inset-x-0 bottom-0 h-[38vh] sm:h-[34vh] bg-stage z-0" />
+      <div aria-hidden className="absolute inset-x-0 bottom-[34vh] sm:bottom-[30vh] h-[14vh] parchment-to-stage z-0" />
+
+      {/* Bear sitting on the dark floor, slightly left and tilted */}
       <img
         src={bearImg}
         alt="Blauwe pluche beer met gouden strik — mascotte van Symphony of Giving"
-        className="pointer-events-none select-none absolute left-0 sm:-left-8 bottom-0 w-[55%] sm:w-[42%] md:w-[38%] max-w-[520px] z-0 drop-shadow-2xl"
+        width={1024}
+        height={1024}
+        className="pointer-events-none select-none absolute left-2 sm:left-6 md:left-12 bottom-0 w-[58%] sm:w-[36%] md:w-[30%] max-w-[420px] z-10 drop-shadow-[0_20px_40px_rgba(0,0,0,0.45)] -rotate-[6deg] origin-bottom"
       />
     </section>
   );
@@ -190,8 +198,8 @@ function Hero() {
 
 function InfoItem({ icon, label, value, hint }: { icon: React.ReactNode; label: string; value: string; hint?: string }) {
   return (
-    <div className="info-item">
-      <dt className="flex items-center gap-2 text-xs uppercase tracking-widest text-accent-foreground/70">
+    <div className="info-item text-center sm:text-left">
+      <dt className="flex items-center justify-center sm:justify-start gap-2 text-xs uppercase tracking-widest text-primary/60">
         <span className="text-accent">{icon}</span> {label}
       </dt>
       <dd className="mt-1 font-display text-xl text-primary">{value}</dd>
