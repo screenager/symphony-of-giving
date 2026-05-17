@@ -75,8 +75,7 @@ html {
   section { scroll-margin-top: 5rem; }
 }
 
-/* Parchment — quiet warm cream with a single soft vignette. No pattern,
-   so the bear and title carry the composition. */
+/* Parchment — quiet warm cream (used as fallback only). */
 .bg-parchment {
   background-color: oklch(0.95 0.022 80);
   background-image:
@@ -84,13 +83,24 @@ html {
     radial-gradient(ellipse at 50% 100%, oklch(0.91 0.03 80) 0%, transparent 60%);
 }
 
-/* Dark stage — deep navy with a faint vertical gradient and a hairline
-   gold rule along the top edge. Subtle, editorial, no pattern. */
+/* Dark stage — deep navy matching the hero banner bottom (#102541), with
+   the diamond pattern restored as embossed wall panels. */
 .bg-stage {
-  background-color: oklch(0.22 0.09 265);
+  background-color: #102541;
   background-image:
-    radial-gradient(ellipse at 50% 0%, oklch(0.28 0.1 265) 0%, transparent 60%),
-    linear-gradient(to bottom, oklch(0.24 0.09 265) 0%, oklch(0.2 0.085 265) 100%);
+    radial-gradient(ellipse at 50% 0%, oklch(0.3 0.1 265) 0%, transparent 70%),
+    repeating-linear-gradient(45deg,
+      oklch(0.85 0.1 80 / 0.06) 0 1px,
+      transparent 1px 90px),
+    repeating-linear-gradient(-45deg,
+      oklch(0.85 0.1 80 / 0.06) 0 1px,
+      transparent 1px 90px),
+    repeating-linear-gradient(45deg,
+      transparent 0 88px,
+      oklch(0 0 0 / 0.30) 88px 90px),
+    repeating-linear-gradient(-45deg,
+      transparent 0 88px,
+      oklch(0 0 0 / 0.30) 88px 90px);
   color: oklch(0.94 0.03 80);
 }
 
