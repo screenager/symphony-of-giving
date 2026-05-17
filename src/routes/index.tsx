@@ -196,21 +196,21 @@ function Hero() {
       </div>
 
       {/* Big event details + CTAs, on the darkening background */}
-      <div className="relative z-10 pb-24 pt-20 text-primary-foreground">
+      <div className="relative z-10 pb-14 pt-10 sm:pb-24 sm:pt-20 text-primary-foreground">
         <div className="mx-auto max-w-5xl px-4 sm:px-6">
           {/* Row 1: date (left) — location (right) */}
-          <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-8 pb-10 border-b border-accent/25">
+          <div className="flex flex-row items-end justify-between gap-4 sm:gap-8 pb-8 sm:pb-10 border-b border-accent/25">
             <div className="text-left">
               <div className="text-[10px] tracking-[0.5em] uppercase text-accent/80 mb-3">Datum</div>
-              <div className="font-display text-accent text-4xl sm:text-5xl lg:text-6xl leading-none">25.10.2026</div>
-              <div className="mt-3 text-primary-foreground/80 text-sm tracking-[0.3em] uppercase">15:00</div>
+              <div className="font-display text-accent text-3xl sm:text-5xl lg:text-6xl leading-none">25.10.2026</div>
+              <div className="mt-3 text-primary-foreground/80 text-xs sm:text-sm tracking-[0.3em] uppercase">15:00</div>
             </div>
-            <div className="text-left sm:text-right">
+            <div className="text-right">
               <div className="text-[10px] tracking-[0.5em] uppercase text-accent/80 mb-3">Locatie</div>
-              <div className="font-display text-primary-foreground text-3xl sm:text-4xl lg:text-5xl leading-tight">
-                Koningin Elisabethzaal
+              <div className="font-display text-primary-foreground text-2xl sm:text-4xl lg:text-5xl leading-tight">
+                Koningin<br className="sm:hidden" /> Elisabethzaal
               </div>
-              <div className="mt-3 text-primary-foreground/70 text-sm tracking-[0.3em] uppercase">Antwerpen</div>
+              <div className="mt-3 text-primary-foreground/70 text-xs sm:text-sm tracking-[0.3em] uppercase">Antwerpen</div>
             </div>
           </div>
 
