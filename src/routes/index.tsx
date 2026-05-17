@@ -145,16 +145,21 @@ function Hero() {
   return (
     <section id="hero" className="hero relative overflow-hidden">
       {/* Full-width banner — the bear + wordmark live in the image itself.
-          The image's bottom edge is the same deep navy as bg-stage, so it
-          blends seamlessly into the page background below. */}
-      <img
-        src={heroBanner}
-        alt="Symphony of Giving — blauwe pluche beer met gouden strik naast het logo"
-        width={1600}
-        height={800}
-        className="block w-full h-auto"
-      />
-
+          The bottom fades into the dark stage below. */}
+      <div className="relative">
+        <img
+          src={heroBanner}
+          alt="Symphony of Giving — blauwe pluche beer met gouden strik naast het logo"
+          width={1600}
+          height={800}
+          className="block w-full h-auto"
+        />
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-x-0 bottom-0 h-40 sm:h-56"
+          style={{ background: "linear-gradient(to bottom, rgba(16,37,65,0) 0%, #102541 100%)" }}
+        />
+      </div>
       <div className="relative z-10 pt-10 sm:pt-14 pb-2 text-primary-foreground">
         <div className="mx-auto max-w-2xl px-4 sm:px-6">
           <div className="flex items-center justify-center gap-4 text-accent text-[10px] sm:text-xs tracking-[0.55em] uppercase mb-6">
