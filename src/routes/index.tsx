@@ -166,7 +166,7 @@ function Hero() {
           >
             <span className="block">Symphony</span>
             <span className="flex items-start gap-[0.18em]">
-              <span className="text-[0.42em] leading-[1.05] pt-[0.08em] text-accent">of</span>
+              <span className="text-[0.58em] leading-[1.05] pt-[0.06em] text-accent">of</span>
               <span>Giving</span>
             </span>
           </h1>
