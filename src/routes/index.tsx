@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
-import { Menu, X, Ticket, Mail, Phone, MapPin, Calendar } from "lucide-react";
+import { Menu, X, Ticket, Mail, Phone } from "lucide-react";
 import bearImg from "@/assets/bear.png";
 
 export const Route = createFileRoute("/")({
@@ -87,7 +87,6 @@ function HomePage() {
         <Benefiet />
         <Programma />
         <Partners />
-        <TicketsCTA />
       </main>
       <SiteFooter />
     </div>
@@ -145,59 +144,60 @@ function SiteHeader({ open, setOpen }: { open: boolean; setOpen: (v: boolean) =>
 function Hero() {
   return (
     <section id="hero" className="hero relative overflow-hidden bg-parchment text-foreground">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6 pt-12 sm:pt-20 pb-[42vh] sm:pb-[40vh] relative z-10">
-        <div className="flex items-center justify-center gap-3 text-accent text-xs sm:text-sm tracking-[0.4em] uppercase mb-8 font-rounded font-bold">
+      <div className="mx-auto max-w-6xl px-4 sm:px-6 pt-12 sm:pt-20 pb-16 relative z-10">
+        <div className="flex items-center justify-center gap-3 text-accent text-xs sm:text-sm tracking-[0.4em] uppercase mb-8 font-rounded">
           <span className="h-px w-10 bg-accent" />
           Benefietconcert
           <span className="h-px w-10 bg-accent" />
         </div>
 
-        {/* Bear sits to the LEFT of the logo — its feet rest on the floor line below */}
-        <div className="hero-logo flex items-end justify-center gap-4 sm:gap-8">
+        {/* Bear sits to the LEFT of the logo */}
+        <div className="hero-logo flex items-center justify-center gap-4 sm:gap-8">
           <img
             src={bearImg}
             alt="Blauwe pluche beer met gouden strik — mascotte van Symphony of Giving"
             width={1024}
             height={1024}
-            className="hero-bear shrink-0 w-[30%] sm:w-[26%] md:w-[24%] max-w-[280px] h-auto drop-shadow-[0_22px_30px_rgba(0,0,0,0.4)]"
+            className="hero-bear shrink-0 w-[28%] sm:w-[24%] md:w-[22%] max-w-[260px] h-auto drop-shadow-[0_22px_30px_rgba(0,0,0,0.35)]"
           />
-          <h1 className="font-rounded font-normal uppercase text-primary leading-[0.9] tracking-tight text-[12vw] sm:text-[10vw] lg:text-[8.5rem] text-left">
-            Symphony
-            <br />
-            <span className="font-light italic lowercase tracking-tight">of</span> Giving
+          <h1 className="font-rounded uppercase text-primary leading-[0.95] tracking-tight text-[12vw] sm:text-[10vw] lg:text-[8.5rem] text-left">
+            <span className="block">Symphony</span>
+            <span className="block flex items-start gap-[0.18em]">
+              <span className="text-[0.42em] leading-[1.05] pt-[0.1em] text-accent">of</span>
+              <span>Giving</span>
+            </span>
           </h1>
         </div>
 
         <div className="gold-rule my-10 mx-auto max-w-xs" />
 
-        <p className="text-center text-base sm:text-lg text-muted-foreground max-w-xl mx-auto">
+        <p className="hero-tagline text-center text-base sm:text-lg text-muted-foreground max-w-xl mx-auto">
           Carmina Burana van Orff en Beethovens Koorfantasie — een avond
           klassieke muziek met groot hart, ten voordele van drie goede doelen.
         </p>
       </div>
 
-      {/* Floor (dark) starts roughly at the date/location row */}
-      <div aria-hidden className="absolute inset-x-0 bottom-0 h-[36vh] sm:h-[34vh] bg-stage z-0" />
-      <div aria-hidden className="absolute inset-x-0 bottom-[32vh] sm:bottom-[30vh] h-[16vh] parchment-to-stage z-0" />
+      {/* Diagonal fade from parchment into dark stage (~30° forward slope) */}
+      <div aria-hidden className="absolute inset-x-0 bottom-0 h-[60vh] sm:h-[55vh] parchment-to-stage z-0" />
 
-      {/* Date · Location · Works — sitting on the dark floor */}
-      <div className="relative z-10 -mt-[34vh] sm:-mt-[32vh] pb-10 text-primary-foreground">
-        <ul className="mx-auto max-w-6xl px-4 sm:px-6 flex flex-wrap justify-center gap-x-10 gap-y-4 font-rounded font-bold uppercase tracking-[0.18em] text-sm sm:text-base">
-          <li className="flex items-center gap-2"><Calendar className="w-4 h-4 text-accent" /> 25.10.2026 — 15:00</li>
-          <li className="flex items-center gap-2"><MapPin className="w-4 h-4 text-accent" /> Koningin Elisabethzaal, Antwerpen</li>
-          <li className="flex items-center gap-2"><Ticket className="w-4 h-4 text-accent" /> Carmina Burana · Koorfantasie</li>
+      {/* Big event details + CTAs, on the darkening background */}
+      <div className="relative z-10 pb-20 pt-10 text-primary-foreground">
+        <ul className="hero-meta mx-auto max-w-5xl px-4 sm:px-6 flex flex-col items-center gap-3 sm:gap-4 font-rounded uppercase tracking-[0.05em] text-accent text-center">
+          <li className="text-3xl sm:text-5xl lg:text-6xl">25.10.2026 — 15:00</li>
+          <li className="text-2xl sm:text-4xl lg:text-5xl">Koningin Elisabethzaal, Antwerpen</li>
+          <li className="text-2xl sm:text-4xl lg:text-5xl">Carmina Burana · Koorfantasie</li>
         </ul>
 
-        <div className="mt-10 flex flex-wrap gap-3 justify-center px-4">
+        <div className="mt-12 flex flex-wrap gap-3 justify-center px-4">
           <Link
             to="/tickets"
-            className="inline-flex items-center gap-2 rounded-full bg-accent text-primary px-6 py-3 text-sm font-rounded font-bold uppercase tracking-widest hover:opacity-90 transition"
+            className="inline-flex items-center gap-2 rounded-full bg-accent text-primary px-6 py-3 text-sm font-rounded uppercase tracking-widest hover:opacity-90 transition"
           >
             <Ticket className="w-4 h-4" /> Koop tickets
           </Link>
           <a
             href="#concert"
-            className="inline-flex items-center gap-2 rounded-full border border-primary-foreground/30 px-6 py-3 text-sm font-rounded font-bold uppercase tracking-widest hover:bg-primary-foreground/5 transition"
+            className="inline-flex items-center gap-2 rounded-full border border-primary-foreground/30 px-6 py-3 text-sm font-rounded uppercase tracking-widest hover:bg-primary-foreground/5 transition"
           >
             Ontdek het concert
           </a>
