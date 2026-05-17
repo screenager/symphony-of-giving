@@ -402,7 +402,7 @@ function PartnerTier({ title, items, size = "md" }: { title: string; items: { na
 
 function Partners() {
   return (
-    <section id="partners" className="py-24 sm:py-32 bg-muted/40 border-y border-border/60">
+    <section id="partners" className="py-24 sm:py-32 bg-primary-foreground/[0.03] border-y border-primary-foreground/10">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <SectionHeader
           eyebrow="Met dank aan"
@@ -424,15 +424,15 @@ function TicketsCTA() {
   return (
     <section id="tickets" className="py-24 sm:py-32">
       <div className="mx-auto max-w-4xl px-4 sm:px-6 text-center">
-        <div className="text-accent text-xs tracking-[0.3em] uppercase mb-4">Mis het niet</div>
-        <h2 className="font-display text-4xl sm:text-6xl text-primary font-semibold">
+        <div className="text-accent text-xs tracking-[0.3em] uppercase mb-4 font-semibold">Mis het niet</div>
+        <h2 className="font-sans text-4xl sm:text-6xl text-primary-foreground font-bold tracking-tight">
           25.10.2026 — 15:00
         </h2>
-        <p className="mt-3 text-muted-foreground">Koningin Elisabethzaal, Antwerpen</p>
+        <p className="mt-3 text-primary-foreground/70">Koningin Elisabethzaal, Antwerpen</p>
         <div className="gold-rule my-8 mx-auto max-w-[8rem]" />
         <Link
           to="/tickets"
-          className="inline-flex items-center gap-2 rounded-full bg-primary text-primary-foreground px-8 py-4 text-base font-medium hover:opacity-90 transition"
+          className="inline-flex items-center gap-2 rounded-full bg-accent text-primary px-8 py-4 text-base font-semibold hover:opacity-90 transition"
         >
           <Ticket className="w-5 h-5" /> Koop tickets
         </Link>
