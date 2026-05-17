@@ -29,7 +29,7 @@
   --color-input: var(--input);
   --color-ring: var(--ring);
   --font-display: "Cormorant Garamond", ui-serif, Georgia, serif;
-  --font-rounded: "Nunito", ui-rounded, "SF Pro Rounded", system-ui, sans-serif;
+  --font-rounded: "Archivo Black", "Archivo", ui-sans-serif, system-ui, sans-serif;
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
 }
 
@@ -126,15 +126,18 @@ html {
   color: oklch(0.94 0.03 80);
 }
 
-/* Wall-to-floor transition: parchment fades into the dark floor.
-   Used as an overlay positioned where the fade should begin. */
+/* Diagonal wall→stage transition: parchment fades down into the dark stage
+   along a ~30° forward (lower-left to upper-right) line, stretched across
+   the full width. Used as an overlay positioned where the fade should begin. */
 .parchment-to-stage {
-  background:
-    linear-gradient(to bottom,
-      transparent 0%,
-      oklch(0.22 0.09 265 / 0.4) 35%,
-      oklch(0.22 0.09 265) 80%,
-      oklch(0.22 0.09 265) 100%);
+  background: linear-gradient(
+    200deg,
+    transparent 0%,
+    transparent 30%,
+    oklch(0.22 0.09 265 / 0.55) 55%,
+    oklch(0.22 0.09 265) 80%,
+    oklch(0.22 0.09 265) 100%
+  );
 }
 
 .gold-rule {
