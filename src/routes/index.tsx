@@ -369,17 +369,17 @@ function Programma() {
 }
 
 function PartnerTier({ title, items, size = "md" }: { title: string; items: PartnerItem[]; size?: "lg" | "md" | "sm" }) {
-  const h = size === "lg" ? "h-20 sm:h-24" : size === "md" ? "h-14 sm:h-16" : "h-10 sm:h-12";
+  const h = size === "lg" ? "h-20 sm:h-24" : size === "md" ? "h-14 sm:h-16" : "h-12 sm:h-14";
   return (
     <div className="partner-tier">
-      <h3 className="font-rounded text-xs uppercase tracking-[0.3em] text-accent text-center mb-6 font-bold">{title}</h3>
-      <div className="flex flex-wrap items-center justify-center gap-x-12 gap-y-8">
+      <h3 className="font-rounded text-xs uppercase tracking-[0.3em] text-accent text-center mb-8">{title}</h3>
+      <div className="grid grid-cols-2 sm:grid-cols-3 gap-x-16 gap-y-10 items-center justify-items-center max-w-4xl mx-auto">
         {items.map((p) => {
           const img = (
             <img
               src={p.src}
               alt={`Logo ${p.name}`}
-              className={`${h} max-w-[200px] object-contain ${p.whiteBg ? "partner-logo--whitebg" : "partner-logo"}`}
+              className={`${h} max-w-[180px] object-contain ${p.whiteBg ? "partner-logo--whitebg" : "partner-logo"}`}
               loading="lazy"
             />
           );
@@ -405,33 +405,12 @@ function Partners() {
           title="Partners & sponsors"
           lead="Symphony of Giving wordt mogelijk gemaakt door bedrijven en organisaties die mee hun schouders onder dit project zetten."
         />
-        <div className="space-y-16">
+        <div className="space-y-20">
           <PartnerTier title="Hoofdsponsor" items={PARTNERS.hoofd} size="lg" />
           <PartnerTier title="Premium sponsors" items={PARTNERS.premium} size="md" />
           <PartnerTier title="Sponsors" items={PARTNERS.sponsors} size="sm" />
           <PartnerTier title="Ambassadeurs" items={PARTNERS.ambassadeurs} size="sm" />
         </div>
-      </div>
-    </section>
-  );
-}
-
-function TicketsCTA() {
-  return (
-    <section id="tickets" className="py-24 sm:py-32">
-      <div className="mx-auto max-w-4xl px-4 sm:px-6 text-center">
-        <div className="text-accent text-xs tracking-[0.3em] uppercase mb-4 font-semibold">Mis het niet</div>
-        <h2 className="font-sans text-4xl sm:text-6xl text-primary-foreground font-bold tracking-tight">
-          25.10.2026 — 15:00
-        </h2>
-        <p className="mt-3 text-primary-foreground/70">Koningin Elisabethzaal, Antwerpen</p>
-        <div className="gold-rule my-8 mx-auto max-w-[8rem]" />
-        <Link
-          to="/tickets"
-          className="inline-flex items-center gap-2 rounded-full bg-accent text-primary px-8 py-4 text-base font-semibold hover:opacity-90 transition"
-        >
-          <Ticket className="w-5 h-5" /> Koop tickets
-        </Link>
       </div>
     </section>
   );
