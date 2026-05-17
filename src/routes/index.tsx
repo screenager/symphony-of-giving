@@ -161,15 +161,15 @@ function Hero() {
           />
           <div
             aria-hidden
-            className="absolute inset-x-0 z-20 pointer-events-none"
+            className="absolute inset-x-0 z-0 pointer-events-none"
             style={{
-              top: "30%",
-              bottom: "-120px",
+              top: "60%",
+              bottom: "-160px",
               backgroundImage: `url(${headerStagePattern})`,
               backgroundSize: "100% 680px",
               backgroundPosition: "bottom center",
-              WebkitMaskImage: "linear-gradient(to bottom, transparent 0%, black 55%, black 100%)",
-              maskImage: "linear-gradient(to bottom, transparent 0%, black 55%, black 100%)",
+              WebkitMaskImage: "linear-gradient(to bottom, transparent 0%, black 40%, black 100%)",
+              maskImage: "linear-gradient(to bottom, transparent 0%, black 40%, black 100%)",
             }}
           />
         </div>
