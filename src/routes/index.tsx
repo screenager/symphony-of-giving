@@ -94,9 +94,9 @@ function HomePage() {
 
 function SiteHeader({ open, setOpen }: { open: boolean; setOpen: (v: boolean) => void }) {
   return (
-    <header className="site-header sticky top-0 z-40 backdrop-blur-md bg-background/80 border-b border-border/60">
+    <header className="site-header sticky top-0 z-40 backdrop-blur-md bg-primary/85 text-primary-foreground border-b border-primary-foreground/10">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 flex items-center justify-between h-16">
-        <a href="#hero" className="font-display text-lg sm:text-xl font-semibold tracking-tight">
+        <a href="#hero" className="font-sans text-base sm:text-lg font-bold tracking-tight uppercase">
           Symphony <span className="text-accent">of</span> Giving
         </a>
         <nav className="hidden md:flex items-center gap-8 text-sm">
@@ -107,7 +107,7 @@ function SiteHeader({ open, setOpen }: { open: boolean; setOpen: (v: boolean) =>
           ))}
           <Link
             to="/tickets"
-            className="inline-flex items-center gap-2 rounded-full bg-primary text-primary-foreground px-4 py-2 text-sm font-medium hover:opacity-90 transition"
+            className="inline-flex items-center gap-2 rounded-full bg-accent text-primary px-4 py-2 text-sm font-semibold hover:opacity-90 transition"
           >
             <Ticket className="w-4 h-4" /> Tickets
           </Link>
@@ -121,7 +121,7 @@ function SiteHeader({ open, setOpen }: { open: boolean; setOpen: (v: boolean) =>
         </button>
       </div>
       {open && (
-        <nav className="md:hidden border-t border-border/60 bg-background/95 px-4 py-4 flex flex-col gap-3 text-sm">
+        <nav className="md:hidden border-t border-primary-foreground/10 bg-primary px-4 py-4 flex flex-col gap-3 text-sm">
           {NAV.map((n) => (
             <a key={n.href} href={n.href} onClick={() => setOpen(false)} className="py-1">
               {n.label}
@@ -130,7 +130,7 @@ function SiteHeader({ open, setOpen }: { open: boolean; setOpen: (v: boolean) =>
           <Link
             to="/tickets"
             onClick={() => setOpen(false)}
-            className="inline-flex items-center gap-2 rounded-full bg-primary text-primary-foreground px-4 py-2 font-medium w-fit"
+            className="inline-flex items-center gap-2 rounded-full bg-accent text-primary px-4 py-2 font-semibold w-fit"
           >
             <Ticket className="w-4 h-4" /> Tickets
           </Link>
