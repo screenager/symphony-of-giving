@@ -354,8 +354,8 @@ function Programma() {
         </ol>
 
         <div className="mt-20 grid md:grid-cols-2 gap-10">
-          <article className="rounded-xl border border-primary-foreground/15 p-8">
-            <p className="font-rounded text-xs uppercase tracking-[0.3em] text-accent mb-3">ORKEST</p>
+          <article className="border border-primary-foreground/15 p-8">
+            <p className="text-[10px] uppercase tracking-[0.5em] text-accent mb-4">Orkest</p>
             <h3 className="font-display text-3xl text-primary-foreground">Symfonisch orkest Vivanto</h3>
             <p className="mt-4 text-primary-foreground/75 leading-relaxed">
               Vivanto is een nieuw, dynamisch symfonisch orkest dat traditie en
@@ -364,8 +364,8 @@ function Programma() {
               voor leven, energie en beweging.
             </p>
           </article>
-          <article className="rounded-xl border border-primary-foreground/15 p-8">
-            <p className="font-rounded text-xs uppercase tracking-[0.3em] text-accent mb-3">DIRIGENT</p>
+          <article className="border border-primary-foreground/15 p-8">
+            <p className="text-[10px] uppercase tracking-[0.5em] text-accent mb-4">Dirigent</p>
             <h3 className="font-display text-3xl text-primary-foreground">Joris Decolvenaer</h3>
             <p className="mt-4 text-primary-foreground/75 leading-relaxed">
               Belgisch dirigent en violist, artistiek leider van Vivanto.
