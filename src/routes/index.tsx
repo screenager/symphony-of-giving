@@ -339,7 +339,7 @@ function Programma() {
           lead="Een rijk programma dat barok, romantiek en het iconische Carmina Burana van Carl Orff verenigt."
         />
 
-        <ol className="program-list max-w-3xl mx-auto divide-y divide-primary-foreground/10">
+        <ol className="program-list divide-y divide-primary-foreground/10">
           {PROGRAM.map((p, i) => {
             const isPause = p.composer.includes("Pauze");
             if (isPause) {
