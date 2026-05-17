@@ -131,11 +131,12 @@ html {
    the full width. Used as an overlay positioned where the fade should begin. */
 .parchment-to-stage {
   background: linear-gradient(
-    200deg,
+    192deg,
     transparent 0%,
-    transparent 30%,
-    oklch(0.22 0.09 265 / 0.55) 55%,
-    oklch(0.22 0.09 265) 80%,
+    oklch(0.22 0.09 265 / 0.08) 18%,
+    oklch(0.22 0.09 265 / 0.35) 38%,
+    oklch(0.22 0.09 265 / 0.72) 58%,
+    oklch(0.22 0.09 265 / 0.94) 78%,
     oklch(0.22 0.09 265) 100%
   );
 }
