@@ -1,8 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { Menu, X, Ticket, Mail, Phone } from "lucide-react";
-import heroBanner from "@/assets/hero-banner.jpeg";
-import headerStagePattern from "@/assets/header-stage-pattern.jpeg";
+import heroBanner from "@/assets/hero-banner.webp";
 
 export const Route = createFileRoute("/")({
   component: HomePage,
@@ -155,23 +154,11 @@ function Hero() {
             height={800}
             className="relative z-10 block w-full h-auto"
             style={{
-              WebkitMaskImage: "linear-gradient(to bottom, black 40%, transparent 100%)",
-              maskImage: "linear-gradient(to bottom, black 40%, transparent 100%)",
+              WebkitMaskImage: "linear-gradient(to bottom, black calc(100% - 280px), transparent 100%)",
+              maskImage: "linear-gradient(to bottom, black calc(100% - 280px), transparent 100%)",
             }}
           />
-          <div
-            aria-hidden
-            className="absolute inset-x-0 z-0 pointer-events-none"
-            style={{
-              top: "60%",
-              bottom: "-160px",
-              backgroundImage: `url(${headerStagePattern})`,
-              backgroundSize: "100% 680px",
-              backgroundPosition: "bottom center",
-              WebkitMaskImage: "linear-gradient(to bottom, transparent 0%, black 40%, black 100%)",
-              maskImage: "linear-gradient(to bottom, transparent 0%, black 40%, black 100%)",
-            }}
-          />
+
         </div>
       <div className="relative z-30 -mt-10 sm:-mt-16 pb-2 text-primary-foreground">
         <div className="mx-auto max-w-5xl px-4 sm:px-6">
