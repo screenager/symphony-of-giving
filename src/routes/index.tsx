@@ -1,7 +1,8 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useState } from "react";
-import { Menu, X, Ticket, Mail, Phone } from "lucide-react";
+import { useState, useRef, useEffect } from "react";
+import { Menu, X, Ticket, Mail, Phone, ChevronLeft, ChevronRight } from "lucide-react";
 import heroBanner from "@/assets/hero-banner.webp";
+import orkestImage from "@/assets/Music meets science-6.jpg";
 
 export const Route = createFileRoute("/")({
   component: HomePage,
@@ -9,8 +10,8 @@ export const Route = createFileRoute("/")({
 
 const NAV = [
   { href: "#concert", label: "Concert" },
-  { href: "#benefiet", label: "Benefiet" },
   { href: "#programma", label: "Programma" },
+  { href: "#artiesten", label: "Artiesten" },
   { href: "#partners", label: "Partners" },
 ];
 
@@ -52,6 +53,85 @@ const SOLOISTS = [
   { name: "Joris Derder", role: "Bariton / dirigent", img: "https://symphony-of-giving.be/images/joris-derder.jpeg" },
 ];
 
+type Artist = {
+  name: string;
+  role: string;
+  img: string;
+  bio: string;
+  website?: string;
+};
+
+type ArtistGroup = {
+  label: string;
+  artists: Artist[];
+};
+
+const ARTIST_GROUPS: ArtistGroup[] = [
+  {
+    label: "Solisten",
+    artists: [
+      {
+        name: "David Van Looveren",
+        role: "Pianist",
+        img: "https://symphony-of-giving.be/images/david-van-looveren.jpeg",
+        bio: "David Van Looveren is een pianist met een rijk gevuld palmares als solist en kamermusicus. Hij behaalde masterdiploma's aan het Koninklijk Vlaams Conservatorium Antwerpen en het Fontys Conservatorium Tilburg en vervolmaakte zich voor piano bij Jan Wijn. Als pianist en artistiek leider werkte hij met het 'ensemble hommages' conceptuele projecten uit rond o.a. Schumann, Bartok en Messiaen en voerde hij zowel het integrale kamermuziekrepertoire van Johannes Brahms als hedendaagse creaties uit. Hij is als pianobegeleider verbonden aan de academies van Wilrijk, Borgerhout en Hemiksem, ondersteunt studenten op audities, concerten, wedstrijden en stages. David Van Looveren is verder actief als liedbegeleider en vormt een vast duo met saxofonist Bart Van Beneden.",
+        website: "https://www.davidvanlooveren.com/",
+      },
+      {
+        name: "Elise Caluwaerts",
+        role: "Sopraan",
+        img: "https://symphony-of-giving.be/images/elise-caluwaerts.jpeg",
+        bio: "Sopraan Elise Caluwaerts groeide dankzij haar veelzijdigheid en innemende persoonlijkheid uit tot een veelgevraagde soliste in binnen- en buitenland. Ze startte haar zangcarrière als barokzangeres en breidde haar repertoire uit naar de romantische en hedendaagse muziek. Haar voorliefde voor uitdagend repertoire – van opera tot multidisciplinaire projecten – leidde tot talrijke creaties en bijzondere samenwerkingen met internationaal gerenommeerde componisten en ensembles. Zo werd haar vertolking van Lei in Pascal Dusapins kameropera Passion tijdens het Sydneyfestival 2016 vol lof onthaald, en werd ze door het St-Petersburg Symphony Orchestra uitgenodigd voor een cd-opname met spectaculair coloratuurrepertoire.",
+        website: "http://www.elisecaluwaerts.com/",
+      },
+      {
+        name: "Timothy Veryser",
+        role: "Tenor",
+        img: "https://symphony-of-giving.be/images/timothy-veryser.jpeg",
+        bio: "Timothy Veryser, Belgische tenor, studeerde aan het Koninklijk Conservatorium van Gent en is sinds 2022 lid van de MM Academy van de Munt. Hij zong diverse rollen, waaronder Gernando, Donald en Malo, en won prijzen op het XIVe Concours Lyrique International Bell'Arte. Veryser debuteerde op de Bregenzer Festspiele en bij Opera Ballet Vlaanderen, en werkt samen met gerenommeerde dirigenten en artiesten.",
+        website: "https://timothyveryser.com/",
+      },
+      {
+        name: "Joris Derder",
+        role: "Bariton · dirigent",
+        img: "https://symphony-of-giving.be/images/joris-derder.jpeg",
+        bio: "Joris Derder, een veelzijdige bariton en dirigent, studeerde viool, zang en koordirectie. Hij richtte het Gents Universitair Koor en Kamerkoor Koriolis op en is artistiek leider van Air4Six. Joris werkt samen met diverse ensembles en dirigenten, en heeft een breed repertoire van barok tot romantiek.",
+        website: "https://jorisderder.com/",
+      },
+    ],
+  },
+  {
+    label: "Jong talent",
+    artists: [
+      {
+        name: "Jana Mestdag",
+        role: "Violiste",
+        img: "https://symphony-of-giving.be/images/jana-mestdag.jpeg",
+        bio: "Jana Mestdag, °2007, is een Belgische/Bulgaarse violiste die succesvol deelnam aan (inter)nationale wedstrijden als Belgian Young Soloists, Prinses Christina Concours, Breughel Concours, Crickboom Concours en de Cantus Firmus National Competition. Ze maakte deel uit van het Toyota Youth Orchestra in Japan en is aanvoerder van de tweede violen bij het Mahler Student Festival Orchestra. Nadat ze werd toegelaten tot het Royal Concertgebouw Orchestra Young 2025 mocht ze de functie van concertmeester vervullen onder leiding van de Elim Chan. Ze is lid van de Mannheimer Philharmoniker, speelt in het European Union Youth Orchestra en is concertmeester van de Junge Mahler Philharmonie in Spanje. Momenteel volgt ze haar bacheloropleiding in de vioolklas van prof. Dora Bratchkova aan de Staatliche Hochschule für Musik und Darstellende Kunst Mannheim.",
+      },
+      {
+        name: "Charlotte Van Looveren",
+        role: "Altvioliste",
+        img: "https://symphony-of-giving.be/images/charlotte-van-looveren.jpeg",
+        bio: "Altvioliste Charlotte Van Looveren studeert bij Leo De Neve en Marjolein Dispa en volgt de opleiding Jong Conservatorium in Antwerpen. In 2024 behaalde ze een tweede prijs tijdens de regiofinale van het Prinses Christina Concours te Maastricht en in 2025 de tweede prijs in de Nationale Finale van het Prinses Christina Concours en de eerste prijs op de Wedstrijd voor Jonge Solisten Stringendo. Ze staat zeer vaak op podia in binnen- en buitenland, speelde meermaals live voor radio en televisie en concerteert regelmatig als soliste met orkest.",
+        website: "https://www.davidvanlooveren.com/CharlotteVanLooveren.html",
+      },
+    ],
+  },
+  {
+    label: "Symfonisch koor OCTOPUS",
+    artists: [
+      {
+        name: "Symfonisch koor OCTOPUS",
+        role: "Koor",
+        img: "https://symphony-of-giving.be/images/octopuskoor.webp",
+        bio: "Octopus werkt sinds de oprichting door dirigent Bart Van Reyn op projectbasis, en wist op korte tijd een bevoorrechte positie in Vlaanderen te veroveren. Het ensemble bestaat uit een mix van gedreven semi-professionele en professionele zangers, en biedt conservatoriumstudenten zang een brug naar een professionele carrière.\n\nHun repertoire gaat van laat-barok tot de 21e eeuw. Naast vele a capellaprogramma's zingen ze ook oratoria en symfonische koorwerken van Bach tot MacMillan.\n\nZe werkten samen met orkesten als Brussels Philharmonic, Antwerp Symphony Orchestra, Symfonisch Orkest van de Munt, Symfonieorkest Vlaanderen, Orkest van Opera Vlaanderen, Belgian National Orchestra, Orchestre Philharmonique Royal de Liège, Budapest Festival Orchestra, NDR Radiophilharmonie, Bochumer Symphoniker en barokorkesten B'Rock en Le Concert d'Anvers.",
+        website: "http://www.octopusensembles.be/",
+      },
+    ],
+  },
+];
+
 type PartnerItem = { name: string; src: string; href?: string; whiteBg?: boolean };
 
 const PARTNERS: Record<"hoofd" | "premium" | "sponsors" | "ambassadeurs", PartnerItem[]> = {
@@ -86,6 +166,7 @@ function HomePage() {
         <Concert />
         <Benefiet />
         <Programma />
+        <Artiesten />
         <Partners />
       </main>
       <SiteFooter />
@@ -247,7 +328,7 @@ function SectionHeader({ eyebrow, title, lead, center = false }: { eyebrow: stri
 
 function Concert() {
   return (
-    <section id="concert" className="py-14 sm:py-32">
+    <section id="concert" className="py-9 sm:py-27">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <SectionHeader eyebrow="Het concert" title="Muziek als smeekbede om vrede" />
         <div className="grid md:grid-cols-3 gap-10 items-start">
@@ -278,7 +359,7 @@ function Concert() {
 
 function Benefiet() {
   return (
-    <section id="benefiet" className="py-14 sm:py-32 bg-primary-foreground/[0.03] border-y border-primary-foreground/10">
+    <section id="benefiet" className="py-9 sm:py-27 bg-primary-foreground/[0.03] border-y border-primary-foreground/10">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <SectionHeader
           eyebrow="Ten voordele van"
@@ -319,11 +400,13 @@ function Benefiet() {
 }
 
 function Programma() {
+  const [showMoreDirigent, setShowMoreDirigent] = useState(false);
+
   return (
-    <section id="programma" className="py-14 sm:py-32">
+    <section id="programma" className="py-9 sm:py-27">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <SectionHeader
-          eyebrow="Het programma"
+          eyebrow=""
           title="Programma"
           lead="Een rijk programma dat barok, romantiek en het iconische Carmina Burana van Carl Orff verenigt."
         />
@@ -354,8 +437,14 @@ function Programma() {
         <div className="mt-20 grid md:grid-cols-2 gap-10">
           <article className="border border-primary-foreground/15 p-8">
             <p className="text-[10px] uppercase tracking-[0.5em] text-accent mb-4">Orkest</p>
-            <h3 className="font-display text-3xl text-primary-foreground">Symfonisch orkest Vivanto</h3>
-            <p className="mt-4 text-primary-foreground/75 leading-relaxed">
+            <h3 className="font-display text-3xl text-primary-foreground mb-4">Symfonisch orkest Vivanto</h3>
+            <img
+              src={orkestImage}
+              alt="Symfonisch orkest Vivanto"
+              className="float-left w-48 h-64 mr-6 mb-4 grayscale object-cover"
+              loading="lazy"
+            />
+            <p className="text-primary-foreground/75 leading-relaxed">
               Vivanto is een nieuw, dynamisch symfonisch orkest dat traditie en
               vernieuwing samenbrengt. De missie: klassieke muziek toegankelijk,
               inspirerend en relevant maken voor een breed publiek. Vivanto staat
@@ -364,31 +453,159 @@ function Programma() {
           </article>
           <article className="border border-primary-foreground/15 p-8">
             <p className="text-[10px] uppercase tracking-[0.5em] text-accent mb-4">Dirigent</p>
-            <h3 className="font-display text-3xl text-primary-foreground">Joris Decolvenaer</h3>
-            <p className="mt-4 text-primary-foreground/75 leading-relaxed">
-              Belgisch dirigent en violist, artistiek leider van Vivanto.
-              Hij dirigeerde reeds o.a. Symfonieorkest Vlaanderen, Orchestre
-              Philharmonique de Liège en Kiev Symphonic Orchestra. Sinds 2022
-              professor vakdidactiek viool aan het Koninklijk Conservatorium
-              van Antwerpen.
-            </p>
+            <h3 className="font-display text-3xl text-primary-foreground mb-4">Joris Decolvenaer</h3>
+            <img
+              src="https://symphony-of-giving.be/images/joris-decolvenaer.jpeg"
+              alt="Joris Decolvenaer"
+              className="float-left w-48 h-64 mr-6 mb-4 grayscale object-cover"
+              loading="lazy"
+            />
+            <div className="text-primary-foreground/75 leading-relaxed space-y-3 text-sm">
+              <p>
+                Voor de Belgische dirigent en violist Joris Decolvenaer is de zoektocht naar dialoog en verbondenheid door muziek de rode draad van zijn muzikale carrière. Joris is dirigent en artistiek leider van het symfonisch orkest Vivanto. Hij is ook dirigent en medeoprichter van het Bangalore City Chamber Orchestra, het eerste professionele kamerorkest in Indië, alsook de dirigent van het Alumni Arenbergorkest te Leuven.
+              </p>
+              {showMoreDirigent && (
+                <>
+                  <p>
+                    Hij dirigeerde reeds tal van orkesten in binnen- en buitenland, zoals het Symfonieorkest Vlaanderen, Orchestre Philharmonique de Liège, Kiev Symphonic Orchestra (Oekraïne)…
+                  </p>
+                  <p>
+                    Joris Decolvenaer is laureaat van verscheidene prijzen in muziekwedstrijden, zoals de Supernova-wedstrijd en de International Leos Janacek Competition. Hij is ook laureaat van de VOCATIO-beurs. Sinds 2022 is Joris viooldocent aan het Emanuel Feuermann Konzervatorium van de Kronberg Academy (Duitsland) en is hij professor in vakdidactiek viool aan het Koninklijk Conservatorium van Antwerpen.
+                  </p>
+                </>
+              )}
+              <button
+                onClick={() => setShowMoreDirigent(!showMoreDirigent)}
+                className="text-accent text-xs tracking-[0.3em] uppercase underline underline-offset-4 hover:opacity-80 transition-opacity"
+              >
+                {showMoreDirigent ? "Lees minder" : "Lees meer"} →
+              </button>
+            </div>
           </article>
         </div>
+      </div>
+    </section>
+  );
+}
 
-        <div className="mt-20">
-          <h3 className="font-display text-3xl sm:text-4xl text-primary-foreground text-center mb-12">Solisten</h3>
-          <ul className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            {SOLOISTS.map((s) => (
-              <li key={s.name} className="soloist-card text-center">
-                <div className="aspect-square overflow-hidden rounded-full border-2 border-accent/40 mx-auto max-w-[180px]">
-                  <img src={s.img} alt={`Portret van ${s.name}`} className="w-full h-full object-cover" loading="lazy" />
-                </div>
-                <p className="mt-4 font-display text-lg text-primary-foreground">{s.name}</p>
-                <p className="font-rounded text-xs uppercase tracking-widest text-primary-foreground/60 mt-1">{s.role}</p>
-              </li>
-            ))}
-          </ul>
+function ArtistCard({ artist, active, onClick }: { artist: Artist; active: boolean; onClick: () => void }) {
+  return (
+    <button
+      onClick={onClick}
+      className={`group flex flex-col items-center text-center focus:outline-none transition-all ${active ? "opacity-100" : "opacity-50 hover:opacity-80"}`}
+    >
+      <div
+        className={`aspect-square overflow-hidden rounded-full border-2 transition-all w-28 sm:w-36 md:w-40 ${
+          active ? "border-accent shadow-[0_0_0_4px_rgba(var(--accent-rgb,180,144,78)/0.25)]" : "border-primary-foreground/20 group-hover:border-accent/50"
+        }`}
+      >
+        <img
+          src={artist.img}
+          alt={`Portret van ${artist.name}`}
+          className="w-full h-full object-cover"
+          loading="lazy"
+        />
+      </div>
+      <p className="mt-3 font-display text-base sm:text-lg text-primary-foreground leading-tight">{artist.name}</p>
+      <p className="font-rounded text-[10px] uppercase tracking-widest text-primary-foreground/55 mt-1">{artist.role}</p>
+    </button>
+  );
+}
+
+function AllArtistsSlider() {
+  // Flatten all artists into a single array, preserving order
+  const allArtists = ARTIST_GROUPS.flatMap(group => group.artists);
+  const [activeIdx, setActiveIdx] = useState(0);
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const active = allArtists[activeIdx];
+
+  function scroll(dir: "left" | "right") {
+    if (!scrollRef.current) return;
+    scrollRef.current.scrollBy({ left: dir === "left" ? -200 : 200, behavior: "smooth" });
+  }
+
+  return (
+    <div>
+      {/* Horizontal artist scroll */}
+      <div className="relative">
+        {allArtists.length > 3 && (
+          <>
+            <button
+              onClick={() => scroll("left")}
+              className="absolute left-0 top-1/2 -translate-y-1/2 z-10 -ml-4 sm:-ml-6 bg-primary/80 border border-primary-foreground/15 p-1.5 hover:bg-primary transition"
+              aria-label="Scroll left"
+            >
+              <ChevronLeft className="w-4 h-4" />
+            </button>
+            <button
+              onClick={() => scroll("right")}
+              className="absolute right-0 top-1/2 -translate-y-1/2 z-10 -mr-4 sm:-mr-6 bg-primary/80 border border-primary-foreground/15 p-1.5 hover:bg-primary transition"
+              aria-label="Scroll right"
+            >
+              <ChevronRight className="w-4 h-4" />
+            </button>
+          </>
+        )}
+        <div
+          ref={scrollRef}
+          className="flex gap-6 sm:gap-10 overflow-x-auto pb-4 scrollbar-none"
+          style={{ scrollbarWidth: "none" }}
+        >
+          {allArtists.map((artist, i) => (
+            <div key={artist.name} className="flex-shrink-0">
+              <ArtistCard
+                artist={artist}
+                active={activeIdx === i}
+                onClick={() => setActiveIdx(i)}
+              />
+            </div>
+          ))}
         </div>
+      </div>
+
+      {/* Bio panel */}
+      <div className="mt-10 border border-primary-foreground/15 grid md:grid-cols-[30%_1fr] gap-0 items-stretch overflow-hidden">
+        <div className="hidden md:block w-full h-full">
+          <img
+            src={active.img}
+            alt={`Portret van ${active.name}`}
+            className="w-full h-full object-cover object-top"
+          />
+        </div>
+        <div className="p-8">
+          <p className="text-[10px] uppercase tracking-[0.5em] text-accent mb-1">{active.role}</p>
+          <h3 className="font-display text-2xl sm:text-3xl text-primary-foreground">{active.name}</h3>
+          <div className="mt-5 text-primary-foreground/75 leading-relaxed space-y-3 text-sm sm:text-base">
+            {active.bio.split("\n\n").map((paragraph, i) => (
+              <p key={i}>{paragraph}</p>
+            ))}
+          </div>
+          {active.website && (
+            <a
+              href={active.website}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-block mt-5 text-accent text-xs tracking-[0.3em] uppercase underline underline-offset-4 hover:opacity-80"
+            >
+              Website →
+            </a>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function Artiesten() {
+  return (
+    <section id="artiesten" className="py-9 sm:py-19 bg-primary-foreground/[0.03] border-y border-primary-foreground/10">
+      <div className="mx-auto max-w-6xl px-4 sm:px-6">
+        <SectionHeader
+          eyebrow=""
+          title="Artiesten"
+          lead="Ontdek de musici die Symphony of Giving 2.0 tot leven brengen — van solist tot jong talent tot een meesterlijk koor."
+        />
+        <AllArtistsSlider />
       </div>
     </section>
   );
@@ -423,19 +640,124 @@ function PartnerTier({ title, items, size = "md" }: { title: string; items: Part
 }
 
 function Partners() {
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const [isHovering, setIsHovering] = useState(false);
+  
+  // Create a flat list with tier info for each partner
+  type PartnerWithTier = PartnerItem & { tier: string; size: "lg" | "md" | "sm"; isFirstInTier: boolean };
+  const allPartners: PartnerWithTier[] = [];
+  
+  const tiers = [
+    { title: "Hoofdsponsor", items: PARTNERS.hoofd, size: "lg" as const },
+    { title: "Premium sponsors", items: PARTNERS.premium, size: "md" as const },
+    { title: "Sponsors", items: PARTNERS.sponsors, size: "sm" as const },
+    { title: "Ambassadeurs", items: PARTNERS.ambassadeurs, size: "sm" as const },
+  ];
+  
+  tiers.forEach((tier) => {
+    tier.items.forEach((item, idx) => {
+      allPartners.push({
+        ...item,
+        tier: tier.title,
+        size: tier.size,
+        isFirstInTier: idx === 0,
+      });
+    });
+  });
+  
+  // Auto-scroll effect
+  useEffect(() => {
+    if (isHovering || !scrollRef.current) return;
+    
+    const interval = setInterval(() => {
+      if (!scrollRef.current) return;
+      
+      const { scrollLeft, scrollWidth, clientWidth } = scrollRef.current;
+      
+      // If reached the end, reset to start
+      if (scrollLeft + clientWidth >= scrollWidth - 10) {
+        scrollRef.current.scrollTo({ left: 0, behavior: "smooth" });
+      } else {
+        scrollRef.current.scrollBy({ left: 1, behavior: "auto" });
+      }
+    }, 30);
+    
+    return () => clearInterval(interval);
+  }, [isHovering]);
+  
+  function scroll(dir: "left" | "right") {
+    if (!scrollRef.current) return;
+    scrollRef.current.scrollBy({ left: dir === "left" ? -300 : 300, behavior: "smooth" });
+  }
+  
   return (
-    <section id="partners" className="py-14 sm:py-32 bg-primary-foreground/[0.03] border-y border-primary-foreground/10">
+    <section id="partners" className="py-9 sm:py-27 bg-primary-foreground/[0.03] border-y border-primary-foreground/10">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <SectionHeader
           eyebrow="Met dank aan"
           title="Partners & sponsors"
           lead="Symphony of Giving wordt mogelijk gemaakt door bedrijven en organisaties die mee hun schouders onder dit project zetten."
         />
-        <div className="space-y-20">
-          <PartnerTier title="Hoofdsponsor" items={PARTNERS.hoofd} size="lg" />
-          <PartnerTier title="Premium sponsors" items={PARTNERS.premium} size="md" />
-          <PartnerTier title="Sponsors" items={PARTNERS.sponsors} size="sm" />
-          <PartnerTier title="Ambassadeurs" items={PARTNERS.ambassadeurs} size="sm" />
+        
+        {/* Continuous carousel */}
+        <div className="relative">
+          {/* Navigation buttons */}
+          <button
+            onClick={() => scroll("left")}
+            className="absolute left-0 top-1/2 -translate-y-1/2 z-10 -ml-4 sm:-ml-6 bg-primary/80 border border-primary-foreground/15 p-1.5 hover:bg-primary transition"
+            aria-label="Scroll left"
+          >
+            <ChevronLeft className="w-4 h-4" />
+          </button>
+          <button
+            onClick={() => scroll("right")}
+            className="absolute right-0 top-1/2 -translate-y-1/2 z-10 -mr-4 sm:-mr-6 bg-primary/80 border border-primary-foreground/15 p-1.5 hover:bg-primary transition"
+            aria-label="Scroll right"
+          >
+            <ChevronRight className="w-4 h-4" />
+          </button>
+          
+          {/* Scrollable partner stream */}
+          <div
+            ref={scrollRef}
+            onMouseEnter={() => setIsHovering(true)}
+            onMouseLeave={() => setIsHovering(false)}
+            className="flex gap-8 sm:gap-12 overflow-x-auto pb-4 scrollbar-none items-start"
+            style={{ scrollbarWidth: "none" }}
+          >
+            {allPartners.map((p) => {
+              const h = p.size === "lg" ? "h-20 sm:h-24" : p.size === "md" ? "h-14 sm:h-16" : "h-12 sm:h-14";
+              const img = (
+                <img
+                  src={p.src}
+                  alt={`Logo ${p.name}`}
+                  className={`${h} max-w-[180px] object-contain ${p.whiteBg ? "partner-logo--whitebg" : "partner-logo"}`}
+                  loading="lazy"
+                />
+              );
+              
+              return (
+                <div key={p.name} className="flex-shrink-0 flex flex-col items-start">
+                  {/* Tier label above first item of each tier - fixed height container for alignment */}
+                  <div className="h-8 mb-4">
+                    {p.isFirstInTier && (
+                      <h3 className="text-[10px] uppercase tracking-[0.5em] text-accent">
+                        {p.tier}
+                      </h3>
+                    )}
+                  </div>
+                  {/* Logo */}
+                  {p.href ? (
+                    <a href={p.href} target="_blank" rel="noreferrer" className="block">
+                      {img}
+                    </a>
+                  ) : (
+                    <div>{img}</div>
+                  )}
+                </div>
+              );
+            })}
+          </div>
         </div>
       </div>
     </section>

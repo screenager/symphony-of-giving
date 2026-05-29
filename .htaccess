@@ -1,0 +1,11 @@
+Options +FollowSymLinks
+RewriteEngine On
+
+# Serve built index.html for the directory root
+RewriteRule ^$ dist-gh-pages/index.html [L]
+RewriteRule ^index\.html$ dist-gh-pages/index.html [L]
+
+# For client-side routes: if not a real file or dir, serve built index.html
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . dist-gh-pages/index.html [L]
