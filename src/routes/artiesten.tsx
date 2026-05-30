@@ -210,11 +210,30 @@ function AllArtistsSlider() {
   const allArtists = ARTIST_GROUPS.flatMap(group => group.artists);
   const [activeIdx, setActiveIdx] = useState(0);
   const scrollRef = useRef<HTMLDivElement>(null);
+  const touchStartX = useRef<number>(0);
   const active = allArtists[activeIdx];
 
   function scroll(dir: "left" | "right") {
     if (!scrollRef.current) return;
     scrollRef.current.scrollBy({ left: dir === "left" ? -200 : 200, behavior: "smooth" });
+  }
+
+  function handleTouchStart(e: React.TouchEvent) {
+    touchStartX.current = e.touches[0].clientX;
+  }
+
+  function handleTouchEnd(e: React.TouchEvent) {
+    const touchEndX = e.changedTouches[0].clientX;
+    const diff = touchStartX.current - touchEndX;
+    const threshold = 50; // minimum swipe distance
+
+    if (Math.abs(diff) > threshold) {
+      if (diff > 0) {
+        scroll("right");
+      } else {
+        scroll("left");
+      }
+    }
   }
 
   return (
@@ -243,6 +262,8 @@ function AllArtistsSlider() {
           ref={scrollRef}
           className="flex gap-6 sm:gap-10 overflow-x-auto pb-4 scrollbar-none"
           style={{ scrollbarWidth: "none" }}
+          onTouchStart={handleTouchStart}
+          onTouchEnd={handleTouchEnd}
         >
           {allArtists.map((artist, i) => (
             <div key={artist.name} className="flex-shrink-0">
