@@ -260,7 +260,7 @@ function AllArtistsSlider() {
         )}
         <div
           ref={scrollRef}
-          className="flex gap-6 sm:gap-10 overflow-x-auto pb-4 scrollbar-none"
+          className="flex gap-6 sm:gap-10 overflow-x-auto overscroll-x-none pb-4 scrollbar-none"
           style={{ scrollbarWidth: "none" }}
           onTouchStart={handleTouchStart}
           onTouchEnd={handleTouchEnd}

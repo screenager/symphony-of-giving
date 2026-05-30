@@ -159,7 +159,7 @@ function HomePage() {
   const [open, setOpen] = useState(false);
 
   return (
-    <div className="min-h-screen bg-stage text-primary-foreground overflow-x-hidden">
+    <div className="min-h-screen bg-stage text-primary-foreground overflow-x-clip">
       <SiteHeader open={open} setOpen={setOpen} />
       <main>
         <Hero />
@@ -580,7 +580,7 @@ function AllArtistsSlider() {
         )}
         <div
           ref={scrollRef}
-          className="flex gap-6 sm:gap-10 overflow-x-auto pb-4 scrollbar-none"
+          className="flex gap-6 sm:gap-10 overflow-x-auto overscroll-x-none pb-4 scrollbar-none"
           style={{ scrollbarWidth: "none" }}
           onTouchStart={handleTouchStart}
           onTouchEnd={handleTouchEnd}
