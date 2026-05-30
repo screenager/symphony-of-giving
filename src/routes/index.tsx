@@ -545,17 +545,17 @@ function AllArtistsSlider() {
           <>
             <button
               onClick={() => scroll("left")}
-              className="absolute left-0 top-14 sm:top-1/2 sm:-translate-y-1/2 z-10 -ml-4 sm:-ml-6 bg-primary/80 border border-accent/50 sm:border-primary-foreground/15 p-2 sm:p-1.5 hover:bg-primary transition"
+              className="absolute left-0 top-14 sm:top-1/2 sm:-translate-y-1/2 z-10 -ml-4 sm:-ml-6 bg-primary/80 border border-primary-foreground/15 p-2 sm:p-1.5 hover:bg-primary transition"
               aria-label="Scroll left"
             >
-              <ChevronLeft className="w-6 h-6 sm:w-4 sm:h-4 text-accent sm:text-primary-foreground" />
+              <ChevronLeft className="w-6 h-6 sm:w-4 sm:h-4" />
             </button>
             <button
               onClick={() => scroll("right")}
-              className="absolute right-0 top-14 sm:top-1/2 sm:-translate-y-1/2 z-10 -mr-4 sm:-mr-6 bg-primary/80 border border-accent/50 sm:border-primary-foreground/15 p-2 sm:p-1.5 hover:bg-primary transition"
+              className="absolute right-0 top-14 sm:top-1/2 sm:-translate-y-1/2 z-10 -mr-4 sm:-mr-6 bg-primary/80 border border-primary-foreground/15 p-2 sm:p-1.5 hover:bg-primary transition"
               aria-label="Scroll right"
             >
-              <ChevronRight className="w-6 h-6 sm:w-4 sm:h-4 text-accent sm:text-primary-foreground" />
+              <ChevronRight className="w-6 h-6 sm:w-4 sm:h-4" />
             </button>
           </>
         )}
@@ -657,6 +657,7 @@ function Partners() {
   const offsetRef = useRef(0);
   const setWidthRef = useRef(0);
   const [isPaused, setIsPaused] = useState(false);
+  const pauseTimeoutRef = useRef<number | null>(null);
 
   type PartnerWithTier = PartnerItem & { tier: string; size: "lg" | "md" | "sm"; isFirstInTier: boolean };
   const allPartners: PartnerWithTier[] = [];
@@ -724,6 +725,15 @@ function Partners() {
     return () => cancelAnimationFrame(rafId);
   }, [isPaused]);
 
+  // Cleanup timeout on unmount
+  useEffect(() => {
+    return () => {
+      if (pauseTimeoutRef.current) {
+        window.clearTimeout(pauseTimeoutRef.current);
+      }
+    };
+  }, []);
+
   function scroll(dir: "left" | "right") {
     if (!trackRef.current || !setWidthRef.current) return;
     const delta = dir === "left" ? -300 : 300;
@@ -737,6 +747,31 @@ function Partners() {
     window.setTimeout(() => {
       if (trackRef.current) trackRef.current.style.transition = "";
     }, 360);
+    
+    // Pause animation for 5 seconds after manual button click
+    pauseWithTimeout();
+  }
+
+  // Pause the animation and set a timeout to resume after 5 seconds
+  function pauseWithTimeout() {
+    setIsPaused(true);
+    if (pauseTimeoutRef.current) {
+      window.clearTimeout(pauseTimeoutRef.current);
+    }
+    pauseTimeoutRef.current = window.setTimeout(() => {
+      setIsPaused(false);
+      pauseTimeoutRef.current = null;
+    }, 5000);
+  }
+
+  // Handle user interaction (touch/mouse)
+  function handleInteractionStart() {
+    setIsPaused(true);
+  }
+
+  function handleInteractionEnd() {
+    // Don't resume immediately - wait 5 seconds
+    pauseWithTimeout();
   }
 
   return (
@@ -771,10 +806,10 @@ function Partners() {
           {/* Marquee viewport — clips overflow so the page never scrolls horizontally */}
           <div
             className="overflow-hidden pb-4"
-            onMouseEnter={() => setIsPaused(true)}
-            onMouseLeave={() => setIsPaused(false)}
-            onTouchStart={() => setIsPaused(true)}
-            onTouchEnd={() => setIsPaused(false)}
+            onMouseEnter={handleInteractionStart}
+            onMouseLeave={handleInteractionEnd}
+            onTouchStart={handleInteractionStart}
+            onTouchEnd={handleInteractionEnd}
           >
             <div
               ref={trackRef}
