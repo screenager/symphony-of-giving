@@ -233,19 +233,19 @@ function Hero() {
             alt="Symphony of Giving — blauwe pluche beer met gouden strik naast het logo"
             width={1600}
             height={800}
-            className="relative z-10 block w-full h-auto"
+            className="relative z-10 block w-full h-auto sm:[mask-image:linear-gradient(to_bottom,black_calc(100%-280px),transparent_100%)]"
             style={{
-              WebkitMaskImage: "linear-gradient(to bottom, black calc(100% - 280px), transparent 100%)",
-              maskImage: "linear-gradient(to bottom, black calc(100% - 280px), transparent 100%)",
+              WebkitMaskImage: "linear-gradient(to bottom, black calc(100% - 150px), transparent 100%)",
+              maskImage: "linear-gradient(to bottom, black calc(100% - 150px), transparent 100%)",
             }}
           />
 
         </div>
       <div className="relative z-30 -mt-10 sm:-mt-16 pb-2 text-primary-foreground">
         <div className="mx-auto max-w-5xl px-4 sm:px-6">
-          <div className="flex items-center justify-center gap-5 sm:gap-8 text-accent mb-8">
+          <div className="flex items-center justify-center gap-5 sm:gap-8 text-accent mb-8 mt-5 sm:mt-0">
             <span className="flex-1 h-px bg-accent/50" />
-            <h1 className="font-display text-4xl sm:text-5xl lg:text-5xl tracking-tight text-accent whitespace-nowrap">
+            <h1 className="font-display text-[34px] sm:text-5xl lg:text-5xl tracking-tight text-accent whitespace-nowrap">
               Benefietconcert
             </h1>
             <span className="flex-1 h-px bg-accent/50" />
@@ -257,7 +257,7 @@ function Hero() {
             </p>
             <span className="flex-1 h-px bg-gradient-to-l from-transparent to-accent/50" />
           </div>
-          <p className="mt-3 text-center text-xs sm:text-sm tracking-[0.35em] uppercase text-primary-foreground/60">
+          <p className="mt-3 text-center text-[10px] sm:text-sm tracking-[0.35em] uppercase text-primary-foreground/60 px-2.5 sm:px-0">
             ten voordele van drie goede doelen
           </p>
         </div>
@@ -268,14 +268,17 @@ function Hero() {
         <div className="mx-auto max-w-5xl px-4 sm:px-6">
           {/* Row 1: date (left) — location (right) */}
           <div className="flex flex-row items-end justify-between gap-4 sm:gap-8 pb-8 sm:pb-10 border-b border-accent/25">
-            <div className="text-left">
+            <div className="text-left px-1.5 sm:px-0">
               <div className="text-[10px] tracking-[0.5em] uppercase text-accent/80 mb-3">Datum</div>
+              <div className="font-display text-primary-foreground text-base sm:text-2xl lg:text-3xl leading-tight mb-1 sm:mb-2">
+                Zondag
+              </div>
               <div className="font-display text-accent text-3xl sm:text-5xl lg:text-6xl leading-none">25.10.2026</div>
               <div className="mt-3 text-primary-foreground/80 text-xs sm:text-sm tracking-[0.3em] uppercase">15:00</div>
             </div>
-            <div className="text-right">
+            <div className="text-right px-1.5 sm:px-0">
               <div className="text-[10px] tracking-[0.5em] uppercase text-accent/80 mb-3">Locatie</div>
-              <div className="font-display text-primary-foreground text-2xl sm:text-4xl lg:text-5xl leading-tight">
+              <div className="font-display text-primary-foreground text-xl sm:text-4xl lg:text-5xl leading-tight">
                 Koningin<br className="sm:hidden" /> Elisabethzaal
               </div>
               <div className="mt-3 text-primary-foreground/70 text-xs sm:text-sm tracking-[0.3em] uppercase">Antwerpen</div>
@@ -299,13 +302,13 @@ function Hero() {
         <div className="mt-10 sm:mt-16 flex flex-wrap gap-3 justify-center px-4">
           <Link
             to="/tickets"
-            className="inline-flex items-center gap-2 rounded-none bg-accent text-primary px-8 py-3.5 text-xs tracking-[0.3em] uppercase hover:opacity-90 transition"
+            className="inline-flex items-center gap-2 rounded-none bg-accent text-primary px-8 py-3.5 text-xs tracking-[0.3em] uppercase hover:opacity-90 transition w-full sm:w-auto justify-center"
           >
             <Ticket className="w-4 h-4" /> Koop tickets
           </Link>
           <a
             href="#concert"
-            className="inline-flex items-center gap-2 rounded-none border border-primary-foreground/25 px-8 py-3.5 text-xs tracking-[0.3em] uppercase hover:bg-primary-foreground/5 transition"
+            className="inline-flex items-center gap-2 rounded-none border border-primary-foreground/25 px-8 py-3.5 text-xs tracking-[0.3em] uppercase hover:bg-primary-foreground/5 transition w-full sm:w-auto justify-center"
           >
             Ontdek het concert
           </a>
@@ -404,7 +407,7 @@ function Programma() {
 
   return (
     <section id="programma" className="py-9 sm:py-27">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6">
+      <div className="mx-auto max-w-6xl px-[15px] sm:px-6">
         <SectionHeader
           eyebrow=""
           title="Programma"
@@ -441,7 +444,7 @@ function Programma() {
             <img
               src={orkestImage}
               alt="Symfonisch orkest Vivanto"
-              className="float-left w-48 h-64 mr-6 mb-4 grayscale object-cover"
+              className="md:float-left w-full md:w-48 h-64 md:mr-6 mb-4 grayscale object-cover"
               loading="lazy"
             />
             <p className="text-primary-foreground/75 leading-relaxed">
@@ -457,7 +460,7 @@ function Programma() {
             <img
               src="https://symphony-of-giving.be/images/joris-decolvenaer.jpeg"
               alt="Joris Decolvenaer"
-              className="float-left w-48 h-64 mr-6 mb-4 grayscale object-cover"
+              className="md:float-left w-full md:w-48 h-64 md:mr-6 mb-4 grayscale object-cover"
               loading="lazy"
             />
             <div className="text-primary-foreground/75 leading-relaxed space-y-3 text-sm">
@@ -532,17 +535,17 @@ function AllArtistsSlider() {
           <>
             <button
               onClick={() => scroll("left")}
-              className="absolute left-0 top-1/2 -translate-y-1/2 z-10 -ml-4 sm:-ml-6 bg-primary/80 border border-primary-foreground/15 p-1.5 hover:bg-primary transition"
+              className="absolute left-0 top-1/2 -translate-y-1/2 z-10 -ml-4 sm:-ml-6 bg-primary/80 border border-primary-foreground/15 p-2 sm:p-1.5 hover:bg-primary transition"
               aria-label="Scroll left"
             >
-              <ChevronLeft className="w-4 h-4" />
+              <ChevronLeft className="w-6 h-6 sm:w-4 sm:h-4" />
             </button>
             <button
               onClick={() => scroll("right")}
-              className="absolute right-0 top-1/2 -translate-y-1/2 z-10 -mr-4 sm:-mr-6 bg-primary/80 border border-primary-foreground/15 p-1.5 hover:bg-primary transition"
+              className="absolute right-0 top-1/2 -translate-y-1/2 z-10 -mr-4 sm:-mr-6 bg-primary/80 border border-primary-foreground/15 p-2 sm:p-1.5 hover:bg-primary transition"
               aria-label="Scroll right"
             >
-              <ChevronRight className="w-4 h-4" />
+              <ChevronRight className="w-6 h-6 sm:w-4 sm:h-4" />
             </button>
           </>
         )}
@@ -599,7 +602,7 @@ function AllArtistsSlider() {
 function Artiesten() {
   return (
     <section id="artiesten" className="py-9 sm:py-19 bg-primary-foreground/[0.03] border-y border-primary-foreground/10">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6">
+      <div className="mx-auto max-w-6xl px-[15px] sm:px-6">
         <SectionHeader
           eyebrow=""
           title="Artiesten"
@@ -665,21 +668,34 @@ function Partners() {
     });
   });
   
-  // Auto-scroll effect
+  // Duplicate partners for seamless loop
+  const duplicatedPartners = [...allPartners, ...allPartners, ...allPartners];
+  
+  // Auto-scroll effect with seamless looping
   useEffect(() => {
     if (isHovering || !scrollRef.current) return;
     
+    const scrollElement = scrollRef.current;
+    const singleSetWidth = scrollElement.scrollWidth / 3; // Width of one set of partners
+    
+    // Start in the middle set
+    scrollElement.scrollLeft = singleSetWidth;
+    
     const interval = setInterval(() => {
-      if (!scrollRef.current) return;
+      if (!scrollElement) return;
       
-      const { scrollLeft, scrollWidth, clientWidth } = scrollRef.current;
+      const { scrollLeft, scrollWidth, clientWidth } = scrollElement;
       
-      // If reached the end, reset to start
-      if (scrollLeft + clientWidth >= scrollWidth - 10) {
-        scrollRef.current.scrollTo({ left: 0, behavior: "smooth" });
-      } else {
-        scrollRef.current.scrollBy({ left: 1, behavior: "auto" });
+      // If reached near the end of the third set, snap back to the middle set
+      if (scrollLeft >= singleSetWidth * 2 - clientWidth / 2) {
+        scrollElement.scrollLeft = scrollLeft - singleSetWidth;
       }
+      // If scrolled back near the beginning, snap to the middle set
+      else if (scrollLeft <= clientWidth / 2) {
+        scrollElement.scrollLeft = scrollLeft + singleSetWidth;
+      }
+      
+      scrollElement.scrollBy({ left: 1, behavior: "auto" });
     }, 30);
     
     return () => clearInterval(interval);
@@ -692,7 +708,7 @@ function Partners() {
   
   return (
     <section id="partners" className="py-9 sm:py-27 bg-primary-foreground/[0.03] border-y border-primary-foreground/10">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6">
+      <div className="mx-auto max-w-6xl px-[15px] sm:px-6">
         <SectionHeader
           eyebrow="Met dank aan"
           title="Partners & sponsors"
@@ -704,17 +720,17 @@ function Partners() {
           {/* Navigation buttons */}
           <button
             onClick={() => scroll("left")}
-            className="absolute left-0 top-1/2 -translate-y-1/2 z-10 -ml-4 sm:-ml-6 bg-primary/80 border border-primary-foreground/15 p-1.5 hover:bg-primary transition"
+            className="absolute left-0 top-1/2 -translate-y-1/2 z-10 -ml-4 sm:-ml-6 bg-primary/80 border border-primary-foreground/15 p-2 sm:p-1.5 hover:bg-primary transition"
             aria-label="Scroll left"
           >
-            <ChevronLeft className="w-4 h-4" />
+            <ChevronLeft className="w-6 h-6 sm:w-4 sm:h-4" />
           </button>
           <button
             onClick={() => scroll("right")}
-            className="absolute right-0 top-1/2 -translate-y-1/2 z-10 -mr-4 sm:-mr-6 bg-primary/80 border border-primary-foreground/15 p-1.5 hover:bg-primary transition"
+            className="absolute right-0 top-1/2 -translate-y-1/2 z-10 -mr-4 sm:-mr-6 bg-primary/80 border border-primary-foreground/15 p-2 sm:p-1.5 hover:bg-primary transition"
             aria-label="Scroll right"
           >
-            <ChevronRight className="w-4 h-4" />
+            <ChevronRight className="w-6 h-6 sm:w-4 sm:h-4" />
           </button>
           
           {/* Scrollable partner stream */}
@@ -725,7 +741,7 @@ function Partners() {
             className="flex gap-8 sm:gap-12 overflow-x-auto pb-4 scrollbar-none items-start"
             style={{ scrollbarWidth: "none" }}
           >
-            {allPartners.map((p) => {
+            {duplicatedPartners.map((p, index) => {
               const h = p.size === "lg" ? "h-20 sm:h-24" : p.size === "md" ? "h-14 sm:h-16" : "h-12 sm:h-14";
               const img = (
                 <img
@@ -737,7 +753,7 @@ function Partners() {
               );
               
               return (
-                <div key={p.name} className="flex-shrink-0 flex flex-col items-start">
+                <div key={`${p.name}-${index}`} className="flex-shrink-0 flex flex-col items-start">
                   {/* Tier label above first item of each tier - fixed height container for alignment */}
                   <div className="h-8 mb-4">
                     {p.isFirstInTier && (
