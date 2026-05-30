@@ -159,13 +159,14 @@ function HomePage() {
   const [open, setOpen] = useState(false);
 
   return (
-    <div className="min-h-screen bg-stage text-primary-foreground">
+    <div className="min-h-screen bg-stage text-primary-foreground overflow-x-hidden">
       <SiteHeader open={open} setOpen={setOpen} />
       <main>
         <Hero />
         <Concert />
         <Benefiet />
         <Programma />
+        <OrkestEnDirigent />
         <Artiesten />
         <Partners />
       </main>
@@ -252,12 +253,13 @@ function Hero() {
           </div>
           <div className="flex items-center gap-5">
             <span className="flex-1 h-px bg-gradient-to-r from-transparent to-accent/50" />
-            <p className="text-center font-display italic text-xl sm:text-2xl leading-snug text-primary-foreground/85 whitespace-nowrap">
-              Een avond klassieke muziek met groot hart
+            <p className="text-center font-display italic text-[15px] sm:text-2xl leading-snug text-primary-foreground/85 whitespace-nowrap">
+              <span className="sm:hidden">Avond vol klassieke muziek met groot een hart</span>
+              <span className="hidden sm:inline">Een avond vol klassieke muziek met groot een hart</span>
             </p>
             <span className="flex-1 h-px bg-gradient-to-l from-transparent to-accent/50" />
           </div>
-          <p className="mt-3 text-center text-[10px] sm:text-sm tracking-[0.35em] uppercase text-primary-foreground/60 px-2.5 sm:px-0">
+          <p className="mt-3 text-center text-[10px] sm:text-sm tracking-[0.35em] uppercase text-primary-foreground/60">
             ten voordele van drie goede doelen
           </p>
         </div>
@@ -267,8 +269,8 @@ function Hero() {
       <div className="relative z-10 pb-14 pt-10 sm:pb-24 sm:pt-20 text-primary-foreground">
         <div className="mx-auto max-w-5xl px-4 sm:px-6">
           {/* Row 1: date (left) — location (right) */}
-          <div className="flex flex-row items-end justify-between gap-4 sm:gap-8 pb-8 sm:pb-10 border-b border-accent/25">
-            <div className="text-left px-1.5 sm:px-0">
+          <div className="flex flex-row items-end justify-between gap-4 sm:gap-8 pb-8 sm:pb-10 border-b border-accent/25 px-[20px] sm:px-0">
+            <div className="text-left">
               <div className="text-[10px] tracking-[0.5em] uppercase text-accent/80 mb-3">Datum</div>
               <div className="font-display text-primary-foreground text-base sm:text-2xl lg:text-3xl leading-tight mb-1 sm:mb-2">
                 Zondag
@@ -276,7 +278,7 @@ function Hero() {
               <div className="font-display text-accent text-3xl sm:text-5xl lg:text-6xl leading-none">25.10.2026</div>
               <div className="mt-3 text-primary-foreground/80 text-xs sm:text-sm tracking-[0.3em] uppercase">15:00</div>
             </div>
-            <div className="text-right px-1.5 sm:px-0">
+            <div className="text-right">
               <div className="text-[10px] tracking-[0.5em] uppercase text-accent/80 mb-3">Locatie</div>
               <div className="font-display text-primary-foreground text-xl sm:text-4xl lg:text-5xl leading-tight">
                 Koningin<br className="sm:hidden" /> Elisabethzaal
@@ -332,7 +334,7 @@ function SectionHeader({ eyebrow, title, lead, center = false }: { eyebrow: stri
 function Concert() {
   return (
     <section id="concert" className="py-9 sm:py-27">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6">
+      <div className="mx-auto max-w-6xl px-[25px] sm:px-6">
         <SectionHeader eyebrow="Het concert" title="Muziek als smeekbede om vrede" />
         <div className="grid md:grid-cols-3 gap-10 items-start">
           <blockquote className="md:col-span-2 font-display text-2xl sm:text-3xl text-primary-foreground leading-snug">
@@ -403,8 +405,6 @@ function Benefiet() {
 }
 
 function Programma() {
-  const [showMoreDirigent, setShowMoreDirigent] = useState(false);
-
   return (
     <section id="programma" className="py-9 sm:py-27">
       <div className="mx-auto max-w-6xl px-[15px] sm:px-6">
@@ -436,8 +436,18 @@ function Programma() {
             );
           })}
         </ol>
+      </div>
+    </section>
+  );
+}
 
-        <div className="mt-20 grid md:grid-cols-2 gap-10">
+function OrkestEnDirigent() {
+  const [showMoreDirigent, setShowMoreDirigent] = useState(false);
+
+  return (
+    <section className="py-9 sm:py-27 bg-primary-foreground/[0.03] border-y border-primary-foreground/10">
+      <div className="mx-auto max-w-6xl px-[15px] sm:px-6">
+        <div className="grid md:grid-cols-2 gap-10">
           <article className="border border-primary-foreground/15 p-8">
             <p className="text-[10px] uppercase tracking-[0.5em] text-accent mb-4">Orkest</p>
             <h3 className="font-display text-3xl text-primary-foreground mb-4">Symfonisch orkest Vivanto</h3>
@@ -498,7 +508,7 @@ function ArtistCard({ artist, active, onClick }: { artist: Artist; active: boole
       className={`group flex flex-col items-center text-center focus:outline-none transition-all ${active ? "opacity-100" : "opacity-50 hover:opacity-80"}`}
     >
       <div
-        className={`aspect-square overflow-hidden rounded-full border-2 transition-all w-28 sm:w-36 md:w-40 ${
+        className={`aspect-square overflow-hidden rounded-full border-2 transition-all w-28 sm:w-44 md:w-48 ${
           active ? "border-accent shadow-[0_0_0_4px_rgba(var(--accent-rgb,180,144,78)/0.25)]" : "border-primary-foreground/20 group-hover:border-accent/50"
         }`}
       >
@@ -509,8 +519,8 @@ function ArtistCard({ artist, active, onClick }: { artist: Artist; active: boole
           loading="lazy"
         />
       </div>
-      <p className="mt-3 font-display text-base sm:text-lg text-primary-foreground leading-tight">{artist.name}</p>
-      <p className="font-rounded text-[10px] uppercase tracking-widest text-primary-foreground/55 mt-1">{artist.role}</p>
+      <p className="mt-3 font-display text-base sm:text-xl text-primary-foreground leading-tight whitespace-nowrap">{artist.name}</p>
+      <p className="font-rounded text-[10px] sm:text-xs uppercase tracking-widest text-primary-foreground/55 mt-1">{artist.role}</p>
     </button>
   );
 }
@@ -535,17 +545,17 @@ function AllArtistsSlider() {
           <>
             <button
               onClick={() => scroll("left")}
-              className="absolute left-0 top-1/2 -translate-y-1/2 z-10 -ml-4 sm:-ml-6 bg-primary/80 border border-primary-foreground/15 p-2 sm:p-1.5 hover:bg-primary transition"
+              className="absolute left-0 top-14 sm:top-1/2 sm:-translate-y-1/2 z-10 -ml-4 sm:-ml-6 bg-primary/80 border border-accent/50 sm:border-primary-foreground/15 p-2 sm:p-1.5 hover:bg-primary transition"
               aria-label="Scroll left"
             >
-              <ChevronLeft className="w-6 h-6 sm:w-4 sm:h-4" />
+              <ChevronLeft className="w-6 h-6 sm:w-4 sm:h-4 text-accent sm:text-primary-foreground" />
             </button>
             <button
               onClick={() => scroll("right")}
-              className="absolute right-0 top-1/2 -translate-y-1/2 z-10 -mr-4 sm:-mr-6 bg-primary/80 border border-primary-foreground/15 p-2 sm:p-1.5 hover:bg-primary transition"
+              className="absolute right-0 top-14 sm:top-1/2 sm:-translate-y-1/2 z-10 -mr-4 sm:-mr-6 bg-primary/80 border border-accent/50 sm:border-primary-foreground/15 p-2 sm:p-1.5 hover:bg-primary transition"
               aria-label="Scroll right"
             >
-              <ChevronRight className="w-6 h-6 sm:w-4 sm:h-4" />
+              <ChevronRight className="w-6 h-6 sm:w-4 sm:h-4 text-accent sm:text-primary-foreground" />
             </button>
           </>
         )}
@@ -601,7 +611,7 @@ function AllArtistsSlider() {
 
 function Artiesten() {
   return (
-    <section id="artiesten" className="py-9 sm:py-19 bg-primary-foreground/[0.03] border-y border-primary-foreground/10">
+    <section id="artiesten" className="py-9 sm:py-19">
       <div className="mx-auto max-w-6xl px-[15px] sm:px-6">
         <SectionHeader
           eyebrow=""
@@ -643,20 +653,21 @@ function PartnerTier({ title, items, size = "md" }: { title: string; items: Part
 }
 
 function Partners() {
-  const scrollRef = useRef<HTMLDivElement>(null);
-  const [isHovering, setIsHovering] = useState(false);
-  
-  // Create a flat list with tier info for each partner
+  const trackRef = useRef<HTMLDivElement>(null);
+  const offsetRef = useRef(0);
+  const setWidthRef = useRef(0);
+  const [isPaused, setIsPaused] = useState(false);
+
   type PartnerWithTier = PartnerItem & { tier: string; size: "lg" | "md" | "sm"; isFirstInTier: boolean };
   const allPartners: PartnerWithTier[] = [];
-  
+
   const tiers = [
     { title: "Hoofdsponsor", items: PARTNERS.hoofd, size: "lg" as const },
     { title: "Premium sponsors", items: PARTNERS.premium, size: "md" as const },
     { title: "Sponsors", items: PARTNERS.sponsors, size: "sm" as const },
     { title: "Ambassadeurs", items: PARTNERS.ambassadeurs, size: "sm" as const },
   ];
-  
+
   tiers.forEach((tier) => {
     tier.items.forEach((item, idx) => {
       allPartners.push({
@@ -667,112 +678,140 @@ function Partners() {
       });
     });
   });
-  
-  // Duplicate partners for seamless loop
-  const duplicatedPartners = [...allPartners, ...allPartners, ...allPartners];
-  
-  // Auto-scroll effect with seamless looping
+
+  // Duplicate once for a seamless marquee loop
+  const duplicatedPartners = [...allPartners, ...allPartners];
+
+  // Measure one set width once images are laid out
   useEffect(() => {
-    if (isHovering || !scrollRef.current) return;
-    
-    const scrollElement = scrollRef.current;
-    const singleSetWidth = scrollElement.scrollWidth / 3; // Width of one set of partners
-    
-    // Start in the middle set
-    scrollElement.scrollLeft = singleSetWidth;
-    
-    const interval = setInterval(() => {
-      if (!scrollElement) return;
-      
-      const { scrollLeft, scrollWidth, clientWidth } = scrollElement;
-      
-      // If reached near the end of the third set, snap back to the middle set
-      if (scrollLeft >= singleSetWidth * 2 - clientWidth / 2) {
-        scrollElement.scrollLeft = scrollLeft - singleSetWidth;
+    if (!trackRef.current) return;
+    const measure = () => {
+      if (!trackRef.current) return;
+      setWidthRef.current = trackRef.current.scrollWidth / 2;
+    };
+    measure();
+    const ro = new ResizeObserver(measure);
+    ro.observe(trackRef.current);
+    // Also re-measure once images load
+    const imgs = trackRef.current.querySelectorAll("img");
+    imgs.forEach((img) => {
+      if (!img.complete) img.addEventListener("load", measure, { once: true });
+    });
+    return () => ro.disconnect();
+  }, []);
+
+  // Smooth rAF-driven marquee
+  useEffect(() => {
+    if (isPaused) return;
+    let rafId = 0;
+    let lastTime = performance.now();
+    const speed = 50; // px/sec
+
+    const tick = (now: number) => {
+      const dt = (now - lastTime) / 1000;
+      lastTime = now;
+      if (setWidthRef.current > 0) {
+        let next = offsetRef.current + speed * dt;
+        if (next >= setWidthRef.current) next -= setWidthRef.current;
+        offsetRef.current = next;
+        if (trackRef.current) {
+          trackRef.current.style.transform = `translate3d(${-next}px, 0, 0)`;
+        }
       }
-      // If scrolled back near the beginning, snap to the middle set
-      else if (scrollLeft <= clientWidth / 2) {
-        scrollElement.scrollLeft = scrollLeft + singleSetWidth;
-      }
-      
-      scrollElement.scrollBy({ left: 1, behavior: "auto" });
-    }, 30);
-    
-    return () => clearInterval(interval);
-  }, [isHovering]);
-  
+      rafId = requestAnimationFrame(tick);
+    };
+    rafId = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(rafId);
+  }, [isPaused]);
+
   function scroll(dir: "left" | "right") {
-    if (!scrollRef.current) return;
-    scrollRef.current.scrollBy({ left: dir === "left" ? -300 : 300, behavior: "smooth" });
+    if (!trackRef.current || !setWidthRef.current) return;
+    const delta = dir === "left" ? -300 : 300;
+    let next = offsetRef.current + delta;
+    // Wrap into [0, setWidth)
+    while (next < 0) next += setWidthRef.current;
+    while (next >= setWidthRef.current) next -= setWidthRef.current;
+    offsetRef.current = next;
+    trackRef.current.style.transition = "transform 350ms ease";
+    trackRef.current.style.transform = `translate3d(${-next}px, 0, 0)`;
+    window.setTimeout(() => {
+      if (trackRef.current) trackRef.current.style.transition = "";
+    }, 360);
   }
-  
+
   return (
     <section id="partners" className="py-9 sm:py-27 bg-primary-foreground/[0.03] border-y border-primary-foreground/10">
       <div className="mx-auto max-w-6xl px-[15px] sm:px-6">
-        <SectionHeader
-          eyebrow="Met dank aan"
-          title="Partners & sponsors"
-          lead="Symphony of Giving wordt mogelijk gemaakt door bedrijven en organisaties die mee hun schouders onder dit project zetten."
-        />
-        
-        {/* Continuous carousel */}
+        <div className="[&>header]:mb-4 sm:[&>header]:mb-14">
+          <SectionHeader
+            eyebrow="Met dank aan"
+            title="Partners & sponsors"
+            lead="Symphony of Giving wordt mogelijk gemaakt door bedrijven en organisaties die mee hun schouders onder dit project zetten."
+          />
+        </div>
+
+        {/* Continuous marquee carousel */}
         <div className="relative">
           {/* Navigation buttons */}
           <button
             onClick={() => scroll("left")}
-            className="absolute left-0 top-1/2 -translate-y-1/2 z-10 -ml-4 sm:-ml-6 bg-primary/80 border border-primary-foreground/15 p-2 sm:p-1.5 hover:bg-primary transition"
+            className="absolute left-0 top-1/2 -translate-y-1/2 z-10 -ml-2 sm:-ml-6 bg-primary/80 border border-primary-foreground/15 p-2 sm:p-1.5 hover:bg-primary transition"
             aria-label="Scroll left"
           >
             <ChevronLeft className="w-6 h-6 sm:w-4 sm:h-4" />
           </button>
           <button
             onClick={() => scroll("right")}
-            className="absolute right-0 top-1/2 -translate-y-1/2 z-10 -mr-4 sm:-mr-6 bg-primary/80 border border-primary-foreground/15 p-2 sm:p-1.5 hover:bg-primary transition"
+            className="absolute right-0 top-1/2 -translate-y-1/2 z-10 -mr-2 sm:-mr-6 bg-primary/80 border border-primary-foreground/15 p-2 sm:p-1.5 hover:bg-primary transition"
             aria-label="Scroll right"
           >
             <ChevronRight className="w-6 h-6 sm:w-4 sm:h-4" />
           </button>
-          
-          {/* Scrollable partner stream */}
+
+          {/* Marquee viewport — clips overflow so the page never scrolls horizontally */}
           <div
-            ref={scrollRef}
-            onMouseEnter={() => setIsHovering(true)}
-            onMouseLeave={() => setIsHovering(false)}
-            className="flex gap-8 sm:gap-12 overflow-x-auto pb-4 scrollbar-none items-start"
-            style={{ scrollbarWidth: "none" }}
+            className="overflow-hidden pb-4"
+            onMouseEnter={() => setIsPaused(true)}
+            onMouseLeave={() => setIsPaused(false)}
+            onTouchStart={() => setIsPaused(true)}
+            onTouchEnd={() => setIsPaused(false)}
           >
-            {duplicatedPartners.map((p, index) => {
-              const h = p.size === "lg" ? "h-20 sm:h-24" : p.size === "md" ? "h-14 sm:h-16" : "h-12 sm:h-14";
-              const img = (
-                <img
-                  src={p.src}
-                  alt={`Logo ${p.name}`}
-                  className={`${h} max-w-[180px] object-contain ${p.whiteBg ? "partner-logo--whitebg" : "partner-logo"}`}
-                  loading="lazy"
-                />
-              );
-              
-              return (
-                <div key={`${p.name}-${index}`} className="flex-shrink-0 flex flex-col items-start">
-                  {/* Tier label above first item of each tier - fixed height container for alignment */}
-                  <div className="h-8 mb-4">
-                    {p.isFirstInTier && (
-                      <h3 className="text-[10px] uppercase tracking-[0.5em] text-accent">
-                        {p.tier}
-                      </h3>
+            <div
+              ref={trackRef}
+              className="flex gap-10 sm:gap-12 items-start will-change-transform"
+              style={{ transform: "translate3d(0,0,0)" }}
+            >
+              {duplicatedPartners.map((p, index) => {
+                const h = p.size === "lg" ? "h-24 sm:h-28" : p.size === "md" ? "h-20 sm:h-20" : "h-16 sm:h-16";
+                const img = (
+                  <img
+                    src={p.src}
+                    alt={`Logo ${p.name}`}
+                    className={`${h} max-w-[220px] object-contain ${p.whiteBg ? "partner-logo--whitebg" : "partner-logo"}`}
+                    loading="lazy"
+                  />
+                );
+
+                return (
+                  <div key={`${p.name}-${index}`} className="flex-shrink-0 flex flex-col items-start">
+                    <div className="h-8 mb-4">
+                      {p.isFirstInTier && (
+                        <h3 className="text-[10px] uppercase tracking-[0.5em] text-accent whitespace-nowrap">
+                          {p.tier}
+                        </h3>
+                      )}
+                    </div>
+                    {p.href ? (
+                      <a href={p.href} target="_blank" rel="noreferrer" className="block">
+                        {img}
+                      </a>
+                    ) : (
+                      <div>{img}</div>
                     )}
                   </div>
-                  {/* Logo */}
-                  {p.href ? (
-                    <a href={p.href} target="_blank" rel="noreferrer" className="block">
-                      {img}
-                    </a>
-                  ) : (
-                    <div>{img}</div>
-                  )}
-                </div>
-              );
-            })}
+                );
+              })}
+            </div>
           </div>
         </div>
       </div>
