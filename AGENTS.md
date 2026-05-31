@@ -33,6 +33,26 @@ Notes:
    `rootRouteChildren`). The generator is not running automatically here.
 3. Then rebuild as above.
 
+## Hidden sections
+
+### `OrkestEnDirigent` (src/routes/index.tsx)
+
+Hidden on **31 mei 2026**. The section was a two-column card block (Orkest + Dirigent)
+rendered between `<Programma />` and `<Artiesten />` in `HomePage`.
+
+To revert:
+1. In `src/routes/index.tsx`, change:
+   ```tsx
+   {false /* OrkestEnDirigent hidden … */ && <OrkestEnDirigent />}
+   ```
+   back to:
+   ```tsx
+   <OrkestEnDirigent />
+   ```
+2. Remove the "Dirigent" group (first) and "Orkest" group (last) from `ARTIST_GROUPS`
+   in the same file if you no longer want them in the carousel.
+3. Rebuild.
+
 ## Style conventions
 
 - Reuse the existing dark-stage look: `bg-stage`, `text-primary-foreground`,

@@ -17,7 +17,7 @@ export const Route = createFileRoute("/tickets")({
 
 function TicketsPage() {
   return (
-    <div className="min-h-screen bg-parchment flex items-center justify-center px-4">
+    <main className="min-h-screen bg-parchment flex items-center justify-center px-4">
       <div className="max-w-xl text-center">
         <div className="text-accent text-xs tracking-[0.3em] uppercase mb-4">Tickets</div>
         <h1 className="font-display text-5xl sm:text-6xl text-primary font-semibold">
@@ -48,6 +48,6 @@ function TicketsPage() {
           </a>
         </div>
       </div>
-    </div>
+    </main>
   );
 }

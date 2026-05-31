@@ -3,6 +3,7 @@ import { useState, useRef, useEffect } from "react";
 import { Menu, X, Ticket, Mail, Phone, ChevronLeft, ChevronRight } from "lucide-react";
 import heroBanner from "@/assets/hero-banner.webp";
 import orkestImage from "@/assets/Music meets science-6.jpg";
+import bearImg from "@/assets/bear.png";
 
 export const Route = createFileRoute("/")({
   component: HomePage,
@@ -68,6 +69,17 @@ type ArtistGroup = {
 
 const ARTIST_GROUPS: ArtistGroup[] = [
   {
+    label: "Dirigent",
+    artists: [
+      {
+        name: "Joris Decolvenaer",
+        role: "Dirigent",
+        img: "https://symphony-of-giving.be/images/joris-decolvenaer.jpeg",
+        bio: "Voor de Belgische dirigent en violist Joris Decolvenaer is de zoektocht naar dialoog en verbondenheid door muziek de rode draad van zijn muzikale carrière. Joris is dirigent en artistiek leider van het symfonisch orkest Vivanto. Hij is ook dirigent en medeoprichter van het Bangalore City Chamber Orchestra, het eerste professionele kamerorkest in Indië, alsook de dirigent van het Alumni Arenbergorkest te Leuven.\n\nHij dirigeerde reeds tal van orkesten in binnen- en buitenland, zoals het Symfonieorkest Vlaanderen, Orchestre Philharmonique de Liège, Kiev Symphonic Orchestra (Oekraïne)…\n\nJoris Decolvenaer is laureaat van verscheidene prijzen in muziekwedstrijden, zoals de Supernova-wedstrijd en de International Leos Janacek Competition. Hij is ook laureaat van de VOCATIO-beurs. Sinds 2022 is Joris viooldocent aan het Emanuel Feuermann Konzervatorium van de Kronberg Academy (Duitsland) en is hij professor in vakdidactiek viool aan het Koninklijk Conservatorium van Antwerpen.",
+      },
+    ],
+  },
+  {
     label: "Solisten",
     artists: [
       {
@@ -130,6 +142,17 @@ const ARTIST_GROUPS: ArtistGroup[] = [
       },
     ],
   },
+  {
+    label: "Orkest",
+    artists: [
+      {
+        name: "Symfonisch orkest Vivanto",
+        role: "Orkest",
+        img: orkestImage,
+        bio: "Vivanto is een nieuw, dynamisch symfonisch orkest dat traditie en vernieuwing samenbrengt. De missie: klassieke muziek toegankelijk, inspirerend en relevant maken voor een breed publiek. Vivanto staat voor leven, energie en beweging.",
+      },
+    ],
+  },
 ];
 
 type PartnerItem = { name: string; src: string; href?: string; whiteBg?: boolean };
@@ -166,7 +189,7 @@ function HomePage() {
         <Concert />
         <Benefiet />
         <Programma />
-        <OrkestEnDirigent />
+        {false /* OrkestEnDirigent hidden — contents moved to Artiesten carousel; see AGENTS.md to revert */ && <OrkestEnDirigent />}
         <Artiesten />
         <Partners />
       </main>
@@ -179,8 +202,9 @@ function SiteHeader({ open, setOpen }: { open: boolean; setOpen: (v: boolean) =>
   return (
     <header className="site-header sticky top-0 z-40 backdrop-blur-md bg-primary/85 text-primary-foreground border-b border-primary-foreground/10">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 flex items-center justify-between h-16">
-        <a href="#hero" className="font-display text-lg sm:text-xl tracking-wide">
-          Symphony <span className="text-accent italic">of</span> Giving
+        <a href="#hero" className="font-display text-lg sm:text-xl tracking-wide flex items-center gap-2">
+          <img src={bearImg} alt="Logo Symphony of Giving" className="h-8 w-8 object-contain" />
+          <span aria-hidden="true">Symphony <span className="text-accent italic">of</span> Giving</span>
         </a>
         <nav className="hidden md:flex items-center gap-8 text-xs tracking-[0.25em] uppercase">
           {NAV.map((n) => (
@@ -268,8 +292,10 @@ function Hero() {
       {/* Big event details + CTAs, on the darkening background */}
       <div className="relative z-10 pb-14 pt-10 sm:pb-24 sm:pt-20 text-primary-foreground">
         <div className="mx-auto max-w-5xl px-4 sm:px-6">
-          {/* Row 1: date (left) — location (right) */}
-          <div className="flex flex-row items-end justify-between gap-4 sm:gap-8 pb-8 sm:pb-10 border-b border-accent/25 px-[20px] sm:px-0">
+          {/* Row 1: date (left) — location (right). max-width matches the
+              italic subtitle's natural text width so the boxes align with
+              "Ten" on the left and "hart" on the right (mobile + iPad). */}
+          <div className="flex flex-row items-end justify-between gap-4 sm:gap-8 pb-8 sm:pb-10 border-b border-accent/25 max-w-[310px] sm:max-w-[560px] lg:max-w-none mx-auto">
             <div className="text-left">
               <div className="text-[10px] tracking-[0.5em] uppercase text-accent/80 mb-3">Datum</div>
               <div className="font-display text-primary-foreground text-base sm:text-2xl lg:text-3xl leading-tight mb-1 sm:mb-2">
@@ -287,15 +313,16 @@ function Hero() {
             </div>
           </div>
 
-          {/* Row 2: main works, centered, refined serif treatment */}
-          <div className="mt-10 sm:mt-14 flex flex-col sm:flex-row items-center justify-center gap-8 sm:gap-16 text-center">
+          {/* Row 2: main works. On mobile + iPad, constrain to the same
+              max-width as Row 1 and align left/right to mirror Date/Location. */}
+          <div className="mt-10 sm:mt-14 flex flex-row items-end justify-between gap-4 sm:gap-8 text-left max-w-[310px] sm:max-w-[560px] lg:max-w-none mx-auto lg:flex-row lg:items-center lg:justify-center lg:gap-16 lg:text-center">
             <div>
-              <div className="font-display text-primary-foreground text-4xl sm:text-5xl lg:text-6xl leading-none italic">Carmina Burana</div>
+              <div className="font-display text-primary-foreground text-3xl sm:text-4xl lg:text-6xl leading-none italic">Carmina Burana</div>
               <div className="mt-3 text-accent text-[10px] sm:text-xs tracking-[0.5em] uppercase">Carl Orff</div>
             </div>
-            <span aria-hidden className="hidden sm:block text-accent/50 text-2xl font-display">·</span>
-            <div>
-              <div className="font-display text-primary-foreground text-4xl sm:text-5xl lg:text-6xl leading-none italic">Koorfantasie</div>
+            <span aria-hidden className="hidden lg:block text-accent/50 text-2xl font-display">·</span>
+            <div className="text-right lg:text-center">
+              <div className="font-display text-primary-foreground text-3xl sm:text-4xl lg:text-6xl leading-none italic">Koorfantasie</div>
               <div className="mt-3 text-accent text-[10px] sm:text-xs tracking-[0.5em] uppercase">L. v. Beethoven</div>
             </div>
           </div>
@@ -501,11 +528,11 @@ function OrkestEnDirigent() {
   );
 }
 
-function ArtistCard({ artist, active, onClick }: { artist: Artist; active: boolean; onClick: () => void }) {
+function ArtistCard({ artist, active, onClick }: { artist: Artist; active: boolean; onClick: (el: HTMLElement) => void }) {
   return (
     <button
-      onClick={onClick}
-      className={`group flex flex-col items-center text-center focus:outline-none transition-all ${active ? "opacity-100" : "opacity-50 hover:opacity-80"}`}
+      onClick={(e) => onClick(e.currentTarget)}
+      className={`group flex flex-col items-center text-center focus:outline-none transition-all cursor-pointer ${active ? "opacity-100" : "opacity-50 hover:opacity-80"}`}
     >
       <div
         className={`aspect-square overflow-hidden rounded-full border-2 transition-all w-28 sm:w-44 md:w-48 ${
@@ -532,10 +559,45 @@ function AllArtistsSlider() {
   const scrollRef = useRef<HTMLDivElement>(null);
   const touchStartX = useRef<number>(0);
   const active = allArtists[activeIdx];
+  const [canScrollLeft, setCanScrollLeft] = useState(false);
+  const [canScrollRight, setCanScrollRight] = useState(true);
+
+  function updateScrollState() {
+    const el = scrollRef.current;
+    if (!el) return;
+    setCanScrollLeft(el.scrollLeft > 0);
+    setCanScrollRight(el.scrollLeft + el.clientWidth < el.scrollWidth - 1);
+  }
+
+  useEffect(() => {
+    const el = scrollRef.current;
+    if (!el) return;
+    updateScrollState();
+    el.addEventListener("scroll", updateScrollState, { passive: true });
+    return () => el.removeEventListener("scroll", updateScrollState);
+  }, []);
 
   function scroll(dir: "left" | "right") {
     if (!scrollRef.current) return;
     scrollRef.current.scrollBy({ left: dir === "left" ? -200 : 200, behavior: "smooth" });
+  }
+
+  function revealItem(itemEl: HTMLElement) {
+    const container = scrollRef.current;
+    if (!container) return;
+    const cRect = container.getBoundingClientRect();
+    const iRect = itemEl.getBoundingClientRect();
+    const peek = 56; // px — leave this much of the neighbour visible
+    const tolerance = 2;
+    let delta = 0;
+    if (iRect.left < cRect.left - tolerance) {
+      delta = iRect.left - cRect.left - peek;
+    } else if (iRect.right > cRect.right + tolerance) {
+      delta = iRect.right - cRect.right + peek;
+    } else {
+      return;
+    }
+    container.scrollBy({ left: delta, behavior: "smooth" });
   }
 
   function handleTouchStart(e: React.TouchEvent) {
@@ -560,23 +622,23 @@ function AllArtistsSlider() {
     <div>
       {/* Horizontal artist scroll */}
       <div className="relative">
-        {allArtists.length > 3 && (
-          <>
-            <button
-              onClick={() => scroll("left")}
-              className="absolute left-0 top-14 sm:top-1/2 sm:-translate-y-1/2 z-10 -ml-4 sm:-ml-6 bg-primary/80 border border-primary-foreground/15 p-2 sm:p-1.5 hover:bg-primary transition"
-              aria-label="Scroll left"
-            >
-              <ChevronLeft className="w-6 h-6 sm:w-4 sm:h-4" />
-            </button>
-            <button
-              onClick={() => scroll("right")}
-              className="absolute right-0 top-14 sm:top-1/2 sm:-translate-y-1/2 z-10 -mr-4 sm:-mr-6 bg-primary/80 border border-primary-foreground/15 p-2 sm:p-1.5 hover:bg-primary transition"
-              aria-label="Scroll right"
-            >
-              <ChevronRight className="w-6 h-6 sm:w-4 sm:h-4" />
-            </button>
-          </>
+        {allArtists.length > 3 && canScrollLeft && (
+          <button
+            onClick={() => scroll("left")}
+            className="absolute left-0 top-14 sm:top-1/2 sm:-translate-y-1/2 z-10 -ml-4 sm:-ml-6 bg-primary/80 border border-primary-foreground/15 p-2 sm:p-1.5 hover:bg-primary transition"
+            aria-label="Vorige artiesten"
+          >
+            <ChevronLeft className="w-6 h-6 sm:w-4 sm:h-4" />
+          </button>
+        )}
+        {allArtists.length > 3 && canScrollRight && (
+          <button
+            onClick={() => scroll("right")}
+            className="absolute right-0 top-14 sm:top-1/2 sm:-translate-y-1/2 z-10 -mr-4 sm:-mr-6 bg-primary/80 border border-primary-foreground/15 p-2 sm:p-1.5 hover:bg-primary transition"
+            aria-label="Volgende artiesten"
+          >
+            <ChevronRight className="w-6 h-6 sm:w-4 sm:h-4" />
+          </button>
         )}
         <div
           ref={scrollRef}
@@ -590,7 +652,10 @@ function AllArtistsSlider() {
               <ArtistCard
                 artist={artist}
                 active={activeIdx === i}
-                onClick={() => setActiveIdx(i)}
+                onClick={(el) => {
+                  setActiveIdx(i);
+                  if (el) revealItem(el);
+                }}
               />
             </div>
           ))}
@@ -619,6 +684,7 @@ function AllArtistsSlider() {
               href={active.website}
               target="_blank"
               rel="noreferrer"
+              aria-label={`Website van ${active.name} (opent in nieuw tabblad)`}
               className="inline-block mt-5 text-accent text-xs tracking-[0.3em] uppercase underline underline-offset-4 hover:opacity-80"
             >
               Website →
@@ -673,6 +739,23 @@ function PartnerTier({ title, items, size = "md" }: { title: string; items: Part
   );
 }
 
+function PartnerLogo({ p, className }: { p: PartnerItem; className: string }) {
+  const img = (
+    <img
+      src={p.src}
+      alt={`Logo ${p.name}`}
+      className={`object-contain ${p.whiteBg ? "partner-logo--whitebg" : "partner-logo"} ${className}`}
+    />
+  );
+  return p.href ? (
+    <a href={p.href} target="_blank" rel="noreferrer" className="block">
+      {img}
+    </a>
+  ) : (
+    <div>{img}</div>
+  );
+}
+
 function Partners() {
   const trackRef = useRef<HTMLDivElement>(null);
   const offsetRef = useRef(0);
@@ -681,29 +764,20 @@ function Partners() {
   const pauseTimeoutRef = useRef<number | null>(null);
   const touchStartX = useRef<number>(0);
 
-  type PartnerWithTier = PartnerItem & { tier: string; size: "lg" | "md" | "sm"; isFirstInTier: boolean };
-  const allPartners: PartnerWithTier[] = [];
-
-  const tiers = [
-    { title: "Hoofdsponsor", items: PARTNERS.hoofd, size: "lg" as const },
-    { title: "Premium sponsors", items: PARTNERS.premium, size: "md" as const },
-    { title: "Sponsors", items: PARTNERS.sponsors, size: "sm" as const },
-    { title: "Ambassadeurs", items: PARTNERS.ambassadeurs, size: "sm" as const },
-  ];
-
-  tiers.forEach((tier) => {
-    tier.items.forEach((item, idx) => {
-      allPartners.push({
-        ...item,
-        tier: tier.title,
-        size: tier.size,
-        isFirstInTier: idx === 0,
-      });
+  // Only sponsors + ambassadeurs go in the carousel
+  type CarouselItem = PartnerItem & { tier: string; isFirstInTier: boolean };
+  const carouselItems: CarouselItem[] = [];
+  [
+    { title: "Sponsors", items: PARTNERS.sponsors },
+    { title: "Ambassadeurs", items: PARTNERS.ambassadeurs },
+  ].forEach(({ title, items }) => {
+    items.forEach((item, idx) => {
+      carouselItems.push({ ...item, tier: title, isFirstInTier: idx === 0 });
     });
   });
 
   // Duplicate once for a seamless marquee loop
-  const duplicatedPartners = [...allPartners, ...allPartners];
+  const duplicatedPartners = [...carouselItems, ...carouselItems];
 
   // Measure one set width once images are laid out
   useEffect(() => {
@@ -814,9 +888,9 @@ function Partners() {
   }
 
   return (
-    <section id="partners" className="py-9 sm:py-27 bg-primary-foreground/[0.03] border-y border-primary-foreground/10">
+    <section id="partners" className="py-9 sm:py-16 bg-primary-foreground/[0.03] border-y border-primary-foreground/10">
       <div className="mx-auto max-w-6xl px-[15px] sm:px-6">
-        <div className="[&>header]:mb-4 sm:[&>header]:mb-14">
+        <div className="[&>header]:mb-8 sm:[&>header]:mb-12">
           <SectionHeader
             eyebrow="Met dank aan"
             title="Partners & sponsors"
@@ -824,25 +898,53 @@ function Partners() {
           />
         </div>
 
-        {/* Continuous marquee carousel */}
+        {/* ── Zones 1 + 2: Hoofdsponsor and Premium sponsors — one row ── */}
+        <div className="flex flex-wrap items-start justify-center sm:justify-start gap-x-12 gap-y-8 mb-8 sm:mb-10">
+          {/* Hoofdsponsor */}
+          <div className="flex flex-col items-center sm:items-start gap-4">
+            <h3 className="text-xs uppercase tracking-[0.5em] text-accent">Hoofdsponsor</h3>
+            <div className="flex items-center gap-8">
+              {PARTNERS.hoofd.map((p) => (
+                <PartnerLogo key={p.name} p={p} className="h-20 sm:h-24 max-w-[240px]" />
+              ))}
+            </div>
+          </div>
+
+          {/* Vertical divider (hidden on small screens where items wrap) */}
+          <div className="hidden sm:block w-px self-stretch bg-primary-foreground/10" />
+
+          {/* Premium sponsors */}
+          <div className="flex flex-col items-center sm:items-start gap-4">
+            <h3 className="text-xs uppercase tracking-[0.5em] text-accent">Premium sponsors</h3>
+            <div className="flex flex-wrap items-center gap-8 sm:gap-12">
+              {PARTNERS.premium.map((p) => (
+                <PartnerLogo key={p.name} p={p} className="h-14 sm:h-16 max-w-[180px]" />
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <div className="border-t border-primary-foreground/10 mb-8 sm:mb-10" />
+
+        {/* ── Zone 3: Sponsors + Ambassadeurs — marquee carousel ── */}
         <div className="relative">
           {/* Navigation buttons */}
           <button
             onClick={() => scroll("left")}
             className="absolute left-0 top-1/2 -translate-y-1/2 z-10 -ml-2 sm:-ml-6 bg-primary/80 border border-primary-foreground/15 p-2 sm:p-1.5 hover:bg-primary transition"
-            aria-label="Scroll left"
+            aria-label="Vorige partners"
           >
             <ChevronLeft className="w-6 h-6 sm:w-4 sm:h-4" />
           </button>
           <button
             onClick={() => scroll("right")}
             className="absolute right-0 top-1/2 -translate-y-1/2 z-10 -mr-2 sm:-mr-6 bg-primary/80 border border-primary-foreground/15 p-2 sm:p-1.5 hover:bg-primary transition"
-            aria-label="Scroll right"
+            aria-label="Volgende partners"
           >
             <ChevronRight className="w-6 h-6 sm:w-4 sm:h-4" />
           </button>
 
-          {/* Marquee viewport — clips overflow so the page never scrolls horizontally */}
+          {/* Marquee viewport */}
           <div
             className="overflow-hidden pb-4"
             onMouseEnter={handleInteractionStart}
@@ -855,36 +957,18 @@ function Partners() {
               className="flex gap-10 sm:gap-12 items-start will-change-transform"
               style={{ transform: "translate3d(0,0,0)" }}
             >
-              {duplicatedPartners.map((p, index) => {
-                const h = p.size === "lg" ? "h-24 sm:h-28" : p.size === "md" ? "h-20 sm:h-20" : "h-16 sm:h-16";
-                const img = (
-                  <img
-                    src={p.src}
-                    alt={`Logo ${p.name}`}
-                    className={`${h} max-w-[220px] object-contain ${p.whiteBg ? "partner-logo--whitebg" : "partner-logo"}`}
-                    loading="lazy"
-                  />
-                );
-
-                return (
-                  <div key={`${p.name}-${index}`} className="flex-shrink-0 flex flex-col items-start">
-                    <div className="h-8 mb-4">
-                      {p.isFirstInTier && (
-                        <h3 className="text-[10px] uppercase tracking-[0.5em] text-accent whitespace-nowrap">
-                          {p.tier}
-                        </h3>
-                      )}
-                    </div>
-                    {p.href ? (
-                      <a href={p.href} target="_blank" rel="noreferrer" className="block">
-                        {img}
-                      </a>
-                    ) : (
-                      <div>{img}</div>
+              {duplicatedPartners.map((p, index) => (
+                <div key={`${p.name}-${index}`} className="flex-shrink-0 flex flex-col items-start">
+                  <div className="h-8 mb-4">
+                    {p.isFirstInTier && (
+                      <h3 className="text-[10px] uppercase tracking-[0.5em] text-accent whitespace-nowrap">
+                        {p.tier}
+                      </h3>
                     )}
                   </div>
-                );
-              })}
+                  <PartnerLogo p={p} className="h-14 sm:h-16 max-w-[180px]" />
+                </div>
+              ))}
             </div>
           </div>
         </div>

@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState, useRef } from "react";
 import { ArrowLeft, ChevronLeft, ChevronRight, Menu, X, Ticket } from "lucide-react";
+import bearImg from "@/assets/bear.png";
 
 export const Route = createFileRoute("/artiesten")({
   component: ArtiestenPage,
@@ -124,8 +125,9 @@ function SiteHeader() {
   return (
     <header className="site-header sticky top-0 z-40 backdrop-blur-md bg-primary/85 text-primary-foreground border-b border-primary-foreground/10">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 flex items-center justify-between h-16">
-        <Link to="/" className="font-display text-lg sm:text-xl tracking-wide">
-          Symphony <span className="text-accent italic">of</span> Giving
+        <Link to="/" className="font-display text-lg sm:text-xl tracking-wide flex items-center gap-2">
+          <img src={bearImg} alt="Logo Symphony of Giving" className="h-8 w-8 object-contain" />
+          <span aria-hidden="true">Symphony <span className="text-accent italic">of</span> Giving</span>
         </Link>
         <nav className="hidden md:flex items-center gap-8 text-xs tracking-[0.25em] uppercase">
           {NAV.map((n) => (
@@ -245,14 +247,14 @@ function AllArtistsSlider() {
             <button
               onClick={() => scroll("left")}
               className="absolute left-0 top-1/2 -translate-y-1/2 z-10 -ml-4 sm:-ml-6 bg-primary/80 border border-primary-foreground/15 p-1.5 hover:bg-primary transition"
-              aria-label="Scroll left"
+              aria-label="Vorige artiesten"
             >
               <ChevronLeft className="w-4 h-4" />
             </button>
             <button
               onClick={() => scroll("right")}
               className="absolute right-0 top-1/2 -translate-y-1/2 z-10 -mr-4 sm:-mr-6 bg-primary/80 border border-primary-foreground/15 p-1.5 hover:bg-primary transition"
-              aria-label="Scroll right"
+              aria-label="Volgende artiesten"
             >
               <ChevronRight className="w-4 h-4" />
             </button>
@@ -278,16 +280,15 @@ function AllArtistsSlider() {
       </div>
 
       {/* Bio panel */}
-      <div className="mt-10 border border-primary-foreground/15 grid md:grid-cols-[30%_1fr] gap-0 items-start overflow-hidden">
-        <div className="hidden md:block w-full">
+      <div className="mt-10 border border-primary-foreground/15 grid md:grid-cols-[30%_1fr] gap-0 overflow-hidden md:h-[480px]">
+        <div className="hidden md:block w-full h-full">
           <img
             src={active.img}
             alt={`Portret van ${active.name}`}
             className="w-full h-full object-cover object-top"
-            style={{ minHeight: "320px", maxHeight: "480px" }}
           />
         </div>
-        <div className="p-8">
+        <div className="p-8 md:overflow-y-auto">
           <p className="text-[10px] uppercase tracking-[0.5em] text-accent mb-1">{active.role}</p>
           <h3 className="font-display text-2xl sm:text-3xl text-primary-foreground">{active.name}</h3>
           <div className="mt-5 text-primary-foreground/75 leading-relaxed space-y-3 text-sm sm:text-base">
@@ -300,6 +301,7 @@ function AllArtistsSlider() {
               href={active.website}
               target="_blank"
               rel="noreferrer"
+              aria-label={`Website van ${active.name} (opent in nieuw tabblad)`}
               className="inline-block mt-5 text-accent text-xs tracking-[0.3em] uppercase underline underline-offset-4 hover:opacity-80"
             >
               Website →
