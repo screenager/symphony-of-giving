@@ -3,7 +3,6 @@ import { useState, useRef, useEffect } from "react";
 import { Menu, X, Ticket, Mail, Phone, ChevronLeft, ChevronRight } from "lucide-react";
 import heroBanner from "@/assets/hero-banner.webp";
 import orkestImage from "@/assets/Music meets science-6.jpg";
-import bearImg from "@/assets/bear.png";
 
 export const Route = createFileRoute("/")({
   component: HomePage,
@@ -203,7 +202,6 @@ function SiteHeader({ open, setOpen }: { open: boolean; setOpen: (v: boolean) =>
     <header className="site-header sticky top-0 z-40 backdrop-blur-md bg-primary/85 text-primary-foreground border-b border-primary-foreground/10">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 flex items-center justify-between h-16">
         <a href="#hero" className="font-display text-lg sm:text-xl tracking-wide flex items-center gap-2">
-          <img src={bearImg} alt="Logo Symphony of Giving" className="h-8 w-8 object-contain" />
           <span aria-hidden="true">Symphony <span className="text-accent italic">of</span> Giving</span>
         </a>
         <nav className="hidden md:flex items-center gap-8 text-xs tracking-[0.25em] uppercase">

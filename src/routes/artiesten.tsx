@@ -1,7 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState, useRef } from "react";
 import { ArrowLeft, ChevronLeft, ChevronRight, Menu, X, Ticket } from "lucide-react";
-import bearImg from "@/assets/bear.png";
 
 export const Route = createFileRoute("/artiesten")({
   component: ArtiestenPage,
@@ -126,7 +125,6 @@ function SiteHeader() {
     <header className="site-header sticky top-0 z-40 backdrop-blur-md bg-primary/85 text-primary-foreground border-b border-primary-foreground/10">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 flex items-center justify-between h-16">
         <Link to="/" className="font-display text-lg sm:text-xl tracking-wide flex items-center gap-2">
-          <img src={bearImg} alt="Logo Symphony of Giving" className="h-8 w-8 object-contain" />
           <span aria-hidden="true">Symphony <span className="text-accent italic">of</span> Giving</span>
         </Link>
         <nav className="hidden md:flex items-center gap-8 text-xs tracking-[0.25em] uppercase">
