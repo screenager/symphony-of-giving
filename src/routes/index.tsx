@@ -258,7 +258,7 @@ function Hero() {
             alt="Symphony of Giving — blauwe pluche beer met gouden strik naast het logo"
             width={1600}
             height={800}
-            className="relative z-10 block w-full h-auto sm:[mask-image:linear-gradient(to_bottom,black_calc(100%-280px),transparent_100%)]"
+            className="relative z-10 block h-auto max-w-none w-[calc(100%+100px)] -mx-[50px] sm:w-full sm:mx-0 sm:[mask-image:linear-gradient(to_bottom,black_calc(100%-280px),transparent_100%)]"
             style={{
               WebkitMaskImage: "linear-gradient(to bottom, black calc(100% - 150px), transparent 100%)",
               maskImage: "linear-gradient(to bottom, black calc(100% - 150px), transparent 100%)",
@@ -318,12 +318,12 @@ function Hero() {
           <div className="mt-10 sm:mt-14 flex flex-row items-end justify-between gap-4 sm:gap-8 text-left max-w-[310px] sm:max-w-[560px] lg:max-w-none mx-auto lg:flex-row lg:items-center lg:justify-center lg:gap-16 lg:text-center">
             <div>
               <div className="font-display text-primary-foreground text-3xl sm:text-4xl lg:text-6xl leading-none italic">Carmina Burana</div>
-              <div className="mt-3 text-accent text-[10px] sm:text-xs tracking-[0.5em] uppercase">Carl Orff</div>
+              <div className="mt-3 text-accent text-[10px] sm:text-xs tracking-[0.5em] uppercase whitespace-nowrap">Carl Orff</div>
             </div>
             <span aria-hidden className="hidden lg:block text-accent/50 text-2xl font-display">·</span>
             <div className="text-right lg:text-center">
               <div className="font-display text-primary-foreground text-3xl sm:text-4xl lg:text-6xl leading-none italic">Koorfantasie</div>
-              <div className="mt-3 text-accent text-[10px] sm:text-xs tracking-[0.5em] uppercase">L. v. Beethoven</div>
+              <div className="mt-3 text-accent text-[10px] sm:text-xs tracking-[0.5em] uppercase whitespace-nowrap">L. v. Beethoven</div>
             </div>
           </div>
         </div>
@@ -860,31 +860,48 @@ function Partners() {
     }, 5000);
   }
 
-  // Handle user interaction (touch/mouse)
-  function handleInteractionStart(e: React.TouchEvent | React.MouseEvent) {
+  // Handle mouse hover
+  function handleMouseEnter() {
     setIsPaused(true);
-    if ('touches' in e) {
-      touchStartX.current = e.touches[0].clientX;
+    // Clear any pending resume timeout
+    if (pauseTimeoutRef.current) {
+      window.clearTimeout(pauseTimeoutRef.current);
+      pauseTimeoutRef.current = null;
     }
   }
 
-  function handleInteractionEnd(e: React.TouchEvent | React.MouseEvent) {
-    // Check for swipe gesture on touch end
-    if ('changedTouches' in e) {
-      const touchEndX = e.changedTouches[0].clientX;
-      const diff = touchStartX.current - touchEndX;
-      const threshold = 50; // minimum swipe distance
+  function handleMouseLeave() {
+    // Resume animation immediately on hover out
+    setIsPaused(false);
+  }
 
-      if (Math.abs(diff) > threshold) {
-        if (diff > 0) {
-          scroll("right");
-        } else {
-          scroll("left");
-        }
-      }
+  // Handle touch interaction
+  function handleTouchStart(e: React.TouchEvent) {
+    setIsPaused(true);
+    touchStartX.current = e.touches[0].clientX;
+    // Clear any pending resume timeout
+    if (pauseTimeoutRef.current) {
+      window.clearTimeout(pauseTimeoutRef.current);
+      pauseTimeoutRef.current = null;
     }
-    // Don't resume immediately - wait 5 seconds
-    pauseWithTimeout();
+  }
+
+  function handleTouchEnd(e: React.TouchEvent) {
+    const touchEndX = e.changedTouches[0].clientX;
+    const diff = touchStartX.current - touchEndX;
+    const threshold = 50; // minimum swipe distance
+
+    if (Math.abs(diff) > threshold) {
+      // User swiped - trigger scroll and pause for 5 seconds
+      if (diff > 0) {
+        scroll("right");
+      } else {
+        scroll("left");
+      }
+    } else {
+      // No swipe - resume animation immediately
+      setIsPaused(false);
+    }
   }
 
   return (
@@ -947,10 +964,10 @@ function Partners() {
           {/* Marquee viewport */}
           <div
             className="overflow-hidden pb-4"
-            onMouseEnter={handleInteractionStart}
-            onMouseLeave={handleInteractionEnd}
-            onTouchStart={handleInteractionStart}
-            onTouchEnd={handleInteractionEnd}
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
+            onTouchStart={handleTouchStart}
+            onTouchEnd={handleTouchEnd}
           >
             <div
               ref={trackRef}
