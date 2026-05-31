@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState, useRef } from "react";
 import { ArrowLeft, ChevronLeft, ChevronRight, Menu, X, Ticket } from "lucide-react";
+import alexanderDeclercqImage from "@/assets/alexander-declercq.jpg";
 
 export const Route = createFileRoute("/artiesten")({
   component: ArtiestenPage,
@@ -47,11 +48,11 @@ const ARTIST_GROUPS: ArtistGroup[] = [
     label: "Solisten",
     artists: [
       {
-        name: "David Van Looveren",
+        name: "Alexander Declercq",
         role: "Pianist",
-        img: "https://symphony-of-giving.be/images/david-van-looveren.jpeg",
-        bio: "David Van Looveren is een pianist met een rijk gevuld palmares als solist en kamermusicus. Hij behaalde masterdiploma's aan het Koninklijk Vlaams Conservatorium Antwerpen en het Fontys Conservatorium Tilburg en vervolmaakte zich voor piano bij Jan Wijn. Als pianist en artistiek leider werkte hij met het 'ensemble hommages' conceptuele projecten uit rond o.a. Schumann, Bartok en Messiaen en voerde hij zowel het integrale kamermuziekrepertoire van Johannes Brahms als hedendaagse creaties uit. Hij is als pianobegeleider verbonden aan de academies van Wilrijk, Borgerhout en Hemiksem, ondersteunt studenten op audities, concerten, wedstrijden en stages. David Van Looveren is verder actief als liedbegeleider en vormt een vast duo met saxofonist Bart Van Beneden.",
-        website: "https://www.davidvanlooveren.com/",
+        img: alexanderDeclercqImage,
+        bio: "Alexander Declercq (1998) startte zijn pianostudies aan het Stedelijk Conservatorium in Brugge en zette ze verder aan het Koninklijk Conservatorium Brussel bij Jan Michiels. Na het behalen van zijn masterdiploma Summa cum Laude specialiseerde hij zich aan de Hochschule für Musik und Tanz in Keulen bij Sheila Arnold. Hij is laureaat van talrijke wedstrijden, waaronder de 'International Piano Competition Emmanuel Durlet', het 'Concours international de Piano de Liège' en de 'Fujairah International Piano Competition'. Naast zijn solocarrière heeft Alexander een grote passie voor kamermuziek en trad hij op in prestigieuze zalen zoals Wigmore Hall, Concertgebouw Brugge, De Singel, Bozar en Flagey. In 2024 werd hij met Duo Altiler geselecteerd voor de Supernova-wedstrijd van Klara en benoemd tot één van Klara's 'Twintigers'. Sinds 2024 doceert hij kamermuziek aan het Koninklijk Conservatorium Brussel.",
+        website: "https://alexanderdeclercq.com/",
       },
       {
         name: "Elise Caluwaerts",
